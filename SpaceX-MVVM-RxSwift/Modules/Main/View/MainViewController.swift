@@ -10,7 +10,13 @@ import UIKit
 final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        setupView()
+    }
+
+    private func setupView() {
+        view.backgroundColor = .mainBackground()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = MainConstants.mainTitle
     }
 }
 
