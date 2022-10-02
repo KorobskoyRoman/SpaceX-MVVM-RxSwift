@@ -11,6 +11,12 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        NetworkService().fetchLaunches { result in
+            print(result)
+        }
+        NetworkService().fetchRocket(id: "5e9d0d95eda69955f709d1eb") { result in
+            print(result)
+        }
     }
 
     private func setupView() {
