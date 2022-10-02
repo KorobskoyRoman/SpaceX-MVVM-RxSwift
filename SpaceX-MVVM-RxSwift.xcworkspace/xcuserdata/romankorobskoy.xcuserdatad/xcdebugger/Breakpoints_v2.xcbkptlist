@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "7632165C-431C-4B7F-B79C-DD28E25AD097"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F4130F8C-815C-4E4B-897C-6FCBB3D0B870"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Extensions/URLRequest+.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "load(resource:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D8004536-A213-4D33-9325-B5995CF2367C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Extensions/URLRequest+.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "load(resource:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D8004536-A213-4D33-9325-B5995CF2367C - 377c7c0b12391e80"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static Foundation.URLRequest.load&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(resource: SpaceX_MVVM_RxSwift.Resource&lt;&#x3c4;_0_0&gt;) -&gt; RxSwift.Observable&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "SpaceX-MVVM-RxSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romankorobskoy/Documents/untitled%20folder/SpaceX-MVVM-RxSwift/SpaceX-MVVM-RxSwift/Extensions/URLRequest+.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "364">
+               </Location>
+               <Location
+                  uuid = "D8004536-A213-4D33-9325-B5995CF2367C - edad63e358935e8f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (__C.NSHTTPURLResponse, Foundation.Data) throws -&gt; &#x3c4;_0_0 in static Foundation.URLRequest.load&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(resource: SpaceX_MVVM_RxSwift.Resource&lt;&#x3c4;_0_0&gt;) -&gt; RxSwift.Observable&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "SpaceX-MVVM-RxSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romankorobskoy/Documents/untitled%20folder/SpaceX-MVVM-RxSwift/SpaceX-MVVM-RxSwift/Extensions/URLRequest+.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D9FCB820-6109-4E54-A77E-9DB95B91E69B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Extensions/URLRequest+.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "load(resource:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "39A18F11-02FD-4BCF-B8D9-2376DD5A0479"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Extensions/URLRequest+.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "load(resource:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
