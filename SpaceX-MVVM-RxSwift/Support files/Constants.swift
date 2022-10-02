@@ -10,3 +10,8 @@ import Foundation
 enum MainConstants {
     static let mainTitle = "SpaceX Launches"
 }
+
+enum NetworkConstants {
+    static let launchesUrl = "https://api.spacexdata.com/v4/launches"
+    static let rocketUrl = "https://api.spacexdata.com/v4/rockets/"
+}
