@@ -19,6 +19,9 @@ final class AppCoodrinator: Coordinator {
     func start() {
         let viewController = getViewControllerByType(type: .main)
         let navController = UINavigationController(rootViewController: viewController)
+        navController.navigationBar.standardAppearance = configureNavBarAppearence()
+        navController.navigationBar.compactAppearance = configureNavBarAppearence()
+        navController.navigationBar.scrollEdgeAppearance = configureNavBarAppearence()
         window.rootViewController = navController
         window.makeKeyAndVisible()
     }
@@ -42,5 +45,26 @@ final class AppCoodrinator: Coordinator {
         case .pop:
             UINavigationController().popViewController(animated: true)
         }
+    }
+}
+
+extension AppCoodrinator {
+    private func configureNavBarAppearence() -> UINavigationBarAppearance {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .purple
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.navBarTitle]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.navBarLargeTitle]
+
+        let backButtonAppearance = UIBarButtonItemAppearance(style: .plain)
+
+        appearance.backButtonAppearance = backButtonAppearance
+        UINavigationBar.appearance().tintColor = .white
+
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+
+        return appearance
     }
 }
