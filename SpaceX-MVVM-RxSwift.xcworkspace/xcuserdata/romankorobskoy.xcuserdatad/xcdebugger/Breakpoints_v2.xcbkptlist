@@ -103,32 +103,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "10782826-8E32-4A9A-AEE0-B2074AAE82D8"
-            shouldBeEnabled = "Yes"
+            uuid = "8926B718-5527-497E-A943-36F3BC675CA2"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpaceX-MVVM-RxSwift/Modules/Main/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "init(networkingService:)"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "getLaunches()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8926B718-5527-497E-A943-36F3BC675CA2"
-            shouldBeEnabled = "Yes"
+            uuid = "F9B0673E-AC4A-4850-B5F3-1FA00259450A"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SpaceX-MVVM-RxSwift/Modules/Main/MainViewModel.swift"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Main/View/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "getLaunches()"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "applySnapshot(animatingDifferences:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
