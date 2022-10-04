@@ -12,6 +12,7 @@ protocol MainViewModelType {
     var launches: BehaviorRelay<[LaunchInfo]> { get set }
     var reload: (()->Void)? { get set }
     func getLaunches()
+    func launchAt(indexPath: IndexPath) -> Observable<LaunchInfo>
     func push()
 }
 
@@ -32,6 +33,10 @@ final class MainViewModel: MainViewModelType {
             self.launches.accept(results)
             self.reload?()
         }
+    }
+
+    func launchAt(indexPath: IndexPath) -> Observable<LaunchInfo> {
+        return Observable.just(launches.value[indexPath.item])
     }
 
     func push() {
