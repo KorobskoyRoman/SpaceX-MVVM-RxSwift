@@ -32,3 +32,12 @@ enum HelpConstants {
         static let defaultNavBarHeight: CGFloat = 44.0
     }
 }
+
+enum ViewConstants {
+    static let loadingText = "Загрузка..."
+}
+
+enum Insets {
+    static let inset10: CGFloat = 10
+    static let inset70: CGFloat = 70
+}
