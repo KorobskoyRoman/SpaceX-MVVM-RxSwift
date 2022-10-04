@@ -41,7 +41,7 @@ struct Links: Decodable {
 }
 
 struct Patch: Decodable {
-    let large: String?
+    let small: String?
 }
 
 // MARK: - Rockets
