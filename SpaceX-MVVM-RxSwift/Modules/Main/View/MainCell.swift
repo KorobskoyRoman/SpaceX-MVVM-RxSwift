@@ -72,7 +72,7 @@ final class MainCell: UICollectionViewCell {
         if image.image == nil {
             image.image = UIImage(systemName: "circle.slash")
         }
-        dateLabel.text = model.dateUTC
+        dateLabel.text = getDate(model.dateUTC ?? Date())
         nameLabel.text = model.name
         successLabel.text = getSuccessInfo(model.success ?? false)
     }
@@ -112,6 +112,12 @@ extension MainCell {
         case false:
             return "Провал"
         }
+    }
+
+    private func getDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMM, yyyy"
+        return formatter.string(from: date)
     }
 }
 
