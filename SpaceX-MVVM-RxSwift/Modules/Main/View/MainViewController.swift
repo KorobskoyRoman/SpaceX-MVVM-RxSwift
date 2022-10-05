@@ -38,6 +38,7 @@ final class MainViewController: UIViewController {
     }
 
     private func setupView() {
+        view.showLoading(style: .large)
         view.backgroundColor = .mainBackground()
         navigationController?.navigationBar.prefersLargeTitles = true
         title = MainConstants.mainTitle
@@ -49,6 +50,7 @@ final class MainViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.collectionView.reloadData()
+                self.view.stopLoading()
             }
         }
     }
@@ -80,12 +82,6 @@ extension MainViewController {
 
                 return cell
             }.disposed(by: disposeBag)
-
-        if viewModel.launches.value.isEmpty {
-            collectionView.showLoading(style: .large)
-        } else {
-            collectionView.stopLoading()
-        }
     }
 }
 
