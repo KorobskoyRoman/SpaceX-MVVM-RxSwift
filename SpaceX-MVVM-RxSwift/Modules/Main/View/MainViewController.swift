@@ -74,11 +74,18 @@ extension MainViewController {
 //                guard let self else { return UICollectionViewCell() }
                 guard let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: MainCell.reuseId,
-                    for: IndexPath(row: item, section: 0)
+                    for: IndexPath(item: item, section: 0)
                 ) as? MainCell else { return UICollectionViewCell() }
                 cell.configure(with: model)
+
                 return cell
             }.disposed(by: disposeBag)
+
+        if viewModel.launches.value.isEmpty {
+            collectionView.showLoading(style: .large)
+        } else {
+            collectionView.stopLoading()
+        }
     }
 }
 
