@@ -135,6 +135,8 @@ extension MainViewController {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
+        NetworkService().fetchRocket(id: viewModel.launchAt(indexPath: indexPath).rocket ?? "", completion: { result in
+            print(result)
+        })
     }
 }
