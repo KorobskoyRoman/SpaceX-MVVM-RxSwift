@@ -44,6 +44,12 @@ final class NetworkService {
 
     func parseJSON<T: Decodable>(type: T.Type, data: Data?) -> T? {
         let decoder = JSONDecoder()
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        dateFormatter.timeZone = .current
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        
         guard let data = data else {
             return nil
         }
