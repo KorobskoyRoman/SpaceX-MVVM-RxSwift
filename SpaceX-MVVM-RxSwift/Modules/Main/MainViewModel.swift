@@ -10,7 +10,7 @@ import RxCocoa
 
 protocol MainViewModelType {
     var launches: BehaviorRelay<[LaunchInfo]> { get set }
-    var reload: (()->Void)? { get set }
+    var reload: (() -> Void)? { get set }
     func getLaunches()
 //    func launchAt(indexPath: IndexPath) -> Observable<LaunchInfo>
     func launchAt(indexPath: IndexPath) -> LaunchInfo 
