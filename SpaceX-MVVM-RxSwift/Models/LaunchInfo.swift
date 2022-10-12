@@ -7,10 +7,6 @@
 
 import Foundation
 
-struct Launches: Decodable {
-    let launches: [LaunchInfo]
-}
-
 struct LaunchInfo: Decodable, Hashable {
     var uuid = UUID()
     let links: Links

@@ -47,7 +47,8 @@ final class NetworkService {
         let dateFormatter = DateFormatter()
 
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        dateFormatter.timeZone = .current
+        dateFormatter.timeZone = .autoupdatingCurrent
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         
         guard let data = data else {
