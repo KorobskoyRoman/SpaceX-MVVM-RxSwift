@@ -21,6 +21,9 @@
 		9CACA48A28E8C76900B5325D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACA48928E8C76900B5325D /* NetworkService.swift */; };
 		9CACA48C28E9FE1900B5325D /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACA48B28E9FE1900B5325D /* MainViewModel.swift */; };
 		9CACA48F28EA06BF00B5325D /* MainConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACA48E28EA06BF00B5325D /* MainConfigurator.swift */; };
+		9CB21D1F28F739C600D275C9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB21D1E28F739C600D275C9 /* DetailViewController.swift */; };
+		9CB21D2128F739D300D275C9 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB21D2028F739D300D275C9 /* DetailViewModel.swift */; };
+		9CB21D2328F73A9000D275C9 /* DetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB21D2228F73A9000D275C9 /* DetailConfigurator.swift */; };
 		9CE4A3F528E8B1D70029ECA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4A3F428E8B1D70029ECA1 /* AppDelegate.swift */; };
 		9CE4A3F728E8B1D70029ECA1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4A3F628E8B1D70029ECA1 /* SceneDelegate.swift */; };
 		9CE4A3F928E8B1D70029ECA1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4A3F828E8B1D70029ECA1 /* MainViewController.swift */; };
@@ -44,6 +47,9 @@
 		9CACA48928E8C76900B5325D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		9CACA48B28E9FE1900B5325D /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		9CACA48E28EA06BF00B5325D /* MainConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainConfigurator.swift; sourceTree = "<group>"; };
+		9CB21D1E28F739C600D275C9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		9CB21D2028F739D300D275C9 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		9CB21D2228F73A9000D275C9 /* DetailConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailConfigurator.swift; sourceTree = "<group>"; };
 		9CE4A3F128E8B1D70029ECA1 /* SpaceX-MVVM-RxSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SpaceX-MVVM-RxSwift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE4A3F428E8B1D70029ECA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CE4A3F628E8B1D70029ECA1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,8 +122,26 @@
 			isa = PBXGroup;
 			children = (
 				9CACA48E28EA06BF00B5325D /* MainConfigurator.swift */,
+				9CB21D2228F73A9000D275C9 /* DetailConfigurator.swift */,
 			);
 			path = Configurators;
+			sourceTree = "<group>";
+		};
+		9CB21D1C28F7399500D275C9 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				9CB21D1D28F739AD00D275C9 /* View */,
+				9CB21D2028F739D300D275C9 /* DetailViewModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		9CB21D1D28F739AD00D275C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9CB21D1E28F739C600D275C9 /* DetailViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		9CE4A3E828E8B1D70029ECA1 = {
@@ -176,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				9CE4A40C28E8BAFD0029ECA1 /* Main */,
+				9CB21D1C28F7399500D275C9 /* Detail */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -330,17 +355,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CACA48628E8C3D100B5325D /* LaunchInfo.swift in Sources */,
+				9CB21D1F28F739C600D275C9 /* DetailViewController.swift in Sources */,
 				9C8EA75F28EA125100A73F12 /* Section.swift in Sources */,
 				9C8CBA9928E8BFEE00947DB7 /* Constants.swift in Sources */,
 				9C8CBA9728E8BBF900947DB7 /* AppCoordinator.swift in Sources */,
 				9CACA48A28E8C76900B5325D /* NetworkService.swift in Sources */,
 				9C8EA76128EA12FE00A73F12 /* MainCell.swift in Sources */,
+				9CB21D2328F73A9000D275C9 /* DetailConfigurator.swift in Sources */,
 				9CE4A3F928E8B1D70029ECA1 /* MainViewController.swift in Sources */,
 				9C8EA76528EA147700A73F12 /* UIFont+.swift in Sources */,
 				9CE4A3F528E8B1D70029ECA1 /* AppDelegate.swift in Sources */,
 				9C8EA75D28EA08A800A73F12 /* CoordinatorProtocol.swift in Sources */,
 				9CE4A3F728E8B1D70029ECA1 /* SceneDelegate.swift in Sources */,
 				9C8EA76328EA134500A73F12 /* SectionHeader.swift in Sources */,
+				9CB21D2128F739D300D275C9 /* DetailViewModel.swift in Sources */,
 				9C8EA76728ECAA7600A73F12 /* UIView+.swift in Sources */,
 				9C8CBA9C28E8C09900947DB7 /* UIColor+.swift in Sources */,
 				9CACA48C28E9FE1900B5325D /* MainViewModel.swift in Sources */,
