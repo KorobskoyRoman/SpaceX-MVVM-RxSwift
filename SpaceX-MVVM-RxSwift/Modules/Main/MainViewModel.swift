@@ -12,12 +12,12 @@ protocol MainViewModelType {
     var launches: BehaviorRelay<[LaunchInfo]> { get set }
     var reload: (() -> Void)? { get set }
     func getLaunches()
-//    func launchAt(indexPath: IndexPath) -> Observable<LaunchInfo>
-    func launchAt(indexPath: IndexPath) -> LaunchInfo 
+    func launchAt(indexPath: IndexPath) -> LaunchInfo
     func push()
 }
 
 final class MainViewModel: MainViewModelType {
+    weak var coordinator: AppCoodrinator?
     var launches: BehaviorRelay<[LaunchInfo]> = BehaviorRelay<[LaunchInfo]>(value: [])
     var reload: (() -> Void)?
     private lazy var fetchedLaunches = [LaunchInfo]()
@@ -41,6 +41,9 @@ final class MainViewModel: MainViewModelType {
     }
 
     func push() {
-        print(#function)
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.coordinator?.performTransition(with: .perform(.detail))
+        }
     }
 }
