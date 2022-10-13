@@ -36,9 +36,10 @@ final class AppCoodrinator: Coordinator {
             viewController = config.configure(networkService: networkService,
                                               coordinator: self)
             return viewController
-        case .detail:
+        case .detail(let launch):
             let config = DetailConfigurator()
-            viewController = config.configure()
+            viewController = config.configure(networkService: networkService,
+                                              launch: launch)
             return viewController
         }
     }
@@ -46,8 +47,8 @@ final class AppCoodrinator: Coordinator {
     func performTransition(with type: Transition) {
         switch type {
         case .perform(let vc):
-            let viewControleller = getViewControllerByType(type: vc)
-            navigationController?.pushViewController(viewControleller, animated: true)
+            let viewController = getViewControllerByType(type: vc)
+            navigationController?.pushViewController(viewController, animated: true)
         case .pop:
             UINavigationController().popViewController(animated: true)
         }

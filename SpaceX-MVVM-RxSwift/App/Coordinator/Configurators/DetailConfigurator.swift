@@ -6,14 +6,19 @@
 //
 
 import UIKit
+import RxCocoa
 
 protocol DetailConfiguratorType {
-    func configure() -> UIViewController
+    func configure(networkService: NetworkService,
+                   launch: LaunchInfo) -> UIViewController
 }
 
 final class DetailConfigurator: DetailConfiguratorType {
-    func configure() -> UIViewController {
-        let vm = DetailViewModel()
+    func configure(networkService: NetworkService,
+                   launch: LaunchInfo) -> UIViewController {
+        let vm = DetailViewModel(networkSerivce: networkService,
+                                 launchInfo: BehaviorRelay<LaunchInfo>(value: launch))
+//        vm.launchInfo = BehaviorRelay<LaunchInfo>(value: launch)
         let vc = DetailViewController(viewModel: vm)
         return vc
     }

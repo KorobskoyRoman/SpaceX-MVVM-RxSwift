@@ -6,11 +6,16 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import SDWebImage
 
 final class DetailViewController: UIViewController {
     private let viewModel: DetailViewModelType
+    private let disposeBag = DisposeBag()
     private let image: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "noImage"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -37,11 +42,20 @@ final class DetailViewController: UIViewController {
     }
 
     private func setupView() {
-        view.backgroundColor = .red
+        view.backgroundColor = .mainBackground()
+        title = viewModel.title
+        bind()
         setConstraints()
     }
 
+    private func bind() {
+        let url = URL(string: viewModel.image)
+        image.sd_setImage(with: url)
+    }
+
     private func setConstraints() {
+        let imageHeight: CGFloat = 200
+
         view.addSubview(image)
         view.addSubview(rocketInfoView)
         view.subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
@@ -50,9 +64,9 @@ final class DetailViewController: UIViewController {
             image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             image.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             image.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            image.heightAnchor.constraint(equalToConstant: 200),
+            image.heightAnchor.constraint(equalToConstant: imageHeight),
 
-            rocketInfoView.topAnchor.constraint(equalTo: image.bottomAnchor, constant: -20),
+            rocketInfoView.topAnchor.constraint(equalTo: image.bottomAnchor, constant: -Insets.inset20),
             rocketInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             rocketInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             rocketInfoView.bottomAnchor.constraint(equalTo: view.bottomAnchor)

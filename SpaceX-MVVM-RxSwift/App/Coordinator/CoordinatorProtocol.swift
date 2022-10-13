@@ -21,15 +21,17 @@ enum Transition {
 
 enum ViewControllers {
     case main
-    case detail
+    case detail(LaunchInfo)
 
     var viewController: UIViewController {
         switch self {
         case .main:
-            let viewModel = MainViewModel(networkingService: NetworkService())
+            let networkService = NetworkService()
+            let viewModel = MainViewModel(networkingService: networkService)
             return MainViewController(viewModel: viewModel)
         case .detail:
-            let viewModel = DetailViewModel()
+            let networkService = NetworkService()
+            let viewModel = DetailViewModel(networkSerivce: networkService, launchInfo: nil)
             return DetailViewController(viewModel: viewModel)
         }
     }
