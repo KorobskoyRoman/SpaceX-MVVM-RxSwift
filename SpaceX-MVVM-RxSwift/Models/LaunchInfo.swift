@@ -51,3 +51,9 @@ struct Rocket: Decodable {
         case name, type, id
     }
 }
+
+extension Rocket {
+    static var emptyRocket: Rocket {
+        return Rocket(flickrImages: [], name: "", type: "", id: "")
+    }
+}
