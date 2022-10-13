@@ -40,4 +40,5 @@ enum ViewConstants {
 enum Insets {
     static let inset10: CGFloat = 10
     static let inset70: CGFloat = 70
+    static let inset20: CGFloat = 20
 }
