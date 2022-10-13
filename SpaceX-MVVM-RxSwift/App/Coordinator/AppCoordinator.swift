@@ -9,8 +9,9 @@ import Foundation
 import UIKit
 
 final class AppCoodrinator: Coordinator {
-    private let window: UIWindow
     var networkService = NetworkService()
+    private let window: UIWindow
+    private var navigationController: UINavigationController?
 
     init(window: UIWindow) {
         self.window = window
@@ -18,11 +19,11 @@ final class AppCoodrinator: Coordinator {
 
     func start() {
         let viewController = getViewControllerByType(type: .main)
-        let navController = UINavigationController(rootViewController: viewController)
-        navController.navigationBar.standardAppearance = configureNavBarAppearence()
-        navController.navigationBar.compactAppearance = configureNavBarAppearence()
-        navController.navigationBar.scrollEdgeAppearance = configureNavBarAppearence()
-        window.rootViewController = navController
+        navigationController = UINavigationController(rootViewController: viewController)
+        navigationController?.navigationBar.standardAppearance = configureNavBarAppearence()
+        navigationController?.navigationBar.compactAppearance = configureNavBarAppearence()
+        navigationController?.navigationBar.scrollEdgeAppearance = configureNavBarAppearence()
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
 
@@ -32,7 +33,12 @@ final class AppCoodrinator: Coordinator {
         switch type {
         case .main:
             let config = MainConfigurator()
-            viewController = config.configure(networkService: networkService)
+            viewController = config.configure(networkService: networkService,
+                                              coordinator: self)
+            return viewController
+        case .detail:
+            let config = DetailConfigurator()
+            viewController = config.configure()
             return viewController
         }
     }
@@ -41,7 +47,7 @@ final class AppCoodrinator: Coordinator {
         switch type {
         case .perform(let vc):
             let viewControleller = getViewControllerByType(type: vc)
-            viewControleller.navigationController?.pushViewController(viewControleller, animated: true)
+            navigationController?.pushViewController(viewControleller, animated: true)
         case .pop:
             UINavigationController().popViewController(animated: true)
         }

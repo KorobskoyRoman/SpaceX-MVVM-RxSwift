@@ -21,12 +21,16 @@ enum Transition {
 
 enum ViewControllers {
     case main
+    case detail
 
     var viewController: UIViewController {
         switch self {
         case .main:
             let viewModel = MainViewModel(networkingService: NetworkService())
             return MainViewController(viewModel: viewModel)
+        case .detail:
+            let viewModel = DetailViewModel()
+            return DetailViewController(viewModel: viewModel)
         }
     }
 }
