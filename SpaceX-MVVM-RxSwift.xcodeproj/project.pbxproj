@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		77823DBAAF3A65C0ABC7E5D6 /* Pods_SpaceX_MVVM_RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11AC851B90B31ADEF4922625 /* Pods_SpaceX_MVVM_RxSwift.framework */; };
+		9C240A4A28F751AD0074C74C /* RocketInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C240A4928F751AD0074C74C /* RocketInfoView.swift */; };
 		9C8CBA9728E8BBF900947DB7 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CBA9628E8BBF900947DB7 /* AppCoordinator.swift */; };
 		9C8CBA9928E8BFEE00947DB7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CBA9828E8BFEE00947DB7 /* Constants.swift */; };
 		9C8CBA9C28E8C09900947DB7 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CBA9B28E8C09900947DB7 /* UIColor+.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		11AC851B90B31ADEF4922625 /* Pods_SpaceX_MVVM_RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpaceX_MVVM_RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		988FE4164DB7D8B6F8992F2E /* Pods-SpaceX-MVVM-RxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceX-MVVM-RxSwift.debug.xcconfig"; path = "Target Support Files/Pods-SpaceX-MVVM-RxSwift/Pods-SpaceX-MVVM-RxSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		9C240A4928F751AD0074C74C /* RocketInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketInfoView.swift; sourceTree = "<group>"; };
 		9C8CBA9628E8BBF900947DB7 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		9C8CBA9828E8BFEE00947DB7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9C8CBA9B28E8C09900947DB7 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		9CB21D1D28F739AD00D275C9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9C240A4928F751AD0074C74C /* RocketInfoView.swift */,
 				9CB21D1E28F739C600D275C9 /* DetailViewController.swift */,
 			);
 			path = View;
@@ -356,6 +359,7 @@
 			files = (
 				9CACA48628E8C3D100B5325D /* LaunchInfo.swift in Sources */,
 				9CB21D1F28F739C600D275C9 /* DetailViewController.swift in Sources */,
+				9C240A4A28F751AD0074C74C /* RocketInfoView.swift in Sources */,
 				9C8EA75F28EA125100A73F12 /* Section.swift in Sources */,
 				9C8CBA9928E8BFEE00947DB7 /* Constants.swift in Sources */,
 				9C8CBA9728E8BBF900947DB7 /* AppCoordinator.swift in Sources */,
