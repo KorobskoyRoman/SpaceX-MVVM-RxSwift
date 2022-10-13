@@ -13,14 +13,13 @@ protocol MainViewModelType {
     var reload: (() -> Void)? { get set }
     func getLaunches()
     func launchAt(indexPath: IndexPath) -> LaunchInfo
-    func push()
+    func push(launch: LaunchInfo)
 }
 
 final class MainViewModel: MainViewModelType {
     weak var coordinator: AppCoodrinator?
     var launches: BehaviorRelay<[LaunchInfo]> = BehaviorRelay<[LaunchInfo]>(value: [])
     var reload: (() -> Void)?
-    private lazy var fetchedLaunches = [LaunchInfo]()
     private let networkingService: NetworkService
 
     init(networkingService: NetworkService) {
@@ -40,10 +39,10 @@ final class MainViewModel: MainViewModelType {
         return launches.value[indexPath.item]
     }
 
-    func push() {
+    func push(launch: LaunchInfo) {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            self.coordinator?.performTransition(with: .perform(.detail))
+            self.coordinator?.performTransition(with: .perform(.detail(launch)))
         }
     }
 }

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 final class MainCell: UICollectionViewCell {
     static let reuseId = "MainCell"
@@ -68,10 +67,12 @@ final class MainCell: UICollectionViewCell {
     func configure(with model: LaunchInfo) {
         image.sd_setImage(with: URL(string: model.links.patch.small ?? "")) { _,_,_,_ in
             self.image.stopLoading()
+
+            if self.image.image == nil {
+                self.image.image = UIImage(systemName: "circle.slash")
+            }
         }
-        if image.image == nil {
-            image.image = UIImage(systemName: "circle.slash")
-        }
+
         dateLabel.text = getDate(model.dateUTC ?? Date())
         nameLabel.text = model.name
         successLabel.text = getSuccessInfo(model.success ?? false)
