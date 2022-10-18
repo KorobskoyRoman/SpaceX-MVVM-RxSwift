@@ -15,4 +15,12 @@ extension UIFont {
     class var navBarLargeTitle: UIFont {
         return UIFont.systemFont(ofSize: 35.0, weight: .bold)
     }
+
+    class var lab14: UIFont {
+        return UIFont(name: "LabGrotesque-Regular", size: 14) ?? navBarTitle
+    }
+
+    class var lab24: UIFont {
+        return UIFont(name: "LabGrotesque-Medium", size: 24) ?? navBarLargeTitle
+    }
 }
