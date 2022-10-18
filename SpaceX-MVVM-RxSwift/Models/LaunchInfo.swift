@@ -14,7 +14,7 @@ struct LaunchInfo: Decodable, Hashable {
     let success: Bool?
     let details: String?
     let name: String?
-    let dateUTC: Date?
+    let dateUTC: Date
 
     enum CodingKeys: String, CodingKey {
         case links, rocket, success, details, name
