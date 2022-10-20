@@ -30,7 +30,9 @@ final class MainViewModel: MainViewModelType {
 
     func getLaunches()  {
         networkingService.fetchLaunches { results in
-            self.launches.accept(results)
+            self.launches.accept(results.sorted(by: {
+                $0.dateUTC > $1.dateUTC
+            }))
             self.reload?()
         }
     }
