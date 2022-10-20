@@ -27,7 +27,8 @@ final class MainCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 20)
+//        label.font = .systemFont(ofSize: 20)
+        label.font = .lab14
         return label
     }()
     private let successImage = UIImageView()
@@ -94,7 +95,7 @@ final class MainCell: UICollectionViewCell {
             image.heightAnchor.constraint(equalToConstant: Insets.inset70),
             image.widthAnchor.constraint(equalToConstant: Insets.inset70),
 
-            nameLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: Insets.inset10),
+            nameLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: Insets.inset5),
             nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Insets.inset10),
             nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Insets.inset10),
 
