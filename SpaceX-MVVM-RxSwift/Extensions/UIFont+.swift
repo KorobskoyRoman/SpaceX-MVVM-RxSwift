@@ -16,11 +16,11 @@ extension UIFont {
         return UIFont.systemFont(ofSize: 35.0, weight: .bold)
     }
 
-    class var lab14: UIFont {
-        return UIFont(name: "LabGrotesque-Regular", size: 14) ?? navBarTitle
+    class var lab16: UIFont {
+        return UIFont(name: "AppleSDGothicNeo-Regular", size: 16) ?? navBarTitle
     }
 
     class var lab24: UIFont {
-        return UIFont(name: "LabGrotesque-Medium", size: 24) ?? navBarLargeTitle
+        return UIFont(name: "AppleSDGothicNeo-Bold", size: 24) ?? navBarLargeTitle
     }
 }

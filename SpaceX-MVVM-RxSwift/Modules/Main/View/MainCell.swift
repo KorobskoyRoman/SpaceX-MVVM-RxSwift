@@ -28,7 +28,7 @@ final class MainCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .black
 //        label.font = .systemFont(ofSize: 20)
-        label.font = .lab14
+        label.font = .lab24
         return label
     }()
     private let successImage = UIImageView()
