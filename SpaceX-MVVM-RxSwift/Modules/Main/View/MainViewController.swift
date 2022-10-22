@@ -41,6 +41,7 @@ final class MainViewController: UIViewController {
         view.showLoading(style: .large)
         view.backgroundColor = .mainBackground()
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
         title = MainConstants.mainTitle
         setupCollectionView()
     }
@@ -73,7 +74,7 @@ extension MainViewController {
         viewModel.launches
             .observe(on: MainScheduler.instance)
             .bind(to: collectionView.rx.items) { collectionView, item, model in
-//                guard let self else { return UICollectionViewCell() }
+                //                guard let self else { return UICollectionViewCell() }
                 guard let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: MainCell.reuseId,
                     for: IndexPath(item: item, section: 0)
@@ -135,8 +136,10 @@ extension MainViewController {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        NetworkService().fetchRocket(id: viewModel.launchAt(indexPath: indexPath).rocket ?? "", completion: { result in
-            print(result)
+        NetworkService().fetchRocket(id: viewModel.launchAt(indexPath: indexPath).rocket ?? "",
+                                     completion: { [weak self] result in
+            guard let self else { return }
+            self.viewModel.push(launch: self.viewModel.launchAt(indexPath: indexPath))
         })
     }
 }

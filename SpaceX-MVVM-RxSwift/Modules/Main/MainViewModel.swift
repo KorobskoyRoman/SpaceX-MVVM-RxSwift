@@ -12,15 +12,14 @@ protocol MainViewModelType {
     var launches: BehaviorRelay<[LaunchInfo]> { get set }
     var reload: (() -> Void)? { get set }
     func getLaunches()
-//    func launchAt(indexPath: IndexPath) -> Observable<LaunchInfo>
-    func launchAt(indexPath: IndexPath) -> LaunchInfo 
-    func push()
+    func launchAt(indexPath: IndexPath) -> LaunchInfo
+    func push(launch: LaunchInfo)
 }
 
 final class MainViewModel: MainViewModelType {
+    weak var coordinator: AppCoodrinator?
     var launches: BehaviorRelay<[LaunchInfo]> = BehaviorRelay<[LaunchInfo]>(value: [])
     var reload: (() -> Void)?
-    private lazy var fetchedLaunches = [LaunchInfo]()
     private let networkingService: NetworkService
 
     init(networkingService: NetworkService) {
@@ -31,7 +30,9 @@ final class MainViewModel: MainViewModelType {
 
     func getLaunches()  {
         networkingService.fetchLaunches { results in
-            self.launches.accept(results)
+            self.launches.accept(results.sorted(by: {
+                $0.dateUTC > $1.dateUTC
+            }))
             self.reload?()
         }
     }
@@ -40,7 +41,10 @@ final class MainViewModel: MainViewModelType {
         return launches.value[indexPath.item]
     }
 
-    func push() {
-        print(#function)
+    func push(launch: LaunchInfo) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.coordinator?.performTransition(with: .perform(.detail(launch)))
+        }
     }
 }

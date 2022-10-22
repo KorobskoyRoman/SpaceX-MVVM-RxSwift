@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 final class MainCell: UICollectionViewCell {
     static let reuseId = "MainCell"
@@ -28,10 +27,11 @@ final class MainCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 20)
+//        label.font = .systemFont(ofSize: 20)
+        label.font = .lab24
         return label
     }()
-    private let successLabel = UILabel()
+    private let successImage = UIImageView()
 
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -60,28 +60,33 @@ final class MainCell: UICollectionViewCell {
         image.image = nil
         dateLabel.text = nil
         nameLabel.text = nil
-        successLabel.text = nil
+        successImage.image = nil
         image.showLoading()
     }
 
     // MARK: - Configure
     func configure(with model: LaunchInfo) {
-        image.sd_setImage(with: URL(string: model.links.patch.small ?? "")) { _,_,_,_ in
+        image.sd_setImage(with: URL(string: model.links.patch.small ?? "")) { [weak self] _,_,_,_ in
+            guard let self else { return }
+            guard self.image.image != nil else {
+                self.image.image = UIImage(systemName: "circle.slash")
+                self.image.stopLoading()
+                return
+            }
             self.image.stopLoading()
         }
-        if image.image == nil {
-            image.image = UIImage(systemName: "circle.slash")
-        }
-        dateLabel.text = getDate(model.dateUTC ?? Date())
+
+        dateLabel.text = getDate(model.dateUTC)
         nameLabel.text = model.name
-        successLabel.text = getSuccessInfo(model.success ?? false)
+        successImage.image = getSuccessInfo(model.success ?? false)
     }
 
     private func setConstraints() {
+        let successImageHeight: CGFloat = 50
         contentView.addSubview(image)
         contentView.addSubview(dateLabel)
         contentView.addSubview(nameLabel)
-        contentView.addSubview(successLabel)
+        contentView.addSubview(successImage)
         contentView.subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
 
         NSLayoutConstraint.activate([
@@ -90,7 +95,7 @@ final class MainCell: UICollectionViewCell {
             image.heightAnchor.constraint(equalToConstant: Insets.inset70),
             image.widthAnchor.constraint(equalToConstant: Insets.inset70),
 
-            nameLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: Insets.inset10),
+            nameLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: Insets.inset5),
             nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Insets.inset10),
             nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Insets.inset10),
 
@@ -98,19 +103,21 @@ final class MainCell: UICollectionViewCell {
             dateLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Insets.inset10),
             dateLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
 
-            successLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: Insets.inset10),
-            successLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Insets.inset10)
+            successImage.topAnchor.constraint(equalTo: self.topAnchor, constant: Insets.inset10),
+            successImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Insets.inset10),
+            successImage.heightAnchor.constraint(equalToConstant: successImageHeight),
+            successImage.widthAnchor.constraint(equalTo: successImage.heightAnchor)
         ])
     }
 }
 
 extension MainCell {
-    private func getSuccessInfo(_ success: Bool) -> String {
+    private func getSuccessInfo(_ success: Bool) -> UIImage {
         switch success {
         case true:
-            return "Успешно"
+            return UIImage(named: "success")!
         case false:
-            return "Провал"
+            return UIImage(named: "fail")!
         }
     }
 
