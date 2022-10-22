@@ -33,6 +33,7 @@ enum ViewControllers {
             let networkService = NetworkService()
             let viewModel = DetailViewModel(networkSerivce: networkService, launchInfo: nil)
             let rocketView = RocketInfoView()
+            rocketView.rocketParams = viewModel.rocketParams
             return DetailViewController(viewModel: viewModel, rocketView: rocketView)
         }
     }

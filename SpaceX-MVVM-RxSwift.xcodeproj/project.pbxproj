@@ -11,6 +11,8 @@
 		9C240A4A28F751AD0074C74C /* RocketInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C240A4928F751AD0074C74C /* RocketInfoView.swift */; };
 		9C240A4C28F873190074C74C /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C240A4B28F873190074C74C /* UIImage+.swift */; };
 		9C6F7C6B28FF1E56001CC8A9 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6F7C6A28FF1E56001CC8A9 /* UIStackView+.swift */; };
+		9C6F7C6D29043AD0001CC8A9 /* RocketInfoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6F7C6C29043AD0001CC8A9 /* RocketInfoCollectionView.swift */; };
+		9C6F7C7029044C66001CC8A9 /* RocketParamsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6F7C6F29044C66001CC8A9 /* RocketParamsCell.swift */; };
 		9C8CBA9728E8BBF900947DB7 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CBA9628E8BBF900947DB7 /* AppCoordinator.swift */; };
 		9C8CBA9928E8BFEE00947DB7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CBA9828E8BFEE00947DB7 /* Constants.swift */; };
 		9C8CBA9C28E8C09900947DB7 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CBA9B28E8C09900947DB7 /* UIColor+.swift */; };
@@ -40,6 +42,8 @@
 		9C240A4928F751AD0074C74C /* RocketInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketInfoView.swift; sourceTree = "<group>"; };
 		9C240A4B28F873190074C74C /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		9C6F7C6A28FF1E56001CC8A9 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
+		9C6F7C6C29043AD0001CC8A9 /* RocketInfoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketInfoCollectionView.swift; sourceTree = "<group>"; };
+		9C6F7C6F29044C66001CC8A9 /* RocketParamsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketParamsCell.swift; sourceTree = "<group>"; };
 		9C8CBA9628E8BBF900947DB7 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		9C8CBA9828E8BFEE00947DB7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9C8CBA9B28E8C09900947DB7 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -78,6 +82,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C6F7C6E29044C4A001CC8A9 /* RocketCollection */ = {
+			isa = PBXGroup;
+			children = (
+				9C6F7C6C29043AD0001CC8A9 /* RocketInfoCollectionView.swift */,
+				9C6F7C6F29044C66001CC8A9 /* RocketParamsCell.swift */,
+			);
+			path = RocketCollection;
+			sourceTree = "<group>";
+		};
 		9C8CBA9528E8BBEA00947DB7 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				9C240A4928F751AD0074C74C /* RocketInfoView.swift */,
+				9C6F7C6E29044C4A001CC8A9 /* RocketCollection */,
 				9CB21D1E28F739C600D275C9 /* DetailViewController.swift */,
 			);
 			path = View;
@@ -368,6 +382,7 @@
 				9C240A4A28F751AD0074C74C /* RocketInfoView.swift in Sources */,
 				9C8EA75F28EA125100A73F12 /* Section.swift in Sources */,
 				9C8CBA9928E8BFEE00947DB7 /* Constants.swift in Sources */,
+				9C6F7C7029044C66001CC8A9 /* RocketParamsCell.swift in Sources */,
 				9C8CBA9728E8BBF900947DB7 /* AppCoordinator.swift in Sources */,
 				9CACA48A28E8C76900B5325D /* NetworkService.swift in Sources */,
 				9C8EA76128EA12FE00A73F12 /* MainCell.swift in Sources */,
@@ -378,6 +393,7 @@
 				9C8EA75D28EA08A800A73F12 /* CoordinatorProtocol.swift in Sources */,
 				9CE4A3F728E8B1D70029ECA1 /* SceneDelegate.swift in Sources */,
 				9C8EA76328EA134500A73F12 /* SectionHeader.swift in Sources */,
+				9C6F7C6D29043AD0001CC8A9 /* RocketInfoCollectionView.swift in Sources */,
 				9C240A4C28F873190074C74C /* UIImage+.swift in Sources */,
 				9CB21D2128F739D300D275C9 /* DetailViewModel.swift in Sources */,
 				9C8EA76728ECAA7600A73F12 /* UIView+.swift in Sources */,

@@ -25,6 +25,7 @@ final class DetailViewController: UIViewController {
     init(viewModel: DetailViewModelType, rocketView: RocketInfoType) {
         self.viewModel = viewModel
         self.rocketInfoView = rocketView
+        rocketInfoView.rocketParams = viewModel.rocketParams
         super.init(nibName: nil, bundle: nil)
     }
 

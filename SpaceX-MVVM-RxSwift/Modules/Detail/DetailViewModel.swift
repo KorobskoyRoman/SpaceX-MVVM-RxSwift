@@ -17,12 +17,13 @@ protocol DetailViewModelType {
     var country: Observable<String> { get }
     var cost: Observable<String> { get }
     var rocketInfo: BehaviorRelay<Rocket>? { get set }
-    func getRocketInfo()
+    var rocketParams: [Double] { get set }
 }
 
 final class DetailViewModel: DetailViewModelType {
     var launchInfo: BehaviorRelay<LaunchInfo>?
     var rocketInfo: BehaviorRelay<Rocket>? = BehaviorRelay<Rocket>(value: .emptyRocket)
+    var rocketParams = [Double]()
     private let networkSerivce: NetworkService
 
     init(networkSerivce: NetworkService, launchInfo: BehaviorRelay<LaunchInfo>?) {
@@ -31,9 +32,14 @@ final class DetailViewModel: DetailViewModelType {
         getRocketInfo()
     }
 
-    func getRocketInfo() {
+    private func getRocketInfo() {
         networkSerivce.fetchRocket(id: launchInfo?.value.rocket ?? "") { [weak self] rocket in
             guard let self else { return }
+            self.rocketParams.append(rocket.diameter.meters)
+            self.rocketParams.append(rocket.height.meters)
+            self.rocketParams.append(Double(rocket.mass.kg))
+            self.rocketParams.append(Double(rocket.successRatePct))
+            
             self.rocketInfo?.accept(rocket)
         }
     }

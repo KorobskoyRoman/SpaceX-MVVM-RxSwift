@@ -8,6 +8,7 @@
 import UIKit
 
 protocol RocketInfoType: UIView {
+    var rocketParams: [Double] { get set }
     var nameLabel: UILabel { get }
     var dateLabel: UILabel { get }
     var countryLabel: UILabel { get }
@@ -15,6 +16,8 @@ protocol RocketInfoType: UIView {
 }
 
 final class RocketInfoView: UIView, RocketInfoType {
+    var rocketParams: [Double] = []
+
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .lab24
@@ -90,11 +93,14 @@ final class RocketInfoView: UIView, RocketInfoType {
                                              spacing: Insets.inset10,
                                              aligment: .fill,
                                              distribution: .equalCentering)
+    private lazy var collectionView = RocketInfoCollectionView()
 
     init() {
+//        self.rocketParams = rocketParams
         super.init(frame: .zero)
         self.backgroundColor = .white
         self.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        collectionView.rocketParams = rocketParams
         setConstraints()
     }
 
@@ -110,6 +116,7 @@ final class RocketInfoView: UIView, RocketInfoType {
     private func setConstraints() {
         addSubview(nameLabel)
         addSubview(mainStack)
+        addSubview(collectionView)
         subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
 
         NSLayoutConstraint.activate([
@@ -120,7 +127,12 @@ final class RocketInfoView: UIView, RocketInfoType {
             nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor,
                                                 constant: -Insets.inset32),
 
-            mainStack.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor, constant: Insets.inset32),
+            collectionView.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor, constant: Insets.inset32),
+            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Insets.inset32),
+            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            collectionView.heightAnchor.constraint(equalToConstant: 96),
+
+            mainStack.topAnchor.constraint(equalTo: self.collectionView.bottomAnchor, constant: Insets.inset32),
             mainStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Insets.inset32),
             mainStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Insets.inset32)
         ])
