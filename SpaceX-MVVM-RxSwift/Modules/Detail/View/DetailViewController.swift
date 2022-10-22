@@ -19,10 +19,12 @@ final class DetailViewController: UIViewController {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-    private let rocketInfoView = RocketInfoView()
 
-    init(viewModel: DetailViewModelType) {
+    private let rocketInfoView: RocketInfoType
+
+    init(viewModel: DetailViewModelType, rocketView: RocketInfoType) {
         self.viewModel = viewModel
+        self.rocketInfoView = rocketView
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -51,6 +53,25 @@ final class DetailViewController: UIViewController {
     private func bind() {
         let url = URL(string: viewModel.image)
         image.sd_setImage(with: url)
+        viewModel.name
+            .asDriver(onErrorJustReturn: "n/a")
+            .drive(rocketInfoView.nameLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        viewModel.date
+            .asDriver(onErrorJustReturn: "n/a")
+            .drive(rocketInfoView.dateLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        viewModel.country
+            .asDriver(onErrorJustReturn: "n/a")
+            .drive(rocketInfoView.countryLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        viewModel.cost
+            .asDriver(onErrorJustReturn: "n/a")
+            .drive(rocketInfoView.costLabel.rx.text)
+            .disposed(by: disposeBag)
     }
 
     private func setConstraints() {
