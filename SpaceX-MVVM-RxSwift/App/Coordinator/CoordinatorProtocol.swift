@@ -32,8 +32,9 @@ enum ViewControllers {
         case .detail:
             let networkService = NetworkService()
             let viewModel = DetailViewModel(networkSerivce: networkService, launchInfo: nil)
-            let rocketView = RocketInfoView()
-            return DetailViewController(viewModel: viewModel, rocketView: rocketView)
+//            let rocketView = RocketInfoView()
+//            return DetailViewController(viewModel: viewModel, rocketView: rocketView)
+            return DetailViewController(viewModel: viewModel)
         }
     }
 }
