@@ -43,6 +43,9 @@ final class DetailViewController: UIViewController {
         setupHeader()
         tableView.delegate = self
         tableView.dataSource = self
+
+        tableView.separatorStyle = .none
+
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -62,8 +65,11 @@ final class DetailViewController: UIViewController {
 }
 
 extension DetailViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        UITableView.automaticDimension
+//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 500 // переделать под динамик сайз
     }
 }
 
@@ -81,6 +87,7 @@ extension DetailViewController: UITableViewDataSource {
 //        )
         guard let info = viewModel.rocketInfo else { return cell }
         cell.configure(with: info)
+        cell.data = info
 
         return cell
     }
