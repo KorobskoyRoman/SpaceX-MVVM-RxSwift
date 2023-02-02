@@ -14,8 +14,8 @@ protocol DetailViewModelType {
     var image: String { get }
     var name: Observable<String?> { get }
     var date: Observable<String> { get }
-    var country: Observable<String> { get }
-    var cost: Observable<String> { get }
+//    var country: Observable<String> { get }
+//    var cost: Observable<String> { get }
     var rocketInfo: BehaviorRelay<Rocket>? { get set }
     func getRocketInfo()
 }
@@ -70,11 +70,11 @@ extension DetailViewModel {
         return Observable.just(getDate(launchInfo?.value.dateUTC ?? .now))
     }
 
-    var country: Observable<String> {
-        return Observable.just(rocketInfo?.value.country ?? "n/a")
-    }
-
-    var cost: Observable<String> {
-        return Observable.just(getCost(rocketInfo?.value.costPerLaunch ?? 0))
-    }
+//    var country: Observable<String> {
+//        return Observable.just(rocketInfo?.value.country ?? "n/a")
+//    }
+//
+//    var cost: Observable<String> {
+//        return Observable.just(getCost(rocketInfo?.value.costPerLaunch ?? 0))
+//    }
 }
