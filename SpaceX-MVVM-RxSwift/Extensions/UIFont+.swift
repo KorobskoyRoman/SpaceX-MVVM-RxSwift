@@ -23,4 +23,8 @@ extension UIFont {
     class var lab24: UIFont {
         return UIFont(name: "AppleSDGothicNeo-Bold", size: 24) ?? navBarLargeTitle
     }
+
+    class var lab32: UIFont {
+        return UIFont(name: "AppleSDGothicNeo-Heavy", size: 32) ?? navBarLargeTitle
+    }
 }
