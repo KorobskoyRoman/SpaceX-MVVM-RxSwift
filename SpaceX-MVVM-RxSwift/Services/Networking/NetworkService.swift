@@ -42,7 +42,7 @@ final class NetworkService {
         task.resume()
     }
 
-    func parseJSON<T: Decodable>(type: T.Type, data: Data?) -> T? {
+    private func parseJSON<T: Decodable>(type: T.Type, data: Data?) -> T? {
         let decoder = JSONDecoder()
         let dateFormatter = DateFormatter()
 
