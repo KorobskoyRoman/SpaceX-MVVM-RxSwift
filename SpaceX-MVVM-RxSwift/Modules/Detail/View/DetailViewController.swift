@@ -45,6 +45,7 @@ final class DetailViewController: UIViewController {
         tableView.dataSource = self
 
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
 
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,31 +66,54 @@ final class DetailViewController: UIViewController {
 }
 
 extension DetailViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        UITableView.automaticDimension
-//    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 500 // переделать под динамик сайз
+//        return 500 // переделать под динамик сайз
+        switch indexPath.section {
+        case 0: return 320
+        default:
+            return 200
+        }
     }
 }
 
 extension DetailViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        4
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.reuseId, for: indexPath) as? DetailCell
-        else { return UITableViewCell() }
-//        cell.configure(with:
-//                        viewModel.rocketInfo?.value
-//                       ?? .emptyRocket
-//        )
-        guard let info = viewModel.rocketInfo else { return cell }
-        cell.configure(with: info)
-        cell.data = info
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.reuseId, for: indexPath) as? DetailCell
+            else { return UITableViewCell() }
+            guard let info = viewModel.rocketInfo,
+                  let launchInfo = viewModel.launchInfo
+            else { return cell }
 
-        return cell
+            cell.configure(with: info,
+                           and: launchInfo)
+            cell.data = info
+
+            return cell
+        default:
+            // TODO:
+            // Other cells
+            return UITableViewCell()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 1: return "First stage".uppercased()
+        case 2: return "Second stage".uppercased()
+        case 3: return "Landing legs".uppercased()
+        default:
+            return ""
+        }
     }
 }
 
