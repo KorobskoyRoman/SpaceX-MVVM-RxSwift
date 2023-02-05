@@ -19,8 +19,9 @@ final class DetailConfigurator: DetailConfiguratorType {
         let vm = DetailViewModel(networkSerivce: networkService,
                                  launchInfo: BehaviorRelay<LaunchInfo>(value: launch))
 //        vm.launchInfo = BehaviorRelay<LaunchInfo>(value: launch)
-        let rocketView = RocketInfoView()
-        let vc = DetailViewController(viewModel: vm, rocketView: rocketView)
+//        let rocketView = RocketInfoView()
+//        let vc = DetailViewController(viewModel: vm, rocketView: rocketView)
+        let vc = DetailViewController(viewModel: vm)
         return vc
     }
 }

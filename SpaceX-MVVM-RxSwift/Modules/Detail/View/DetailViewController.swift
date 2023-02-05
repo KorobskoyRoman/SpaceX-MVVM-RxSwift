@@ -2,29 +2,30 @@
 //  DetailViewController.swift
 //  SpaceX-MVVM-RxSwift
 //
-//  Created by Roman Korobskoy on 12.10.2022.
+//  Created by Roman Korobskoy on 02.02.2023.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
-import SDWebImage
 
 final class DetailViewController: UIViewController {
-    private let viewModel: DetailViewModelType
     private let disposeBag = DisposeBag()
-    private let image: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "noImage"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
+    private let viewModel: DetailViewModelType
+    private lazy var tableView = UITableView()
+    private var headerView: DetailHeader
+    private var headerHeightConstraint: NSLayoutConstraint?
+    private let headerHeight: CGFloat = 200
 
-    private let rocketInfoView: RocketInfoType
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+    }
 
-    init(viewModel: DetailViewModelType, rocketView: RocketInfoType) {
+    init(viewModel: DetailViewModelType,
+         headerView: DetailHeader = DetailHeader()) {
         self.viewModel = viewModel
-        self.rocketInfoView = rocketView
+        self.headerView = headerView
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -32,65 +33,170 @@ final class DetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupView()
-    }
+    private func setupView() {
+        title = viewModel.title
+        view.backgroundColor = .mainBackground()
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         navigationController?.navigationItem.largeTitleDisplayMode = .never
         self.navigationItem.largeTitleDisplayMode = .never
-    }
 
-    private func setupView() {
-        view.backgroundColor = .mainBackground()
-        title = viewModel.title
-        bind()
-        setConstraints()
-    }
+        setupHeader()
+        tableView.delegate = self
+        tableView.dataSource = self
 
-    private func bind() {
-        let url = URL(string: viewModel.image)
-        image.sd_setImage(with: url)
-        viewModel.name
-            .asDriver(onErrorJustReturn: "n/a")
-            .drive(rocketInfoView.nameLabel.rx.text)
-            .disposed(by: disposeBag)
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = false
 
-        viewModel.date
-            .asDriver(onErrorJustReturn: "n/a")
-            .drive(rocketInfoView.dateLabel.rx.text)
-            .disposed(by: disposeBag)
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
 
-        viewModel.country
-            .asDriver(onErrorJustReturn: "n/a")
-            .drive(rocketInfoView.countryLabel.rx.text)
-            .disposed(by: disposeBag)
+        tableView.layer.masksToBounds = true
+        tableView.layer.cornerRadius = 15
 
-        viewModel.cost
-            .asDriver(onErrorJustReturn: "n/a")
-            .drive(rocketInfoView.costLabel.rx.text)
-            .disposed(by: disposeBag)
-    }
-
-    private func setConstraints() {
-        let imageHeight: CGFloat = 200
-
-        view.addSubview(image)
-        view.addSubview(rocketInfoView)
-        view.subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
+        tableView.register(DetailCell.self,
+                           forCellReuseIdentifier: DetailCell.reuseId)
+        tableView.register(AdditionalDetailCell.self,
+                           forCellReuseIdentifier: AdditionalDetailCell.reuseId)
 
         NSLayoutConstraint.activate([
-            image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            image.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            image.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            image.heightAnchor.constraint(equalToConstant: imageHeight),
-
-            rocketInfoView.topAnchor.constraint(equalTo: image.bottomAnchor, constant: -Insets.inset20),
-            rocketInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            rocketInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            rocketInfoView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -20),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+}
+
+extension DetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 500 // переделать под динамик сайз
+        switch indexPath.section {
+        case 0: return 320
+        default:
+            return 100
+        }
+    }
+}
+
+extension DetailViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        3
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: DetailCell.reuseId,
+                for: indexPath) as? DetailCell
+            else { return UITableViewCell() }
+            guard let info = viewModel.rocketInfo,
+                  let launchInfo = viewModel.launchInfo
+            else { return cell }
+
+            cell.configure(with: info,
+                           and: launchInfo)
+            cell.data = info
+
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: AdditionalDetailCell.reuseId,
+                for: indexPath) as? AdditionalDetailCell
+            else { return UITableViewCell() }
+            guard let info = viewModel.rocketInfo
+            else { return cell }
+
+            cell.configure(with: info,
+                           and: .firstLaunchInfo)
+
+            return cell
+        default:
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: AdditionalDetailCell.reuseId,
+                for: indexPath) as? AdditionalDetailCell
+            else { return UITableViewCell() }
+            guard let info = viewModel.rocketInfo
+            else { return cell }
+
+            cell.configure(with: info,
+                           and: .secondLaunchInfo)
+
+            return cell
+
+        }
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 1: return "First stage".uppercased()
+        case 2: return "Second stage".uppercased()
+        default:
+            return ""
+        }
+    }
+}
+
+// MARK: - Header setup
+
+extension DetailViewController {
+    private func setupHeader() {
+        headerView = DetailHeader(frame: .zero)
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(headerView)
+
+        headerView.configure(with: viewModel.image)
+
+        headerHeightConstraint = headerView.heightAnchor.constraint(equalToConstant: headerHeight)
+        headerHeightConstraint!.isActive = true
+
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
+    }
+
+    func animateHeader() {
+        self.headerHeightConstraint?.constant = headerHeight
+        UIView.animate(
+            withDuration: 0.4,
+            delay: 0.0,
+            usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5,
+            options: .curveEaseInOut,
+            animations: {
+                self.view.layoutIfNeeded()
+            },
+            completion: nil
+        )
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let navBarHeight = additionalSafeAreaInsets.top
+        if scrollView.contentOffset.y < 0 {
+            self.headerHeightConstraint?.constant += abs(scrollView.contentOffset.y)
+        } else if scrollView.contentOffset.y > 0 && self.headerHeightConstraint!.constant >= navBarHeight {
+            self.headerHeightConstraint?.constant -= scrollView.contentOffset.y
+            if self.headerHeightConstraint!.constant <= navBarHeight {
+                self.headerHeightConstraint?.constant = navBarHeight
+            }
+        }
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if self.headerHeightConstraint!.constant > headerHeight {
+            animateHeader()
+        }
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if self.headerHeightConstraint!.constant > headerHeight {
+            animateHeader()
+        }
     }
 }

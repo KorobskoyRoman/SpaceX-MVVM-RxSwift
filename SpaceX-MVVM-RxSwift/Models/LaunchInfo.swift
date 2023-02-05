@@ -39,21 +39,3 @@ struct Links: Decodable {
 struct Patch: Decodable {
     let small: String?
 }
-
-// MARK: - Rockets
-struct Rocket: Decodable {
-    let flickrImages: [String]?
-    let name, type: String?
-    let id: String?
-
-    enum CodingKeys: String, CodingKey {
-        case flickrImages = "flickr_images"
-        case name, type, id
-    }
-}
-
-extension Rocket {
-    static var emptyRocket: Rocket {
-        return Rocket(flickrImages: [], name: "", type: "", id: "")
-    }
-}
