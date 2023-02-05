@@ -53,7 +53,10 @@ final class MainCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        image.layer.cornerRadius = image.frame.height / 2
         self.layer.cornerRadius = self.frame.height / Constraints.cornerMultiply
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.black.withAlphaComponent(0.3).cgColor
     }
 
     override func prepareForReuse() {
@@ -70,7 +73,7 @@ final class MainCell: UICollectionViewCell {
         image.sd_setImage(with: URL(string: model.links.patch.small ?? "")) { [weak self] _,_,_,_ in
             guard let self else { return }
             guard self.image.image != nil else {
-                self.image.image = UIImage(systemName: "circle.slash")
+                self.image.image = UIImage(named: "noImage")
                 self.image.stopLoading()
                 return
             }
@@ -83,7 +86,7 @@ final class MainCell: UICollectionViewCell {
     }
 
     private func setConstraints() {
-        let successImageHeight: CGFloat = 50
+        let successImageHeight: CGFloat = 40
         contentView.addSubview(image)
         contentView.addSubview(dateLabel)
         contentView.addSubview(nameLabel)
@@ -100,11 +103,11 @@ final class MainCell: UICollectionViewCell {
             nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Insets.inset10),
             nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Insets.inset10),
 
-            dateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Insets.inset10),
+            dateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Insets.inset5),
             dateLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Insets.inset10),
             dateLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
 
-            successImage.topAnchor.constraint(equalTo: self.topAnchor, constant: Insets.inset10),
+            successImage.centerYAnchor.constraint(equalTo: image.centerYAnchor),
             successImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Insets.inset10),
             successImage.heightAnchor.constraint(equalToConstant: successImageHeight),
             successImage.widthAnchor.constraint(equalTo: successImage.heightAnchor)
