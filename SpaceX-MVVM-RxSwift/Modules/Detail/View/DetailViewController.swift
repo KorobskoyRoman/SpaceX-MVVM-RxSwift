@@ -55,6 +55,8 @@ final class DetailViewController: UIViewController {
 
         tableView.register(DetailCell.self,
                            forCellReuseIdentifier: DetailCell.reuseId)
+        tableView.register(AdditionalDetailCell.self,
+                           forCellReuseIdentifier: AdditionalDetailCell.reuseId)
 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -20),
@@ -71,14 +73,14 @@ extension DetailViewController: UITableViewDelegate {
         switch indexPath.section {
         case 0: return 320
         default:
-            return 200
+            return 100
         }
     }
 }
 
 extension DetailViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        4
+        3
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,7 +90,9 @@ extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.reuseId, for: indexPath) as? DetailCell
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: DetailCell.reuseId,
+                for: indexPath) as? DetailCell
             else { return UITableViewCell() }
             guard let info = viewModel.rocketInfo,
                   let launchInfo = viewModel.launchInfo
@@ -99,10 +103,31 @@ extension DetailViewController: UITableViewDataSource {
             cell.data = info
 
             return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: AdditionalDetailCell.reuseId,
+                for: indexPath) as? AdditionalDetailCell
+            else { return UITableViewCell() }
+            guard let info = viewModel.rocketInfo
+            else { return cell }
+
+            cell.configure(with: info,
+                           and: .firstLaunchInfo)
+
+            return cell
         default:
-            // TODO:
-            // Other cells
-            return UITableViewCell()
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: AdditionalDetailCell.reuseId,
+                for: indexPath) as? AdditionalDetailCell
+            else { return UITableViewCell() }
+            guard let info = viewModel.rocketInfo
+            else { return cell }
+
+            cell.configure(with: info,
+                           and: .secondLaunchInfo)
+
+            return cell
+
         }
     }
 
@@ -110,7 +135,6 @@ extension DetailViewController: UITableViewDataSource {
         switch section {
         case 1: return "First stage".uppercased()
         case 2: return "Second stage".uppercased()
-        case 3: return "Landing legs".uppercased()
         default:
             return ""
         }
