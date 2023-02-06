@@ -53,8 +53,8 @@ final class MainViewController: UIViewController {
         viewModel.reload = {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                self.collectionView.reloadData()
                 self.view.stopLoading()
+                self.applySnapshot()
             }
         }
     }
@@ -90,17 +90,17 @@ extension MainViewController {
     private func bind() {
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
 
-        viewModel.launches
-            .observe(on: MainScheduler.instance)
-            .bind(to: collectionView.rx.items) { collectionView, item, model in
-                guard let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: MainCell.reuseId,
-                    for: IndexPath(item: item, section: 0)
-                ) as? MainCell else { return UICollectionViewCell() }
-                cell.configure(with: model)
-
-                return cell
-            }.disposed(by: disposeBag)
+//        viewModel.launches
+//            .observe(on: MainScheduler.instance)
+//            .bind(to: collectionView.rx.items) { collectionView, item, model in
+//                guard let cell = collectionView.dequeueReusableCell(
+//                    withReuseIdentifier: MainCell.reuseId,
+//                    for: IndexPath(item: item, section: 0)
+//                ) as? MainCell else { return UICollectionViewCell() }
+//                cell.configure(with: model)
+//
+//                return cell
+//            }.disposed(by: disposeBag)
     }
 }
 
@@ -149,6 +149,35 @@ extension MainViewController {
             trailing: HelpConstants.Constraints.itemInset)
 
         return section
+    }
+}
+
+// MARK: - Create DataSource
+extension MainViewController {
+    private func createDiffableDataSource() -> DataSource {
+        let dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, data in
+            guard let section = Section(rawValue: indexPath.section) else {
+                fatalError("No section")
+            }
+            switch section {
+            case .mainSection:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCell.reuseId,
+                                                              for: indexPath) as? MainCell
+                else { return nil }
+                cell.configure(with: data)
+                return cell
+            }
+        }
+
+        return dataSource
+    }
+
+    private func applySnapshot(animatingDifferences: Bool = true) {
+        var snapshot = Snapshot()
+
+        snapshot.appendSections([.mainSection])
+        snapshot.appendItems(viewModel.launches.value, toSection: .mainSection)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
 
