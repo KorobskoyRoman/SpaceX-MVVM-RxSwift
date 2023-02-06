@@ -15,7 +15,16 @@ final class MainViewController: UIViewController {
 
     private lazy var collectionView = UICollectionView(frame: view.bounds,
                                                        collectionViewLayout: createCompositialLayout())
+    private lazy var dataSource = createDiffableDataSource()
+
     private let toTopButton: ToTopButton
+    private lazy var filterButton = UIBarButtonItem(
+        image: UIImage(systemName: "arrow.up.and.down.text.horizontal"),
+        style: .plain,
+        target: self,
+        action: #selector(filterTapped))
+    private var isFiltered = true
+
     private let disposeBag = DisposeBag()
     private var viewModel: MainViewModelType
 
@@ -32,7 +41,6 @@ final class MainViewController: UIViewController {
         self.viewModel = viewModel
         self.toTopButton = toTopButton
         super.init(nibName: nil, bundle: nil)
-        reload()
     }
 
     required init?(coder: NSCoder) {
@@ -45,6 +53,7 @@ final class MainViewController: UIViewController {
         view.backgroundColor = .mainBackground()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
+        navigationItem.rightBarButtonItem = filterButton
         title = MainConstants.mainTitle
         setupCollectionView()
     }
@@ -83,6 +92,11 @@ final class MainViewController: UIViewController {
             self.toTopButton.buttonIsHidden = true
             self.toTopButton.hideButton(on: self.view)
         }
+    }
+
+    @objc private func filterTapped() {
+        isFiltered.toggle()
+        viewModel.filterFromLatest.accept(isFiltered)
     }
 }
 
