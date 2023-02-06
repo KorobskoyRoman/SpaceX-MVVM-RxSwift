@@ -15,8 +15,8 @@ final class MainViewController: UIViewController {
 
     private lazy var collectionView = UICollectionView(frame: view.bounds,
                                                        collectionViewLayout: createCompositialLayout())
+    private let toTopButton: ToTopButton
     private let disposeBag = DisposeBag()
-
     private var viewModel: MainViewModelType
 
     override func viewDidLoad() {
@@ -27,8 +27,10 @@ final class MainViewController: UIViewController {
         reload()
     }
 
-    init(viewModel: MainViewModelType) {
+    init(viewModel: MainViewModelType,
+         toTopButton: ToTopButton = ToTopButton()) {
         self.viewModel = viewModel
+        self.toTopButton = toTopButton
         super.init(nibName: nil, bundle: nil)
         reload()
     }
@@ -38,6 +40,7 @@ final class MainViewController: UIViewController {
     }
 
     private func setupView() {
+        toTopButton.addTarget(self, action: #selector(toTopTapped), for: .touchUpInside)
         view.showLoading(style: .large)
         view.backgroundColor = .mainBackground()
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -60,10 +63,26 @@ final class MainViewController: UIViewController {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(collectionView)
 
+        collectionView.addSubview(toTopButton)
+        toTopButton.translatesAutoresizingMaskIntoConstraints = false
+        toTopButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        toTopButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+        toTopButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        toTopButton.widthAnchor.constraint(equalTo: toTopButton.heightAnchor).isActive = true
+
         collectionView.register(MainCell.self, forCellWithReuseIdentifier: MainCell.reuseId)
         collectionView.register(SectionHeader.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: SectionHeader.reuseId)
+    }
+
+    @objc private func toTopTapped() {
+        let indexPath = IndexPath(item: .zero, section: .zero)
+        collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.toTopButton.buttonIsHidden = true
+            self.toTopButton.hideButton(on: self.view)
+        }
     }
 }
 
@@ -74,7 +93,6 @@ extension MainViewController {
         viewModel.launches
             .observe(on: MainScheduler.instance)
             .bind(to: collectionView.rx.items) { collectionView, item, model in
-                //                guard let self else { return UICollectionViewCell() }
                 guard let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: MainCell.reuseId,
                     for: IndexPath(item: item, section: 0)
@@ -141,5 +159,25 @@ extension MainViewController: UICollectionViewDelegate {
             guard let self else { return }
             self.viewModel.push(launch: self.viewModel.launchAt(indexPath: indexPath))
         })
+    }
+}
+
+extension MainViewController {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("Button: - \(toTopButton.center.x)")
+        print("Scroll view: - \(scrollView.contentOffset.y)")
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        scrollView.rx.contentOffset
+            .distinctUntilChanged()
+            .subscribe { [weak self] element in
+                guard let self else { return }
+                if element.element?.y ?? 0 >= 100 && self.toTopButton.buttonIsHidden {
+                    self.toTopButton.buttonIsHidden = false
+                    self.toTopButton.showButton(on: self.view)
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }
