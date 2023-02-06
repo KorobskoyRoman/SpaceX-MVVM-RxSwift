@@ -15,7 +15,16 @@ final class MainViewController: UIViewController {
 
     private lazy var collectionView = UICollectionView(frame: view.bounds,
                                                        collectionViewLayout: createCompositialLayout())
+    private lazy var dataSource = createDiffableDataSource()
+
     private let toTopButton: ToTopButton
+    private lazy var filterButton = UIBarButtonItem(
+        image: UIImage(systemName: "arrow.up.and.down.text.horizontal"),
+        style: .plain,
+        target: self,
+        action: #selector(filterTapped))
+    private var isFiltered = true
+
     private let disposeBag = DisposeBag()
     private var viewModel: MainViewModelType
 
@@ -32,7 +41,6 @@ final class MainViewController: UIViewController {
         self.viewModel = viewModel
         self.toTopButton = toTopButton
         super.init(nibName: nil, bundle: nil)
-        reload()
     }
 
     required init?(coder: NSCoder) {
@@ -45,6 +53,7 @@ final class MainViewController: UIViewController {
         view.backgroundColor = .mainBackground()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
+        navigationItem.rightBarButtonItem = filterButton
         title = MainConstants.mainTitle
         setupCollectionView()
     }
@@ -53,8 +62,8 @@ final class MainViewController: UIViewController {
         viewModel.reload = {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                self.collectionView.reloadData()
                 self.view.stopLoading()
+                self.applySnapshot()
             }
         }
     }
@@ -84,23 +93,28 @@ final class MainViewController: UIViewController {
             self.toTopButton.hideButton(on: self.view)
         }
     }
+
+    @objc private func filterTapped() {
+        isFiltered.toggle()
+        viewModel.filterFromLatest.accept(isFiltered)
+    }
 }
 
 extension MainViewController {
     private func bind() {
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
 
-        viewModel.launches
-            .observe(on: MainScheduler.instance)
-            .bind(to: collectionView.rx.items) { collectionView, item, model in
-                guard let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: MainCell.reuseId,
-                    for: IndexPath(item: item, section: 0)
-                ) as? MainCell else { return UICollectionViewCell() }
-                cell.configure(with: model)
-
-                return cell
-            }.disposed(by: disposeBag)
+//        viewModel.launches
+//            .observe(on: MainScheduler.instance)
+//            .bind(to: collectionView.rx.items) { collectionView, item, model in
+//                guard let cell = collectionView.dequeueReusableCell(
+//                    withReuseIdentifier: MainCell.reuseId,
+//                    for: IndexPath(item: item, section: 0)
+//                ) as? MainCell else { return UICollectionViewCell() }
+//                cell.configure(with: model)
+//
+//                return cell
+//            }.disposed(by: disposeBag)
     }
 }
 
@@ -149,6 +163,35 @@ extension MainViewController {
             trailing: HelpConstants.Constraints.itemInset)
 
         return section
+    }
+}
+
+// MARK: - Create DataSource
+extension MainViewController {
+    private func createDiffableDataSource() -> DataSource {
+        let dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, data in
+            guard let section = Section(rawValue: indexPath.section) else {
+                fatalError("No section")
+            }
+            switch section {
+            case .mainSection:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCell.reuseId,
+                                                              for: indexPath) as? MainCell
+                else { return nil }
+                cell.configure(with: data)
+                return cell
+            }
+        }
+
+        return dataSource
+    }
+
+    private func applySnapshot(animatingDifferences: Bool = true) {
+        var snapshot = Snapshot()
+
+        snapshot.appendSections([.mainSection])
+        snapshot.appendItems(viewModel.launches.value, toSection: .mainSection)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
 
