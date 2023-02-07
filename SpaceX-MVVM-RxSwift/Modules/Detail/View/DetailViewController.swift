@@ -34,7 +34,6 @@ final class DetailViewController: UIViewController {
     }
 
     private func setupView() {
-        title = viewModel.title
         view.backgroundColor = .mainBackground()
 
         navigationController?.navigationItem.largeTitleDisplayMode = .never
@@ -64,6 +63,17 @@ final class DetailViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+}
+
+extension DetailViewController {
+    private func bind() {
+        viewModel.title
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] in
+                self?.title = $0.element
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -149,7 +159,11 @@ extension DetailViewController {
         headerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(headerView)
 
-        headerView.configure(with: viewModel.image)
+        viewModel.image
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] in
+                self?.headerView.configure(with: $0.element ?? "")
+            }.disposed(by: disposeBag)
 
         headerHeightConstraint = headerView.heightAnchor.constraint(equalToConstant: headerHeight)
         headerHeightConstraint!.isActive = true
