@@ -54,22 +54,15 @@ final class MainViewModel: MainViewModelType {
     private func bind() {
         filterFromLatest
             .skip(1)
-            .subscribe { event in
-                guard let element = event.element else { return }
+            .subscribe { [weak self] event in
+                guard let self,
+                        let element = event.element else { return }
                 let newArray = self.launches.value
-                if element {
-                    self.launches = BehaviorRelay<[LaunchInfo]>(value: [])
-                    self.launches.accept(newArray.sorted(by: {
-                        $0.dateUTC > $1.dateUTC
-                    }))
-                    self.reload?()
-                } else {
-                    self.launches = BehaviorRelay<[LaunchInfo]>(value: [])
-                    self.launches.accept(newArray.sorted(by: {
-                        $0.dateUTC < $1.dateUTC
-                    }))
-                    self.reload?()
-                }
+
+                self.launches.accept(element ?
+                                     newArray.sorted(by: { $0.dateUTC > $1.dateUTC }) :
+                                        newArray.sorted(by: { $0.dateUTC < $1.dateUTC }))
+                self.reload?()
             }
         .disposed(by: bag)
     }
