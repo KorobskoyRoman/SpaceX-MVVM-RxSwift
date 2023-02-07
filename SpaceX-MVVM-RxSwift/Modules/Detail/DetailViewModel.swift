@@ -9,8 +9,8 @@ import RxSwift
 import RxCocoa
 
 protocol DetailViewModelType {
-    var title: String { get }
-    var image: String { get }
+    var title: Observable<String> { get }
+    var image: Observable<String> { get }
     var launchInfo: BehaviorRelay<LaunchInfo>? { get set }
     var rocketInfo: BehaviorRelay<Rocket>? { get set }
     func getRocketInfo()
@@ -19,17 +19,26 @@ protocol DetailViewModelType {
 final class DetailViewModel: DetailViewModelType {
     var launchInfo: BehaviorRelay<LaunchInfo>?
     var rocketInfo: BehaviorRelay<Rocket>? = BehaviorRelay<Rocket>(value: .emptyRocket)
-    private let networkSerivce: NetworkService
+    private let networkSerivce: NetworkServiceType
 
-    var title: String {
-        launchInfo?.value.name ?? "n/a"
+    var title: Observable<String> {
+        return rocketInfo
+            .map {
+                $0.map {
+                    $0.name ?? "n/a"
+                }
+            } ?? .just("n/a")
     }
 
-    var image: String {
-        rocketInfo?.value.flickrImages?.randomElement() ?? ""
+    var image: Observable<String> {
+        return rocketInfo.map {
+            $0.map {
+                $0.flickrImages?.randomElement() ?? ""
+            }
+        } ?? .just("")
     }
 
-    init(networkSerivce: NetworkService, launchInfo: BehaviorRelay<LaunchInfo>?) {
+    init(networkSerivce: NetworkServiceType, launchInfo: BehaviorRelay<LaunchInfo>?) {
         self.networkSerivce = networkSerivce
         self.launchInfo = launchInfo
         getRocketInfo()
