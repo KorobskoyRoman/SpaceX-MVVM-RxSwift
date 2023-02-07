@@ -36,9 +36,11 @@ final class DetailViewModel: DetailViewModelType {
     }
 
     func getRocketInfo() {
-        networkSerivce.fetchRocket(id: launchInfo?.value.rocket ?? "") { [weak self] rocket in
-            guard let self else { return }
-            self.rocketInfo?.accept(rocket)
+        do {
+            guard let id = launchInfo?.value.rocket else { return }
+            self.rocketInfo = try networkSerivce.fetchRocket(id: id)
+        } catch {
+            print(error)
         }
     }
 }
