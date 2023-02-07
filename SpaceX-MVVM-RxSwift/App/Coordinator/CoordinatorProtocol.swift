@@ -8,8 +8,6 @@
 import UIKit
 
 protocol Coordinator {
-    var networkService: NetworkService { get set }
-
     func start()
     func performTransition(with type: Transition)
 }
@@ -32,8 +30,6 @@ enum ViewControllers {
         case .detail:
             let networkService = NetworkService()
             let viewModel = DetailViewModel(networkSerivce: networkService, launchInfo: nil)
-//            let rocketView = RocketInfoView()
-//            return DetailViewController(viewModel: viewModel, rocketView: rocketView)
             return DetailViewController(viewModel: viewModel)
         }
     }

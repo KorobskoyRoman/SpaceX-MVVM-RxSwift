@@ -5,61 +5,99 @@
 //  Created by Roman Korobskoy on 01.10.2022.
 //
 
-import Foundation
+import RxSwift
+import RxCocoa
 
-final class NetworkService {
-    func fetchLaunches(completion: @escaping ([LaunchInfo]) -> Void) {
-        let urlString = NetworkConstants.launchesUrl
+protocol NetworkServiceType {
+    func fetchLaunches() throws -> BehaviorRelay<[LaunchInfo]>
+    func fetchRocket(id: String) throws -> BehaviorRelay<Rocket>
+}
 
-        guard let urlString = URL(string: urlString) else { return }
+final class NetworkService: NetworkServiceType {
+    private var launchesRelay = BehaviorRelay<[LaunchInfo]>(value: [])
+    private let rocketRelay = BehaviorRelay<Rocket>(value: .emptyRocket)
 
-        var request = URLRequest(url: urlString, timeoutInterval: Double.infinity)
-        request.httpMethod = "GET"
-
-        let task = URLSession.shared.dataTask(with: urlString) {  data, response, error in
-            guard let data = data else { return }
-            if let fetchData = self.parseJSON(type: [LaunchInfo].self, data: data) {
-                completion(fetchData)
-            }
+    init() {
+        do {
+            launchesRelay = try fetchLaunches()
+        } catch {
+            print(error, "error init")
         }
-        task.resume()
     }
 
-    func fetchRocket(id: String, completion: @escaping (Rocket) -> Void) {
-        let urlString = NetworkConstants.rocketUrl + id
-
-        guard let urlString = URL(string: urlString) else { return }
-
-        var request = URLRequest(url: urlString, timeoutInterval: Double.infinity)
-        request.httpMethod = "GET"
-
-        let task = URLSession.shared.dataTask(with: urlString) {  data, response, error in
-            guard let data = data else { return }
-            if let fetchData = self.parseJSON(type: Rocket.self, data: data) {
-                completion(fetchData)
-            }
-        }
-        task.resume()
-    }
-
-    private func parseJSON<T: Decodable>(type: T.Type, data: Data?) -> T? {
+    private func parseJSON<T: Decodable>(type: T.Type, data: Data?) throws -> T {
         let decoder = JSONDecoder()
         let dateFormatter = DateFormatter()
-
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         dateFormatter.timeZone = .autoupdatingCurrent
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
-        
+
         guard let data = data else {
-            return nil
+            throw NetworkingError.noData
         }
-        do {
-            let parseData = try decoder.decode(T.self, from: data)
-            return parseData
-        } catch let jsonError {
-            print("error pasring json: \(jsonError)")
-            return nil
+        return try decoder.decode(T.self, from: data)
+    }
+}
+
+// MARK: - Launches
+extension NetworkService {
+    func fetchLaunches() throws -> BehaviorRelay<[LaunchInfo]> {
+        let urlString = NetworkConstants.launchesUrl
+        guard let url = URL(string: urlString) else {
+            throw NetworkingError.invalidUrl
         }
+
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard let self = self else { return }
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let data = data else {
+                print(NetworkingError.noData.description)
+                return
+            }
+            do {
+                let launches = try self.parseJSON(type: [LaunchInfo].self, data: data)
+                self.launchesRelay.accept(launches)
+            } catch {
+                print(error)
+            }
+        }
+        .resume()
+
+        return launchesRelay
+    }
+}
+
+// MARK: - Rocket
+extension NetworkService {
+    func fetchRocket(id: String) throws -> BehaviorRelay<Rocket> {
+        let urlString = NetworkConstants.rocketUrl + id
+        guard let url = URL(string: urlString) else {
+            return rocketRelay
+        }
+
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard let self = self else { return }
+            if let error = error {
+                print(error, NetworkingError.unknown.description)
+                return
+            }
+            guard let data = data else {
+                print(NetworkingError.noData)
+                return
+            }
+            do {
+                let rocket = try self.parseJSON(type: Rocket.self, data: data)
+                self.rocketRelay.accept(rocket)
+            } catch {
+                print(error)
+            }
+        }
+        .resume()
+
+        return rocketRelay
     }
 }

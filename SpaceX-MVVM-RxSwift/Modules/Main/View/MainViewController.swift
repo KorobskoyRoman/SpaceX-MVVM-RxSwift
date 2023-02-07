@@ -23,17 +23,17 @@ final class MainViewController: UIViewController {
         style: .plain,
         target: self,
         action: #selector(filterTapped))
-    private var isFiltered = true
+    private var isFiltered = false
 
     private let disposeBag = DisposeBag()
     private var viewModel: MainViewModelType
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getLaunches()
         setupView()
-        bind()
         reload()
+        bind()
+        viewModel.getLaunches()
     }
 
     init(viewModel: MainViewModelType,
@@ -48,8 +48,8 @@ final class MainViewController: UIViewController {
     }
 
     private func setupView() {
-        toTopButton.addTarget(self, action: #selector(toTopTapped), for: .touchUpInside)
         view.showLoading(style: .large)
+        toTopButton.addTarget(self, action: #selector(toTopTapped), for: .touchUpInside)
         view.backgroundColor = .mainBackground()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
@@ -103,18 +103,6 @@ final class MainViewController: UIViewController {
 extension MainViewController {
     private func bind() {
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
-
-//        viewModel.launches
-//            .observe(on: MainScheduler.instance)
-//            .bind(to: collectionView.rx.items) { collectionView, item, model in
-//                guard let cell = collectionView.dequeueReusableCell(
-//                    withReuseIdentifier: MainCell.reuseId,
-//                    for: IndexPath(item: item, section: 0)
-//                ) as? MainCell else { return UICollectionViewCell() }
-//                cell.configure(with: model)
-//
-//                return cell
-//            }.disposed(by: disposeBag)
     }
 }
 
@@ -197,11 +185,8 @@ extension MainViewController {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        NetworkService().fetchRocket(id: viewModel.launchAt(indexPath: indexPath).rocket ?? "",
-                                     completion: { [weak self] result in
-            guard let self else { return }
-            self.viewModel.push(launch: self.viewModel.launchAt(indexPath: indexPath))
-        })
+        let item = viewModel.launchAt(indexPath: indexPath)
+        self.viewModel.push(launch: item)
     }
 }
 

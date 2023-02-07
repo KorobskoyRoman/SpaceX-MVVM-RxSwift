@@ -9,12 +9,13 @@ import Foundation
 import UIKit
 
 final class AppCoodrinator: Coordinator {
-    var networkService = NetworkService()
+    private var networkService: NetworkServiceType
     private let window: UIWindow
     private var navigationController: UINavigationController?
 
     init(window: UIWindow) {
         self.window = window
+        self.networkService = NetworkService()
     }
 
     func start() {
