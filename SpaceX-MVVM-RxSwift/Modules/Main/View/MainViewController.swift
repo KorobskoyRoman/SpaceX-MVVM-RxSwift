@@ -197,11 +197,8 @@ extension MainViewController {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        NetworkService().fetchRocket(id: viewModel.launchAt(indexPath: indexPath).rocket ?? "",
-                                     completion: { [weak self] result in
-            guard let self else { return }
-            self.viewModel.push(launch: self.viewModel.launchAt(indexPath: indexPath))
-        })
+        let item = viewModel.launchAt(indexPath: indexPath)
+        self.viewModel.push(launch: item)
     }
 }
 
