@@ -8,12 +8,12 @@
 import UIKit
 
 protocol ConfiguratorType {
-    func configure(networkService: NetworkService,
+    func configure(networkService: NetworkServiceType,
                    coordinator: AppCoodrinator?) -> UIViewController
 }
 
 final class MainConfigurator: ConfiguratorType {
-    func configure(networkService: NetworkService,
+    func configure(networkService: NetworkServiceType,
                    coordinator: AppCoodrinator?) -> UIViewController {
         let vm = MainViewModel(networkingService: networkService)
         let vc = MainViewController(viewModel: vm)
