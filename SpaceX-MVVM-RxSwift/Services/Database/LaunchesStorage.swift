@@ -11,6 +11,7 @@ import RxSwift
 
 protocol LaunchesStorageType {
     func save(launches: BehaviorRelay<[LaunchInfo]>) throws
+    func getLaunches() -> BehaviorRelay<[LaunchesEntity]>
 }
 
 struct LaunchesStorage {
@@ -36,5 +37,15 @@ extension LaunchesStorage: LaunchesStorageType {
                 print("fail to save into core data")
             }
         }.disposed(by: bag)
+    }
+
+    func getLaunches() -> BehaviorRelay<[LaunchesEntity]> {
+        let fetchRequest = LaunchesEntity.fetchRequest()
+
+        guard let results = try? context.fetch(fetchRequest),
+              !results.isEmpty else {
+            return BehaviorRelay<[LaunchesEntity]>(value: [])
+        }
+        return BehaviorRelay<[LaunchesEntity]>(value: results)
     }
 }
