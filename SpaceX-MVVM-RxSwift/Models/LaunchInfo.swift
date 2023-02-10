@@ -8,7 +8,7 @@
 import Foundation
 
 struct LaunchInfo: Decodable, Hashable {
-    var uuid = UUID()
+    var id: UUID = UUID()
     let links: Links
     let rocket: String?
     let success: Bool?
@@ -22,11 +22,11 @@ struct LaunchInfo: Decodable, Hashable {
     }
 
     static func == (lhs: LaunchInfo, rhs: LaunchInfo) -> Bool {
-        lhs.uuid == rhs.uuid
+        lhs.id == rhs.id
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(uuid)
+        hasher.combine(id)
     }
 }
 
@@ -39,3 +39,5 @@ struct Links: Decodable {
 struct Patch: Decodable {
     let small: String?
 }
+
+extension LaunchInfo: Identifiable {}

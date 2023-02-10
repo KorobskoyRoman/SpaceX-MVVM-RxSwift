@@ -19,13 +19,13 @@ enum Transition {
 
 enum ViewControllers {
     case main
-    case detail(LaunchInfo)
+    case detail(LaunchesEntity)
 
     var viewController: UIViewController {
         switch self {
         case .main:
             let networkService = NetworkService()
-            let viewModel = MainViewModel(networkingService: networkService)
+            let viewModel = MainViewModel(networkingService: networkService, storage: LaunchesStorage(context: PersistenceController.shared.container.viewContext))
             return MainViewController(viewModel: viewModel)
         case .detail:
             let networkService = NetworkService()

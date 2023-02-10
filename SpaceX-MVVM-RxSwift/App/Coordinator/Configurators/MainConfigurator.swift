@@ -15,7 +15,10 @@ protocol ConfiguratorType {
 final class MainConfigurator: ConfiguratorType {
     func configure(networkService: NetworkServiceType,
                    coordinator: AppCoodrinator?) -> UIViewController {
-        let vm = MainViewModel(networkingService: networkService)
+        let vm = MainViewModel(
+            networkingService: networkService,
+            storage: LaunchesStorage(context: PersistenceController.shared.container.viewContext)
+        )
         let vc = MainViewController(viewModel: vm)
         vm.coordinator = coordinator
         return vc

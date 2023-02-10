@@ -17,14 +17,6 @@ final class NetworkService: NetworkServiceType {
     private var launchesRelay = BehaviorRelay<[LaunchInfo]>(value: [])
     private let rocketRelay = BehaviorRelay<Rocket>(value: .emptyRocket)
 
-    init() {
-        do {
-            launchesRelay = try fetchLaunches()
-        } catch {
-            print(error, "error init")
-        }
-    }
-
     private func parseJSON<T: Decodable>(type: T.Type, data: Data?) throws -> T {
         let decoder = JSONDecoder()
         let dateFormatter = DateFormatter()

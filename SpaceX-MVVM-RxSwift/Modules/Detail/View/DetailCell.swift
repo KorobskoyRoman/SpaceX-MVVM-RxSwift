@@ -127,7 +127,8 @@ final class DetailCell: UITableViewCell {
 
     func configure(
         with rocket: BehaviorRelay<Rocket>,
-        and launch: BehaviorRelay<LaunchInfo>
+//        and launch: BehaviorRelay<LaunchInfo>
+        and launch: BehaviorRelay<LaunchesEntity>
     ) {
         rocket.map {
             $0.name
@@ -136,7 +137,7 @@ final class DetailCell: UITableViewCell {
         .disposed(by: bag)
 
         launch.map {
-            $0.dateUTC.toString
+            $0.dateUTC?.toString
         }
         .bind(to: firstLaunchValue.rx.text)
         .disposed(by: bag)
