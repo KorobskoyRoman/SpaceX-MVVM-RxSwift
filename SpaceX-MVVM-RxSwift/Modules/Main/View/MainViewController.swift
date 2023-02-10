@@ -10,8 +10,10 @@ import RxSwift
 import RxCocoa
 
 final class MainViewController: UIViewController {
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, LaunchInfo>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, LaunchInfo>
+//    typealias DataSource = UICollectionViewDiffableDataSource<Section, LaunchInfo>
+//    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, LaunchInfo>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, LaunchesEntity>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, LaunchesEntity>
 
     private lazy var collectionView = UICollectionView(frame: view.bounds,
                                                        collectionViewLayout: createCompositialLayout())
@@ -34,6 +36,7 @@ final class MainViewController: UIViewController {
         reload()
         bind()
         viewModel.getLaunches()
+        collectionView.stopLoading()
     }
 
     init(viewModel: MainViewModelType,
@@ -48,7 +51,7 @@ final class MainViewController: UIViewController {
     }
 
     private func setupView() {
-        view.showLoading(style: .large)
+//        view.showLoading(style: .large)
         toTopButton.addTarget(self, action: #selector(toTopTapped), for: .touchUpInside)
         view.backgroundColor = .mainBackground()
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -62,13 +65,13 @@ final class MainViewController: UIViewController {
         viewModel.reload = {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                self.view.stopLoading()
                 self.applySnapshot()
             }
         }
     }
 
     private func setupCollectionView() {
+        collectionView.showLoading()
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(collectionView)
 
@@ -165,7 +168,7 @@ extension MainViewController {
             case .mainSection:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCell.reuseId,
                                                               for: indexPath) as? MainCell
-                else { return nil }
+                else { return UICollectionViewCell() }
                 cell.configure(with: data)
                 return cell
             }
@@ -175,11 +178,16 @@ extension MainViewController {
     }
 
     private func applySnapshot(animatingDifferences: Bool = true) {
+//        view.showLoading()
+
         var snapshot = Snapshot()
 
         snapshot.appendSections([.mainSection])
-        snapshot.appendItems(viewModel.launches.value, toSection: .mainSection)
+//        snapshot.appendItems(viewModel.launches.value, toSection: .mainSection)
+        snapshot.appendItems(viewModel.dbLaunches.value, toSection: .mainSection)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+
+//        view.stopLoading()
     }
 }
 

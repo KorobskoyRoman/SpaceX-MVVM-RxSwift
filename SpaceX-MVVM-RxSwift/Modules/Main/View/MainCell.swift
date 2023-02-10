@@ -69,8 +69,10 @@ final class MainCell: UICollectionViewCell {
     }
 
     // MARK: - Configure
-    func configure(with model: LaunchInfo) {
-        image.sd_setImage(with: URL(string: model.links.patch.small ?? "")) { [weak self] _,_,_,_ in
+//    func configure(with model: LaunchInfo) {
+    func configure(with model: LaunchesEntity) {
+//        image.sd_setImage(with: URL(string: model.links.patch.small ?? "")) { [weak self] _,_,_,_ in
+        image.sd_setImage(with: URL(string: model.links ?? "")) { [weak self] _,_,_,_ in
             guard let self else { return }
             guard self.image.image != nil else {
                 self.image.image = UIImage(named: "noImage")
@@ -80,7 +82,7 @@ final class MainCell: UICollectionViewCell {
             self.image.stopLoading()
         }
 
-        dateLabel.text = getDate(model.dateUTC)
+        dateLabel.text = getDate(model.dateUTC ?? Date())
         nameLabel.text = model.name
         successImage.image = getSuccessInfo(model.success ?? false)
     }
