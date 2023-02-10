@@ -12,9 +12,12 @@ protocol MainViewModelType {
     var launches: BehaviorRelay<[LaunchInfo]> { get }
     var reload: (() -> Void)? { get set }
     var filterFromLatest: BehaviorRelay<Bool> { get }
+    var dbLaunches: BehaviorRelay<[LaunchesEntity]> { get }
     func getLaunches()
-    func launchAt(indexPath: IndexPath) -> LaunchInfo
-    func push(launch: LaunchInfo)
+//    func launchAt(indexPath: IndexPath) -> LaunchInfo
+    func launchAt(indexPath: IndexPath) -> LaunchesEntity
+//    func push(launch: LaunchInfo)
+    func push(launch: LaunchesEntity)
 }
 
 final class MainViewModel: MainViewModelType {
@@ -22,11 +25,16 @@ final class MainViewModel: MainViewModelType {
     var launches: BehaviorRelay<[LaunchInfo]> = BehaviorRelay<[LaunchInfo]>(value: [])
     var reload: (() -> Void)?
     var filterFromLatest = BehaviorRelay<Bool>(value: true)
+    var dbLaunches = BehaviorRelay<[LaunchesEntity]>(value: [])
+
     private let networkingService: NetworkServiceType
     private let bag = DisposeBag()
+    private let storageManager: LaunchesStorageType
 
-    init(networkingService: NetworkServiceType) {
+    init(networkingService: NetworkServiceType,
+         storage: LaunchesStorageType) {
         self.networkingService = networkingService
+        self.storageManager = storage
         self.bind()
     }
 
@@ -36,19 +44,47 @@ final class MainViewModel: MainViewModelType {
             launchs.subscribe { [weak self] in
                 guard let self else { return }
                 self.launches.accept($0.element ?? [])
-                self.reload?()
+                //                self.reload?()
+                do {
+                    try self.storageManager.save(launches: self.launches)
+                } catch {}
             }
             .disposed(by: bag)
+
+//            try storageManager.save(launches: launches)
         } catch {
-            print(error, NetworkingError.noData)
+            print(error.localizedDescription)
         }
+
+        getDbLaunches()
     }
 
-    func launchAt(indexPath: IndexPath) -> LaunchInfo {
-        return launches.value[indexPath.item]
+    private func getDbLaunches() {
+        dbLaunches = storageManager.getLaunches()
+        self.reload?()
     }
 
-    func push(launch: LaunchInfo) {
+//    func launchAt(indexPath: IndexPath) -> LaunchInfo {
+//        return launches.value[indexPath.item]
+//    }
+
+    func launchAt(indexPath: IndexPath) -> LaunchesEntity {
+        return dbLaunches.value[indexPath.item]
+    }
+
+//    func push(launch: LaunchInfo) {
+//        DispatchQueue.main.async { [weak self] in
+//            guard let self else { return }
+//            do {
+//                let _ = try self.networkingService.fetchRocket(id: launch.rocket ?? "")
+//            } catch {
+//                print(error)
+//            }
+//            self.coordinator?.performTransition(with: .perform(.detail(launch)))
+//        }
+//    }
+
+    func push(launch: LaunchesEntity) {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             do {
