@@ -30,7 +30,7 @@ extension LaunchInfo: UUIDIdentifiable {
     }
 
     mutating func toManagedObject(context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
-        guard checkForExistingLaunch(id: id, context: context) == false else { return }
+//        guard checkForExistingLaunch(id: id, context: context) == false else { return }
         let persistedValue = LaunchesEntity.init(context: context)
 
         persistedValue.id = self.id
