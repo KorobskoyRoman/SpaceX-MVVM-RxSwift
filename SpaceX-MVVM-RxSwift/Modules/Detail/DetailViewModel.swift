@@ -11,20 +11,18 @@ import RxCocoa
 protocol DetailViewModelType {
     var title: Observable<String> { get }
     var image: Observable<String> { get }
-//    var launchInfo: BehaviorRelay<LaunchInfo>? { get set }
     var launchInfo: BehaviorRelay<LaunchesEntity>? { get set }
     var rocketInfo: BehaviorRelay<Rocket>? { get set }
     func getRocketInfo()
 }
 
 final class DetailViewModel: DetailViewModelType {
-//    var launchInfo: BehaviorRelay<LaunchInfo>?
     var launchInfo: BehaviorRelay<LaunchesEntity>?
     var rocketInfo: BehaviorRelay<Rocket>? = BehaviorRelay<Rocket>(value: .emptyRocket)
     private let networkSerivce: NetworkServiceType
 
     var title: Observable<String> {
-        return rocketInfo
+        return launchInfo
             .map {
                 $0.map {
                     $0.name ?? "n/a"
@@ -41,7 +39,6 @@ final class DetailViewModel: DetailViewModelType {
     }
 
     init(networkSerivce: NetworkServiceType,
-//         launchInfo: BehaviorRelay<LaunchInfo>?) {
          launchInfo: BehaviorRelay<LaunchesEntity>?) {
         self.networkSerivce = networkSerivce
         self.launchInfo = launchInfo

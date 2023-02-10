@@ -14,9 +14,7 @@ protocol MainViewModelType {
     var filterFromLatest: BehaviorRelay<Bool> { get }
     var dbLaunches: BehaviorRelay<[LaunchesEntity]> { get }
     func getLaunches()
-//    func launchAt(indexPath: IndexPath) -> LaunchInfo
     func launchAt(indexPath: IndexPath) -> LaunchesEntity
-//    func push(launch: LaunchInfo)
     func push(launch: LaunchesEntity)
 }
 
@@ -39,24 +37,23 @@ final class MainViewModel: MainViewModelType {
     }
 
     func getLaunches() {
+        getDbLaunches()
         do {
             let launchs = try networkingService.fetchLaunches()
-            launchs.subscribe { [weak self] in
+            launchs
+                .observe(on: MainScheduler.instance)
+                .subscribe { [weak self] in
                 guard let self else { return }
                 self.launches.accept($0.element ?? [])
-                //                self.reload?()
-                do {
-                    try self.storageManager.save(launches: self.launches)
-                } catch {}
             }
             .disposed(by: bag)
 
-//            try storageManager.save(launches: launches)
+            try storageManager.save(launches: launches)
         } catch {
             print(error.localizedDescription)
         }
 
-        getDbLaunches()
+//        getDbLaunches()
     }
 
     private func getDbLaunches() {
@@ -64,25 +61,9 @@ final class MainViewModel: MainViewModelType {
         self.reload?()
     }
 
-//    func launchAt(indexPath: IndexPath) -> LaunchInfo {
-//        return launches.value[indexPath.item]
-//    }
-
     func launchAt(indexPath: IndexPath) -> LaunchesEntity {
         return dbLaunches.value[indexPath.item]
     }
-
-//    func push(launch: LaunchInfo) {
-//        DispatchQueue.main.async { [weak self] in
-//            guard let self else { return }
-//            do {
-//                let _ = try self.networkingService.fetchRocket(id: launch.rocket ?? "")
-//            } catch {
-//                print(error)
-//            }
-//            self.coordinator?.performTransition(with: .perform(.detail(launch)))
-//        }
-//    }
 
     func push(launch: LaunchesEntity) {
         DispatchQueue.main.async { [weak self] in
@@ -98,17 +79,21 @@ final class MainViewModel: MainViewModelType {
 
     private func bind() {
         filterFromLatest
+            .observe(on: MainScheduler.instance)
             .skip(1)
             .subscribe { [weak self] event in
                 guard let self,
-                        let element = event.element else { return }
-                let newArray = self.launches.value
+                      let element = event.element else { return }
+                let newArray = self.dbLaunches.value
 
-                self.launches.accept(element ?
-                                     newArray.sorted(by: { $0.dateUTC > $1.dateUTC }) :
-                                        newArray.sorted(by: { $0.dateUTC < $1.dateUTC }))
+                self.dbLaunches.accept(
+                    element ?
+                    newArray.sorted(by: { $0.dateUTC ?? Date() > $1.dateUTC ?? Date() }) :
+                        newArray.sorted(by: { $0.dateUTC ?? Date() < $1.dateUTC ?? Date() })
+                )
+
                 self.reload?()
             }
-        .disposed(by: bag)
+            .disposed(by: bag)
     }
 }

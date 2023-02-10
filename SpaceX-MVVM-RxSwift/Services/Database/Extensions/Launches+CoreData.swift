@@ -20,7 +20,6 @@ extension LaunchInfo: UUIDIdentifiable {
 
     private func checkForExistingLaunch(id: UUID, context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) -> Bool {
         let fetchRequest = LaunchesEntity.fetchRequest()
-//        fetchRequest.predicate = NSPredicate(format: "id = %d", id as NSUUID)
         fetchRequest.predicate = NSPredicate(format: "name = %@", name! as NSString) // вроде как 100%
 
         if let results = try? context.fetch(fetchRequest), results.first != nil {
@@ -30,7 +29,7 @@ extension LaunchInfo: UUIDIdentifiable {
     }
 
     mutating func toManagedObject(context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
-//        guard checkForExistingLaunch(id: id, context: context) == false else { return }
+        guard checkForExistingLaunch(id: id, context: context) == false else { return }
         let persistedValue = LaunchesEntity.init(context: context)
 
         persistedValue.id = self.id

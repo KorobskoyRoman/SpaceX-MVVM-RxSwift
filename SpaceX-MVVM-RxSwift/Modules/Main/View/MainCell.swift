@@ -28,7 +28,6 @@ final class MainCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-//        label.font = .systemFont(ofSize: 20)
         label.font = .lab24
         return label
     }()
@@ -65,13 +64,11 @@ final class MainCell: UICollectionViewCell {
         dateLabel.text = nil
         nameLabel.text = nil
         successImage.image = nil
-        image.showLoading()
+        image.showLoading(text: "")
     }
 
     // MARK: - Configure
-//    func configure(with model: LaunchInfo) {
     func configure(with model: LaunchesEntity) {
-//        image.sd_setImage(with: URL(string: model.links.patch.small ?? "")) { [weak self] _,_,_,_ in
         image.sd_setImage(with: URL(string: model.links ?? "")) { [weak self] _,_,_,_ in
             guard let self else { return }
             guard self.image.image != nil else {
@@ -84,7 +81,7 @@ final class MainCell: UICollectionViewCell {
 
         dateLabel.text = getDate(model.dateUTC ?? Date())
         nameLabel.text = model.name
-        successImage.image = getSuccessInfo(model.success ?? false)
+        successImage.image = getSuccessInfo(model.success)
     }
 
     private func setConstraints() {

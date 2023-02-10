@@ -10,8 +10,6 @@ import RxSwift
 import RxCocoa
 
 final class MainViewController: UIViewController {
-//    typealias DataSource = UICollectionViewDiffableDataSource<Section, LaunchInfo>
-//    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, LaunchInfo>
     typealias DataSource = UICollectionViewDiffableDataSource<Section, LaunchesEntity>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, LaunchesEntity>
 
@@ -51,7 +49,7 @@ final class MainViewController: UIViewController {
     }
 
     private func setupView() {
-//        view.showLoading(style: .large)
+        view.showLoading()
         toTopButton.addTarget(self, action: #selector(toTopTapped), for: .touchUpInside)
         view.backgroundColor = .mainBackground()
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -106,6 +104,12 @@ final class MainViewController: UIViewController {
 extension MainViewController {
     private func bind() {
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
+
+        viewModel.dbLaunches.subscribe { [weak self] in
+            if !$0.isEmpty {
+                self?.view.stopLoading()
+            }
+        }.disposed(by: disposeBag)
     }
 }
 
@@ -178,16 +182,15 @@ extension MainViewController {
     }
 
     private func applySnapshot(animatingDifferences: Bool = true) {
-//        view.showLoading()
-
         var snapshot = Snapshot()
 
         snapshot.appendSections([.mainSection])
-//        snapshot.appendItems(viewModel.launches.value, toSection: .mainSection)
         snapshot.appendItems(viewModel.dbLaunches.value, toSection: .mainSection)
-        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
 
-//        view.stopLoading()
+        if snapshot.numberOfItems != 0 {
+            view.stopLoading()
+        }
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
 

@@ -19,7 +19,6 @@ enum Transition {
 
 enum ViewControllers {
     case main
-//    case detail(LaunchInfo)
     case detail(LaunchesEntity)
 
     var viewController: UIViewController {
