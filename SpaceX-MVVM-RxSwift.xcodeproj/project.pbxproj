@@ -47,6 +47,9 @@
 		9CFB20F129941D3500C67EED /* Launches+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F029941D3500C67EED /* Launches+CoreData.swift */; };
 		9CFB20F329941F2000C67EED /* Links+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F229941F2000C67EED /* Links+CoreData.swift */; };
 		9CFB20F52995548300C67EED /* LaunchesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F42995548300C67EED /* LaunchesStorage.swift */; };
+		9CFB20FA29992F6D00C67EED /* ShimmerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F929992F6D00C67EED /* ShimmerProtocol.swift */; };
+		9CFB20FC299930FF00C67EED /* ShimmerUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20FB299930FF00C67EED /* ShimmerUIImageView.swift */; };
+		9CFB20FE2999914300C67EED /* ShimmerUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20FD2999914300C67EED /* ShimmerUILabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +96,9 @@
 		9CFB20F029941D3500C67EED /* Launches+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Launches+CoreData.swift"; sourceTree = "<group>"; };
 		9CFB20F229941F2000C67EED /* Links+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Links+CoreData.swift"; sourceTree = "<group>"; };
 		9CFB20F42995548300C67EED /* LaunchesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesStorage.swift; sourceTree = "<group>"; };
+		9CFB20F929992F6D00C67EED /* ShimmerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerProtocol.swift; sourceTree = "<group>"; };
+		9CFB20FB299930FF00C67EED /* ShimmerUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerUIImageView.swift; sourceTree = "<group>"; };
+		9CFB20FD2999914300C67EED /* ShimmerUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerUILabel.swift; sourceTree = "<group>"; };
 		B9C3AE302973B4834483412F /* Pods-SpaceX-MVVM-RxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceX-MVVM-RxSwift.release.xcconfig"; path = "Target Support Files/Pods-SpaceX-MVVM-RxSwift/Pods-SpaceX-MVVM-RxSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -257,6 +263,7 @@
 		9CE4A40928E8B6AA0029ECA1 /* Support files */ = {
 			isa = PBXGroup;
 			children = (
+				9CFB20F829992F4900C67EED /* ShimmerViews */,
 				9C8CBA9828E8BFEE00947DB7 /* Constants.swift */,
 				9CE4A3FD28E8B1D90029ECA1 /* Assets.xcassets */,
 				9CE4A3FF28E8B1D90029ECA1 /* LaunchScreen.storyboard */,
@@ -307,6 +314,16 @@
 				9CFB20EE29941B5A00C67EED /* Launches.xcdatamodel */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9CFB20F829992F4900C67EED /* ShimmerViews */ = {
+			isa = PBXGroup;
+			children = (
+				9CFB20F929992F6D00C67EED /* ShimmerProtocol.swift */,
+				9CFB20FB299930FF00C67EED /* ShimmerUIImageView.swift */,
+				9CFB20FD2999914300C67EED /* ShimmerUILabel.swift */,
+			);
+			path = ShimmerViews;
 			sourceTree = "<group>";
 		};
 		9FB9AED1519FC93C13498F91 /* Frameworks */ = {
@@ -447,6 +464,7 @@
 				9C8CBA9928E8BFEE00947DB7 /* Constants.swift in Sources */,
 				9C8CBA9728E8BBF900947DB7 /* AppCoordinator.swift in Sources */,
 				9C4F0457298D6E71002A5562 /* Date+.swift in Sources */,
+				9CFB20FC299930FF00C67EED /* ShimmerUIImageView.swift in Sources */,
 				9CACA48A28E8C76900B5325D /* NetworkService.swift in Sources */,
 				9C8EA76128EA12FE00A73F12 /* MainCell.swift in Sources */,
 				9CFB20F129941D3500C67EED /* Launches+CoreData.swift in Sources */,
@@ -465,8 +483,10 @@
 				9CE4A3F728E8B1D70029ECA1 /* SceneDelegate.swift in Sources */,
 				9C4F0459298D7876002A5562 /* Int+.swift in Sources */,
 				9C4F045E298EA73E002A5562 /* AdditionalDetailCell.swift in Sources */,
+				9CFB20FE2999914300C67EED /* ShimmerUILabel.swift in Sources */,
 				9C8EA76328EA134500A73F12 /* SectionHeader.swift in Sources */,
 				9C4F0455298C78F2002A5562 /* Rocket.swift in Sources */,
+				9CFB20FA29992F6D00C67EED /* ShimmerProtocol.swift in Sources */,
 				9C240A4C28F873190074C74C /* UIImage+.swift in Sources */,
 				9CB21D2128F739D300D275C9 /* DetailViewModel.swift in Sources */,
 				9C8EA76728ECAA7600A73F12 /* UIView+.swift in Sources */,

@@ -12,11 +12,11 @@ final class MainCell: UICollectionViewCell {
     static let reuseId = "MainCell"
 
     // MARK: - UI setup
-    private let image: UIImageView = {
-        let imageView = UIImageView()
+    private let image: ShimmerUIImageView = {
+        let imageView = ShimmerUIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.showLoading(style: .large, color: UIColor.gray, text: "")
+        imageView.startAnimating()
         return imageView
     }()
     private let dateLabel: UILabel = {
@@ -64,19 +64,18 @@ final class MainCell: UICollectionViewCell {
         dateLabel.text = nil
         nameLabel.text = nil
         successImage.image = nil
-        image.showLoading(text: "")
+        image.startShimmerAnimation()
     }
 
     // MARK: - Configure
     func configure(with model: LaunchesEntity) {
+        image.startShimmerAnimation()
         image.sd_setImage(with: URL(string: model.links ?? "")) { [weak self] _,_,_,_ in
             guard let self else { return }
             guard self.image.image != nil else {
-                self.image.image = UIImage(named: "noImage")
-                self.image.stopLoading()
                 return
             }
-            self.image.stopLoading()
+            self.image.removeShimmerAnimation()
         }
 
         dateLabel.text = getDate(model.dateUTC ?? Date())
