@@ -49,6 +49,7 @@
 		9CFB20F52995548300C67EED /* LaunchesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F42995548300C67EED /* LaunchesStorage.swift */; };
 		9CFB20FA29992F6D00C67EED /* ShimmerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F929992F6D00C67EED /* ShimmerProtocol.swift */; };
 		9CFB20FC299930FF00C67EED /* ShimmerUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20FB299930FF00C67EED /* ShimmerUIImageView.swift */; };
+		9CFB20FE2999914300C67EED /* ShimmerUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20FD2999914300C67EED /* ShimmerUILabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,7 @@
 		9CFB20F42995548300C67EED /* LaunchesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesStorage.swift; sourceTree = "<group>"; };
 		9CFB20F929992F6D00C67EED /* ShimmerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerProtocol.swift; sourceTree = "<group>"; };
 		9CFB20FB299930FF00C67EED /* ShimmerUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerUIImageView.swift; sourceTree = "<group>"; };
+		9CFB20FD2999914300C67EED /* ShimmerUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerUILabel.swift; sourceTree = "<group>"; };
 		B9C3AE302973B4834483412F /* Pods-SpaceX-MVVM-RxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceX-MVVM-RxSwift.release.xcconfig"; path = "Target Support Files/Pods-SpaceX-MVVM-RxSwift/Pods-SpaceX-MVVM-RxSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -319,6 +321,7 @@
 			children = (
 				9CFB20F929992F6D00C67EED /* ShimmerProtocol.swift */,
 				9CFB20FB299930FF00C67EED /* ShimmerUIImageView.swift */,
+				9CFB20FD2999914300C67EED /* ShimmerUILabel.swift */,
 			);
 			path = ShimmerViews;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				9CE4A3F728E8B1D70029ECA1 /* SceneDelegate.swift in Sources */,
 				9C4F0459298D7876002A5562 /* Int+.swift in Sources */,
 				9C4F045E298EA73E002A5562 /* AdditionalDetailCell.swift in Sources */,
+				9CFB20FE2999914300C67EED /* ShimmerUILabel.swift in Sources */,
 				9C8EA76328EA134500A73F12 /* SectionHeader.swift in Sources */,
 				9C4F0455298C78F2002A5562 /* Rocket.swift in Sources */,
 				9CFB20FA29992F6D00C67EED /* ShimmerProtocol.swift in Sources */,
