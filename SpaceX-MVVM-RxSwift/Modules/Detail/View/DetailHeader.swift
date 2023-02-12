@@ -8,9 +8,8 @@
 import UIKit
 
 final class DetailHeader: UIView {
-    private let imageView: UIImageView = {
-        let image = UIImageView()
-
+    private let imageView: ShimmerUIImageView = {
+        let image = ShimmerUIImageView()
         return image
     }()
 
@@ -25,14 +24,15 @@ final class DetailHeader: UIView {
     }
 
     func configure(with image: String) {
+        imageView.startAnimating()
         imageView.sd_setImage(with: URL(string: image)) { [weak self] _,_,_,_ in
             guard let self else { return }
             guard self.imageView.image != nil else {
                 self.imageView.image = UIImage(systemName: "circle.slash")
-                self.imageView.stopLoading()
+                self.imageView.stopAnimating()
                 return
             }
-            self.imageView.stopLoading()
+            self.imageView.stopAnimating()
         }
     }
 
