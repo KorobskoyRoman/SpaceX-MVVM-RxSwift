@@ -24,15 +24,13 @@ final class DetailHeader: UIView {
     }
 
     func configure(with image: String) {
-        imageView.startAnimating()
+        imageView.startShimmerAnimation()
         imageView.sd_setImage(with: URL(string: image)) { [weak self] _,_,_,_ in
             guard let self else { return }
             guard self.imageView.image != nil else {
-                self.imageView.image = UIImage(systemName: "circle.slash")
-                self.imageView.stopAnimating()
                 return
             }
-            self.imageView.stopAnimating()
+            self.imageView.removeShimmerAnimation()
         }
     }
 

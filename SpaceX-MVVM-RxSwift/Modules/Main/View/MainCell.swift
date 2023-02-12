@@ -64,19 +64,18 @@ final class MainCell: UICollectionViewCell {
         dateLabel.text = nil
         nameLabel.text = nil
         successImage.image = nil
-//        image.showLoading(text: "")
+        image.startShimmerAnimation()
     }
 
     // MARK: - Configure
     func configure(with model: LaunchesEntity) {
+        image.startShimmerAnimation()
         image.sd_setImage(with: URL(string: model.links ?? "")) { [weak self] _,_,_,_ in
             guard let self else { return }
             guard self.image.image != nil else {
-                self.image.image = UIImage(named: "noImage")
-                self.image.stopLoading()
                 return
             }
-            self.image.stopAnimating()
+            self.image.removeShimmerAnimation()
         }
 
         dateLabel.text = getDate(model.dateUTC ?? Date())
