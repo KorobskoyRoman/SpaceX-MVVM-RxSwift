@@ -12,7 +12,7 @@ protocol ShimmerProtocol: UIView {
 }
 
 extension ShimmerProtocol {
-    func startAnimating() {
+    func startShimmerAnimation() {
         let gradientColorOne: CGColor = UIColor.shimmerBackground().cgColor
         let gradientColorTwo: CGColor = UIColor.shimmerSecondary().cgColor
 
