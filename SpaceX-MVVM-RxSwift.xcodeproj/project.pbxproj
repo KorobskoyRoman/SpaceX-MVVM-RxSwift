@@ -56,6 +56,8 @@
 		9CFB2109299A948700C67EED /* CustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB2108299A948700C67EED /* CustomSwitch.swift */; };
 		9CFB210B299A956A00C67EED /* CustomThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB210A299A956A00C67EED /* CustomThumbView.swift */; };
 		9CFB210D299AA75B00C67EED /* UILabelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB210C299AA75B00C67EED /* UILabelBuilder.swift */; };
+		9CFB2116299AB78700C67EED /* UserDafaults+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB2115299AB78700C67EED /* UserDafaults+Keys.swift */; };
+		9CFB2118299AB86000C67EED /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB2117299AB86000C67EED /* UserDefaultsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +113,8 @@
 		9CFB2108299A948700C67EED /* CustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSwitch.swift; sourceTree = "<group>"; };
 		9CFB210A299A956A00C67EED /* CustomThumbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomThumbView.swift; sourceTree = "<group>"; };
 		9CFB210C299AA75B00C67EED /* UILabelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelBuilder.swift; sourceTree = "<group>"; };
+		9CFB2115299AB78700C67EED /* UserDafaults+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDafaults+Keys.swift"; sourceTree = "<group>"; };
+		9CFB2117299AB86000C67EED /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		B9C3AE302973B4834483412F /* Pods-SpaceX-MVVM-RxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceX-MVVM-RxSwift.release.xcconfig"; path = "Target Support Files/Pods-SpaceX-MVVM-RxSwift/Pods-SpaceX-MVVM-RxSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +184,7 @@
 		9CACA48228E8C3A500B5325D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				9CFB2114299AB76E00C67EED /* UserDafaults */,
 				9C4F046329940B2C002A5562 /* Database */,
 				9CACA48328E8C3AF00B5325D /* Networking */,
 			);
@@ -392,6 +397,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		9CFB2114299AB76E00C67EED /* UserDafaults */ = {
+			isa = PBXGroup;
+			children = (
+				9CFB2115299AB78700C67EED /* UserDafaults+Keys.swift */,
+				9CFB2117299AB86000C67EED /* UserDefaultsService.swift */,
+			);
+			path = UserDafaults;
+			sourceTree = "<group>";
+		};
 		9FB9AED1519FC93C13498F91 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +549,7 @@
 				9CFB20FC299930FF00C67EED /* ShimmerUIImageView.swift in Sources */,
 				9CACA48A28E8C76900B5325D /* NetworkService.swift in Sources */,
 				9C8EA76128EA12FE00A73F12 /* MainCell.swift in Sources */,
+				9CFB2118299AB86000C67EED /* UserDefaultsService.swift in Sources */,
 				9CFB20F129941D3500C67EED /* Launches+CoreData.swift in Sources */,
 				9CFB2107299A8EF500C67EED /* SettingsView.swift in Sources */,
 				9CFB20F52995548300C67EED /* LaunchesStorage.swift in Sources */,
@@ -558,6 +573,7 @@
 				9C8EA76328EA134500A73F12 /* SectionHeader.swift in Sources */,
 				9C4F0455298C78F2002A5562 /* Rocket.swift in Sources */,
 				9CFB20FA29992F6D00C67EED /* ShimmerProtocol.swift in Sources */,
+				9CFB2116299AB78700C67EED /* UserDafaults+Keys.swift in Sources */,
 				9C240A4C28F873190074C74C /* UIImage+.swift in Sources */,
 				9CB21D2128F739D300D275C9 /* DetailViewModel.swift in Sources */,
 				9C8EA76728ECAA7600A73F12 /* UIView+.swift in Sources */,
