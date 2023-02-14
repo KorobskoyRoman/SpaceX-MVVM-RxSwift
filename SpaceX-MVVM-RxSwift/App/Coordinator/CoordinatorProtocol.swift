@@ -30,7 +30,12 @@ enum ViewControllers {
             return MainViewController(viewModel: viewModel)
         case .detail:
             let networkService = NetworkService()
-            let viewModel = DetailViewModel(networkSerivce: networkService, launchInfo: nil)
+            let udService = UserDefaultsService()
+            let viewModel = DetailViewModel(
+                networkSerivce: networkService,
+                launchInfo: nil,
+                udService: udService
+            )
             return DetailViewController(viewModel: viewModel)
         case .settings:
             let udService = UserDefaultsService()

@@ -10,12 +10,14 @@ import UIKit
 
 final class AppCoodrinator: Coordinator {
     private var networkService: NetworkServiceType
+    private var udService: UserDefaultsType
     private let window: UIWindow
     private var navigationController: UINavigationController?
 
     init(window: UIWindow) {
         self.window = window
         self.networkService = NetworkService()
+        self.udService = UserDefaultsService()
     }
 
     func start() {
@@ -39,8 +41,11 @@ final class AppCoodrinator: Coordinator {
             return viewController
         case .detail(let launch):
             let config = DetailConfigurator()
-            viewController = config.configure(networkService: networkService,
-                                              launch: launch)
+            viewController = config.configure(
+                networkService: networkService,
+                launch: launch,
+                udService: udService
+            )
             return viewController
         case .settings:
             let udService = UserDefaultsService()
