@@ -11,7 +11,9 @@ import RxRelay
 
 final class DetailCell: UITableViewCell {
     static let reuseId = "DetailCell"
+    
     var data: BehaviorRelay<Rocket>? = nil
+    var viewModel: DetailViewModelType?
 
     private let bag = DisposeBag()
 
@@ -86,6 +88,11 @@ final class DetailCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setConstraints()
     }
+
+//    required init(viewModel: DetailViewModelType) {
+//        self.viewModel = viewModel
+//        super.init()
+//    }
 
     private lazy var firstLaunchStack = UIStackView(arrangedSubviews: [firtLaunchText,
                                                                 firstLaunchValue],
@@ -194,10 +201,10 @@ extension DetailCell: UICollectionViewDataSource {
         }
 
         switch indexPath.item {
-        case 0: cell.configure(with: .height, value: data?.value.height.feet)
-        case 1: cell.configure(with: .diameter, value: data?.value.diameter.feet)
-        case 2: cell.configure(with: .mass, value: data?.value.mass.lb)
-        default: cell.configure(with: .payload, value: data?.value.payloadWeights.first?.lb)
+        case 0: cell.configure(with: .height, value: viewModel?.height)
+        case 1: cell.configure(with: .diameter, value: viewModel?.diameter)
+        case 2: cell.configure(with: .mass, value: viewModel?.mass)
+        default: cell.configure(with: .payload, value: viewModel?.weight)
         }
 
         return cell
