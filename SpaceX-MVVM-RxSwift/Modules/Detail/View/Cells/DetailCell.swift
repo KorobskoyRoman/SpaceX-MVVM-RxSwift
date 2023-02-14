@@ -11,8 +11,7 @@ import RxRelay
 
 final class DetailCell: UITableViewCell {
     static let reuseId = "DetailCell"
-    
-    var data: BehaviorRelay<Rocket>? = nil
+
     var viewModel: DetailViewModelType?
 
     private let bag = DisposeBag()
@@ -89,11 +88,6 @@ final class DetailCell: UITableViewCell {
         setConstraints()
     }
 
-//    required init(viewModel: DetailViewModelType) {
-//        self.viewModel = viewModel
-//        super.init()
-//    }
-
     private lazy var firstLaunchStack = UIStackView(arrangedSubviews: [firtLaunchText,
                                                                 firstLaunchValue],
                                              axis: .horizontal,
@@ -128,13 +122,11 @@ final class DetailCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//        self.layer.cornerRadius = self.frame.height / 15
         self.layer.cornerRadius = 15
     }
 
     func configure(
         with rocket: BehaviorRelay<Rocket>,
-//        and launch: BehaviorRelay<LaunchInfo>
         and launch: BehaviorRelay<LaunchesEntity>
     ) {
         rocket.map {
