@@ -13,6 +13,10 @@ protocol DetailViewModelType {
     var image: Observable<String> { get }
     var launchInfo: BehaviorRelay<LaunchesEntity>? { get set }
     var rocketInfo: BehaviorRelay<Rocket>? { get set }
+    var height: Double { get }
+    var diameter: Double { get }
+    var mass: Double { get }
+    var weight: Double { get }
     func getRocketInfo()
 }
 
@@ -20,6 +24,7 @@ final class DetailViewModel: DetailViewModelType {
     var launchInfo: BehaviorRelay<LaunchesEntity>?
     var rocketInfo: BehaviorRelay<Rocket>? = BehaviorRelay<Rocket>(value: .emptyRocket)
     private let networkSerivce: NetworkServiceType
+    private let udService: UserDefaultsType
 
     var title: Observable<String> {
         return launchInfo
@@ -38,10 +43,14 @@ final class DetailViewModel: DetailViewModelType {
         } ?? .just("")
     }
 
-    init(networkSerivce: NetworkServiceType,
-         launchInfo: BehaviorRelay<LaunchesEntity>?) {
+    init(
+        networkSerivce: NetworkServiceType,
+        launchInfo: BehaviorRelay<LaunchesEntity>?,
+        udService: UserDefaultsType
+    ) {
         self.networkSerivce = networkSerivce
         self.launchInfo = launchInfo
+        self.udService = udService
         getRocketInfo()
     }
 
@@ -52,5 +61,31 @@ final class DetailViewModel: DetailViewModelType {
         } catch {
             print(error)
         }
+    }
+}
+
+extension DetailViewModel {
+    var height: Double {
+        return udService.getObject(with: .height) ?
+        rocketInfo?.value.height.meters ?? 0.0 :
+        rocketInfo?.value.height.feet ?? 0.0
+    }
+
+    var diameter: Double {
+        return udService.getObject(with: .diameter) ?
+        rocketInfo?.value.diameter.meters ?? 0.0 :
+        rocketInfo?.value.diameter.feet ?? 0.0
+    }
+
+    var mass: Double {
+        return udService.getObject(with: .mass) ?
+        rocketInfo?.value.mass.kg ?? 0.0 :
+        rocketInfo?.value.mass.lb ?? 0.0
+    }
+
+    var weight: Double {
+        return udService.getObject(with: .weight) ?
+        rocketInfo?.value.payloadWeights.first?.kg ?? 0.0 :
+        rocketInfo?.value.payloadWeights.first?.lb ?? 0.0
     }
 }
