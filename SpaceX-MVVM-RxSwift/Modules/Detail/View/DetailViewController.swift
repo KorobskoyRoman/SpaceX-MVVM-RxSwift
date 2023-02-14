@@ -110,9 +110,9 @@ extension DetailViewController: UITableViewDataSource {
                   let launchInfo = viewModel.launchInfo
             else { return cell }
 
+            cell.viewModel = viewModel
             cell.configure(with: info,
                            and: launchInfo)
-            cell.data = info
 
             return cell
         case 1:

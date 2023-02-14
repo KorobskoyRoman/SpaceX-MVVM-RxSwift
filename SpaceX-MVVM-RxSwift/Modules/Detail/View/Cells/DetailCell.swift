@@ -11,7 +11,8 @@ import RxRelay
 
 final class DetailCell: UITableViewCell {
     static let reuseId = "DetailCell"
-    var data: BehaviorRelay<Rocket>? = nil
+
+    var viewModel: DetailViewModelType?
 
     private let bag = DisposeBag()
 
@@ -121,13 +122,11 @@ final class DetailCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//        self.layer.cornerRadius = self.frame.height / 15
         self.layer.cornerRadius = 15
     }
 
     func configure(
         with rocket: BehaviorRelay<Rocket>,
-//        and launch: BehaviorRelay<LaunchInfo>
         and launch: BehaviorRelay<LaunchesEntity>
     ) {
         rocket.map {
@@ -194,10 +193,10 @@ extension DetailCell: UICollectionViewDataSource {
         }
 
         switch indexPath.item {
-        case 0: cell.configure(with: .height, value: data?.value.height.feet)
-        case 1: cell.configure(with: .diameter, value: data?.value.diameter.feet)
-        case 2: cell.configure(with: .mass, value: data?.value.mass.lb)
-        default: cell.configure(with: .payload, value: data?.value.payloadWeights.first?.lb)
+        case 0: cell.configure(with: .height, value: viewModel?.height)
+        case 1: cell.configure(with: .diameter, value: viewModel?.diameter)
+        case 2: cell.configure(with: .mass, value: viewModel?.mass)
+        default: cell.configure(with: .payload, value: viewModel?.weight)
         }
 
         return cell

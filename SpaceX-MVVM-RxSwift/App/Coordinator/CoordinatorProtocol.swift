@@ -20,6 +20,7 @@ enum Transition {
 enum ViewControllers {
     case main
     case detail(LaunchesEntity)
+    case settings
 
     var viewController: UIViewController {
         switch self {
@@ -29,8 +30,18 @@ enum ViewControllers {
             return MainViewController(viewModel: viewModel)
         case .detail:
             let networkService = NetworkService()
-            let viewModel = DetailViewModel(networkSerivce: networkService, launchInfo: nil)
+            let udService = UserDefaultsService()
+            let viewModel = DetailViewModel(
+                networkSerivce: networkService,
+                launchInfo: nil,
+                udService: udService
+            )
             return DetailViewController(viewModel: viewModel)
+        case .settings:
+            let udService = UserDefaultsService()
+            let viewModel = SettingsViewModel(udService: udService)
+            let view = SettingsView(vm: viewModel)
+            return SettingsViewController(viewModel: viewModel, mainView: view)
         }
     }
 }

@@ -16,6 +16,7 @@ protocol MainViewModelType {
     func getLaunches()
     func launchAt(indexPath: IndexPath) -> LaunchesEntity
     func push(launch: LaunchesEntity)
+    func pushToSettings()
 }
 
 final class MainViewModel: MainViewModelType {
@@ -75,6 +76,10 @@ final class MainViewModel: MainViewModelType {
             }
             self.coordinator?.performTransition(with: .perform(.detail(launch)))
         }
+    }
+
+    func pushToSettings() {
+        self.coordinator?.performTransition(with: .perform(.settings))
     }
 
     private func bind() {
