@@ -42,6 +42,12 @@ final class AppCoodrinator: Coordinator {
             viewController = config.configure(networkService: networkService,
                                               launch: launch)
             return viewController
+        case .settings:
+            let udService = UserDefaultsService()
+            let vm = SettingsViewModel(udService: udService)
+            let view = SettingsView(vm: vm)
+            viewController = SettingsViewController(viewModel: vm, mainView: view)
+            return viewController
         }
     }
 
