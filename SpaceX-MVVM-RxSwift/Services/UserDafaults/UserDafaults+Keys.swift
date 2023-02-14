@@ -6,10 +6,6 @@
 //
 
 enum UserDefaultsKeys: String {
-//    static let height = "height"
-//    static let diameter = "diameter"
-//    static let mass = "mass"
-//    static let weight = "weight"
     case height
     case diameter
     case mass
