@@ -23,6 +23,13 @@ final class MainViewController: UIViewController {
         style: .plain,
         target: self,
         action: #selector(filterTapped))
+
+    private lazy var settingsButton = UIBarButtonItem(
+        image: UIImage(systemName: "gearshape"),
+        style: .plain,
+        target: self,
+        action: #selector(settingsTapped))
+
     private var isFiltered = false
 
     private let disposeBag = DisposeBag()
@@ -54,7 +61,10 @@ final class MainViewController: UIViewController {
         view.backgroundColor = .mainBackground()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
+        
         navigationItem.rightBarButtonItem = filterButton
+        navigationItem.leftBarButtonItem = settingsButton
+
         title = MainConstants.mainTitle
         setupCollectionView()
     }
@@ -98,6 +108,10 @@ final class MainViewController: UIViewController {
     @objc private func filterTapped() {
         isFiltered.toggle()
         viewModel.filterFromLatest.accept(isFiltered)
+    }
+
+    @objc private func settingsTapped() {
+        viewModel.pushToSettings()
     }
 }
 
