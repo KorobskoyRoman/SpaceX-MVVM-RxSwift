@@ -13,7 +13,8 @@ extension UIView {
 
     func showLoading(style: UIActivityIndicatorView.Style = .large,
                      color: UIColor? = nil,
-                     text: String = ViewConstants.loadingText) {
+                     text: String = ViewConstants.loadingText,
+                     yConstant: CGFloat = 0) {
         DispatchQueue.main.async {
             var loading = self.viewWithTag(UIImageView.loadingViewTag) as? UIActivityIndicatorView
             if loading == nil {
@@ -36,7 +37,7 @@ extension UIView {
             infoLabel.tag = UIView.labelInfoTag
             self.addSubview(loading)
             self.addSubview(infoLabel)
-            loading.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+            loading.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: yConstant).isActive = true
             loading.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
             infoLabel.centerYAnchor.constraint(equalTo: loading.centerYAnchor, constant: 25).isActive = true
             infoLabel.centerXAnchor.constraint(equalTo: loading.centerXAnchor).isActive = true
