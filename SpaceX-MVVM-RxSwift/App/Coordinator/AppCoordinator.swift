@@ -21,7 +21,8 @@ final class AppCoodrinator: Coordinator {
     }
 
     func start() {
-        let viewController = getViewControllerByType(type: .main)
+//        let viewController = getViewControllerByType(type: .main)
+        let viewController = getViewControllerByType(type: .splash)
         navigationController = UINavigationController(rootViewController: viewController)
         navigationController?.navigationBar.standardAppearance = configureNavBarAppearence()
         navigationController?.navigationBar.compactAppearance = configureNavBarAppearence()
@@ -52,6 +53,10 @@ final class AppCoodrinator: Coordinator {
             let vm = SettingsViewModel(udService: udService)
             let view = SettingsView(vm: vm)
             viewController = SettingsViewController(viewModel: vm, mainView: view)
+            return viewController
+        case .splash:
+            let config = SplashConfigurator()
+            viewController = config.configure(coordinator: self)
             return viewController
         }
     }

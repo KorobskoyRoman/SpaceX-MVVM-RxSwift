@@ -18,6 +18,7 @@ enum Transition {
 }
 
 enum ViewControllers {
+    case splash
     case main
     case detail(LaunchesEntity)
     case settings
@@ -42,6 +43,9 @@ enum ViewControllers {
             let viewModel = SettingsViewModel(udService: udService)
             let view = SettingsView(vm: viewModel)
             return SettingsViewController(viewModel: viewModel, mainView: view)
+        case .splash:
+            let vm = SplashViewModel()
+            return SplashViewController(viewModel: vm)
         }
     }
 }
