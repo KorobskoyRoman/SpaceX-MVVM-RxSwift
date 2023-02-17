@@ -22,6 +22,22 @@ final class DetailCell: UITableViewCell {
         return label
     }()
 
+    private let wikiButton: UIButton = {
+        return UIButtonBuilder()
+            .title("Wikipedia")
+            .backgroundColor(.lightGray)
+            .cornerRadius(5)
+            .build()
+    }()
+
+    private let videoButton: UIButton = {
+        return UIButtonBuilder()
+            .title("YouTube")
+            .backgroundColor(.systemRed)
+            .cornerRadius(5)
+            .build()
+    }()
+
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -83,10 +99,15 @@ final class DetailCell: UITableViewCell {
         return label
     }()
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setConstraints()
-    }
+    private lazy var linksStack = UIStackView(
+        arrangedSubviews: [
+            wikiButton,
+            videoButton
+        ],
+        axis: .horizontal,
+        spacing: 20,
+        distribution: .fillEqually
+    )
 
     private lazy var firstLaunchStack = UIStackView(arrangedSubviews: [firtLaunchText,
                                                                 firstLaunchValue],
@@ -116,6 +137,15 @@ final class DetailCell: UITableViewCell {
                                              aligment: .fill,
                                              distribution: .equalCentering)
 
+    private var wikiLink = ""
+    private var videoLink = ""
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setConstraints()
+        setupView()
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -123,6 +153,11 @@ final class DetailCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = 15
+    }
+
+    private func setupView() {
+        wikiButton.addTarget(self, action: #selector(wikiButtonTapped), for: .touchUpInside)
+        videoButton.addTarget(self, action: #selector(videoButtonTapped), for: .touchUpInside)
     }
 
     func configure(
@@ -152,10 +187,27 @@ final class DetailCell: UITableViewCell {
         }
         .bind(to: costValue.rx.text)
         .disposed(by: bag)
+
+        rocket.map {
+            $0.wikipedia
+        }
+        .subscribe {
+            self.wikiLink = $0
+        }
+        .disposed(by: bag)
+
+        launch.map {
+            $0.webcast ?? ""
+        }
+        .subscribe {
+            self.videoLink = $0
+        }
+        .disposed(by: bag)
     }
 
     private func setConstraints() {
         contentView.addSubview(nameLabel)
+        contentView.addSubview(linksStack)
         contentView.addSubview(collectionView)
         contentView.addSubview(mainStack)
         contentView.subviews.forEach {
@@ -167,7 +219,12 @@ final class DetailCell: UITableViewCell {
             nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Insets.inset32),
             nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Insets.inset32),
 
-            collectionView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Insets.inset20),
+            linksStack.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Insets.inset10),
+            linksStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Insets.inset32),
+            linksStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Insets.inset32),
+            linksStack.heightAnchor.constraint(equalToConstant: Insets.inset32),
+
+            collectionView.topAnchor.constraint(equalTo: linksStack.bottomAnchor, constant: Insets.inset20),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Insets.inset10),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Insets.inset10),
             collectionView.heightAnchor.constraint(equalToConstant: 120),
@@ -176,6 +233,18 @@ final class DetailCell: UITableViewCell {
             mainStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Insets.inset32),
             mainStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Insets.inset32)
         ])
+    }
+}
+
+private extension DetailCell {
+    @objc
+    func wikiButtonTapped() {
+        print(wikiLink)
+    }
+
+    @objc
+    func videoButtonTapped() {
+        print(videoLink)
     }
 }
 

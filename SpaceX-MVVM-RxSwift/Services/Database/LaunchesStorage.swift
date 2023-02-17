@@ -25,23 +25,25 @@ struct LaunchesStorage {
 
 extension LaunchesStorage: LaunchesStorageType {
     func save(launches: BehaviorRelay<[LaunchInfo]>) throws {
-        launches
-            .observe(on: MainScheduler.instance)
-            .map {
-                $0.sorted(by: { $0.dateUTC > $1.dateUTC })
-            }
-            .subscribe { event in
-            guard let el = event.element else { return }
-            for var launch in el {
-                launch.toManagedObject(context: context)
-            }
-            do {
-                try context.save()
-                print("saved success!")
-            } catch {
-                print("fail to save into core data")
-            }
-        }.disposed(by: bag)
+        DispatchQueue.global().async {
+            launches
+                .observe(on: MainScheduler.instance)
+                .map {
+                    $0.sorted(by: { $0.dateUTC > $1.dateUTC })
+                }
+                .subscribe { event in
+                    guard let el = event.element else { return }
+                    for var launch in el {
+                        launch.toManagedObject(context: context)
+                    }
+                    do {
+                        try context.save()
+                        print("saved success!")
+                    } catch {
+                        print("fail to save into core data")
+                    }
+                }.disposed(by: bag)
+        }
     }
 
     func getLaunches() -> BehaviorRelay<[LaunchesEntity]> {

@@ -56,6 +56,7 @@ final class MainViewController: UIViewController {
     }
 
     private func setupView() {
+        navigationController?.navigationBar.isHidden = false
         view.showLoading()
         toTopButton.addTarget(self, action: #selector(toTopTapped), for: .touchUpInside)
         view.backgroundColor = .mainBackground()

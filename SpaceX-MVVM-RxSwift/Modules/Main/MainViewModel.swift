@@ -9,7 +9,6 @@ import RxSwift
 import RxCocoa
 
 protocol MainViewModelType {
-    var launches: BehaviorRelay<[LaunchInfo]> { get }
     var reload: (() -> Void)? { get set }
     var filterFromLatest: BehaviorRelay<Bool> { get }
     var dbLaunches: BehaviorRelay<[LaunchesEntity]> { get }
@@ -21,7 +20,6 @@ protocol MainViewModelType {
 
 final class MainViewModel: MainViewModelType {
     weak var coordinator: AppCoodrinator?
-    var launches: BehaviorRelay<[LaunchInfo]> = BehaviorRelay<[LaunchInfo]>(value: [])
     var reload: (() -> Void)?
     var filterFromLatest = BehaviorRelay<Bool>(value: true)
     var dbLaunches = BehaviorRelay<[LaunchesEntity]>(value: [])
@@ -38,26 +36,6 @@ final class MainViewModel: MainViewModelType {
     }
 
     func getLaunches() {
-        getDbLaunches()
-        do {
-            let launchs = try networkingService.fetchLaunches()
-            launchs
-                .observe(on: MainScheduler.instance)
-                .subscribe { [weak self] in
-                guard let self else { return }
-                self.launches.accept($0.element ?? [])
-            }
-            .disposed(by: bag)
-
-            try storageManager.save(launches: launches)
-        } catch {
-            print(error.localizedDescription)
-        }
-
-//        getDbLaunches()
-    }
-
-    private func getDbLaunches() {
         dbLaunches = storageManager.getLaunches()
         self.reload?()
     }

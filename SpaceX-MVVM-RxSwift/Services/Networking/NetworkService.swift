@@ -41,20 +41,22 @@ extension NetworkService {
         }
 
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-            guard let self = self else { return }
-            if let error = error {
-                print(error)
-                return
-            }
-            guard let data = data else {
-                print(NetworkingError.noData.description)
-                return
-            }
-            do {
-                let launches = try self.parseJSON(type: [LaunchInfo].self, data: data)
-                self.launchesRelay.accept(launches)
-            } catch {
-                print(error)
+            DispatchQueue.global().async {
+                guard let self = self else { return }
+                if let error = error {
+                    print(error)
+                    return
+                }
+                guard let data = data else {
+                    print(NetworkingError.noData.description)
+                    return
+                }
+                do {
+                    let launches = try self.parseJSON(type: [LaunchInfo].self, data: data)
+                    self.launchesRelay.accept(launches)
+                } catch {
+                    print(error)
+                }
             }
         }
         .resume()
@@ -72,20 +74,22 @@ extension NetworkService {
         }
 
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-            guard let self = self else { return }
-            if let error = error {
-                print(error, NetworkingError.unknown.description)
-                return
-            }
-            guard let data = data else {
-                print(NetworkingError.noData)
-                return
-            }
-            do {
-                let rocket = try self.parseJSON(type: Rocket.self, data: data)
-                self.rocketRelay.accept(rocket)
-            } catch {
-                print(error)
+            DispatchQueue.global().sync {
+                guard let self = self else { return }
+                if let error = error {
+                    print(error, NetworkingError.unknown.description)
+                    return
+                }
+                guard let data = data else {
+                    print(NetworkingError.noData)
+                    return
+                }
+                do {
+                    let rocket = try self.parseJSON(type: Rocket.self, data: data)
+                    self.rocketRelay.accept(rocket)
+                } catch {
+                    print(error)
+                }
             }
         }
         .resume()

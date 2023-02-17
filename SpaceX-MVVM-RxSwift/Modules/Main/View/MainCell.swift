@@ -73,6 +73,9 @@ final class MainCell: UICollectionViewCell {
         image.sd_setImage(with: URL(string: model.links ?? "")) { [weak self] _,_,_,_ in
             guard let self else { return }
             guard self.image.image != nil else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.image.image = UIImage(named: "noImage")
+                }
                 return
             }
             self.image.removeShimmerAnimation()

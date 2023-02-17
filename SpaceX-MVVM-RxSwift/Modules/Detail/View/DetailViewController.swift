@@ -83,7 +83,7 @@ extension DetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return 500 // переделать под динамик сайз
         switch indexPath.section {
-        case 0: return 320
+        case 0: return 350
         default:
             return 100
         }

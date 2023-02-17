@@ -8,6 +8,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="rocket" optional="YES" attributeType="String"/>
         <attribute name="success" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="webcast" optional="YES" attributeType="String"/>
         <relationship name="link" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LinksEntity" inverseName="launch" inverseEntity="LinksEntity"/>
     </entity>
     <entity name="LinksEntity" representedClassName="LinksEntity" syncable="YES" codeGenerationType="class">

@@ -43,6 +43,11 @@
 		9CE4A3F928E8B1D70029ECA1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4A3F828E8B1D70029ECA1 /* MainViewController.swift */; };
 		9CE4A3FE28E8B1D90029ECA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4A3FD28E8B1D90029ECA1 /* Assets.xcassets */; };
 		9CE4A40128E8B1D90029ECA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4A3FF28E8B1D90029ECA1 /* LaunchScreen.storyboard */; };
+		9CEC6AB1299D8E9200187776 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6AB0299D8E9200187776 /* SplashViewController.swift */; };
+		9CEC6AB3299D8F6E00187776 /* UIImageViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6AB2299D8F6E00187776 /* UIImageViewBuilder.swift */; };
+		9CEC6AB5299D93B400187776 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6AB4299D93B400187776 /* SplashViewModel.swift */; };
+		9CEC6AB7299D94BF00187776 /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6AB6299D94BF00187776 /* SplashConfigurator.swift */; };
+		9CEC6AB9299E98B600187776 /* UIButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6AB8299E98B600187776 /* UIButtonBuilder.swift */; };
 		9CFB20EF29941B5A00C67EED /* Launches.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20EE29941B5A00C67EED /* Launches.xcdatamodel */; };
 		9CFB20F129941D3500C67EED /* Launches+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F029941D3500C67EED /* Launches+CoreData.swift */; };
 		9CFB20F329941F2000C67EED /* Links+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F229941F2000C67EED /* Links+CoreData.swift */; };
@@ -100,6 +105,11 @@
 		9CE4A3FD28E8B1D90029ECA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CE4A40028E8B1D90029ECA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CE4A40228E8B1D90029ECA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CEC6AB0299D8E9200187776 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		9CEC6AB2299D8F6E00187776 /* UIImageViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewBuilder.swift; sourceTree = "<group>"; };
+		9CEC6AB4299D93B400187776 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		9CEC6AB6299D94BF00187776 /* SplashConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
+		9CEC6AB8299E98B600187776 /* UIButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonBuilder.swift; sourceTree = "<group>"; };
 		9CFB20EE29941B5A00C67EED /* Launches.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Launches.xcdatamodel; sourceTree = "<group>"; };
 		9CFB20F029941D3500C67EED /* Launches+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Launches+CoreData.swift"; sourceTree = "<group>"; };
 		9CFB20F229941F2000C67EED /* Links+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Links+CoreData.swift"; sourceTree = "<group>"; };
@@ -205,6 +215,7 @@
 			children = (
 				9CACA48E28EA06BF00B5325D /* MainConfigurator.swift */,
 				9CB21D2228F73A9000D275C9 /* DetailConfigurator.swift */,
+				9CEC6AB6299D94BF00187776 /* SplashConfigurator.swift */,
 			);
 			path = Configurators;
 			sourceTree = "<group>";
@@ -284,6 +295,7 @@
 		9CE4A40A28E8BAEB0029ECA1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				9CEC6AAF299D8E8500187776 /* Splash */,
 				9CE4A40C28E8BAFD0029ECA1 /* Main */,
 				9CB21D1C28F7399500D275C9 /* Detail */,
 				9CFB2101299A8C6E00C67EED /* Settings */,
@@ -308,6 +320,15 @@
 				9CACA48B28E9FE1900B5325D /* MainViewModel.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		9CEC6AAF299D8E8500187776 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				9CEC6AB0299D8E9200187776 /* SplashViewController.swift */,
+				9CEC6AB4299D93B400187776 /* SplashViewModel.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		9CFB20F62995732C00C67EED /* Extensions */ = {
@@ -381,6 +402,8 @@
 			isa = PBXGroup;
 			children = (
 				9CFB210C299AA75B00C67EED /* UILabelBuilder.swift */,
+				9CEC6AB2299D8F6E00187776 /* UIImageViewBuilder.swift */,
+				9CEC6AB8299E98B600187776 /* UIButtonBuilder.swift */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -545,6 +568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CEC6AB3299D8F6E00187776 /* UIImageViewBuilder.swift in Sources */,
 				9CFB210B299A956A00C67EED /* CustomThumbView.swift in Sources */,
 				9CACA48628E8C3D100B5325D /* LaunchInfo.swift in Sources */,
 				9C4F045C298EA6AF002A5562 /* DetailCellType.swift in Sources */,
@@ -557,13 +581,16 @@
 				9CFB20FC299930FF00C67EED /* ShimmerUIImageView.swift in Sources */,
 				9CACA48A28E8C76900B5325D /* NetworkService.swift in Sources */,
 				9C8EA76128EA12FE00A73F12 /* MainCell.swift in Sources */,
+				9CEC6AB7299D94BF00187776 /* SplashConfigurator.swift in Sources */,
 				9CFB2118299AB86000C67EED /* UserDefaultsService.swift in Sources */,
 				9CFB20F129941D3500C67EED /* Launches+CoreData.swift in Sources */,
 				9CFB2107299A8EF500C67EED /* SettingsView.swift in Sources */,
 				9CFB20F52995548300C67EED /* LaunchesStorage.swift in Sources */,
 				9CFB20F329941F2000C67EED /* Links+CoreData.swift in Sources */,
+				9CEC6AB9299E98B600187776 /* UIButtonBuilder.swift in Sources */,
 				9CB21D2328F73A9000D275C9 /* DetailConfigurator.swift in Sources */,
 				9CE4A3F928E8B1D70029ECA1 /* MainViewController.swift in Sources */,
+				9CEC6AB1299D8E9200187776 /* SplashViewController.swift in Sources */,
 				9C4F04622992A0F3002A5562 /* NetworkingError.swift in Sources */,
 				9C8EA76528EA147700A73F12 /* UIFont+.swift in Sources */,
 				9CE4A3F528E8B1D70029ECA1 /* AppDelegate.swift in Sources */,
@@ -588,6 +615,7 @@
 				9C8CBA9C28E8C09900947DB7 /* UIColor+.swift in Sources */,
 				9CACA48C28E9FE1900B5325D /* MainViewModel.swift in Sources */,
 				9CFB20EF29941B5A00C67EED /* Launches.xcdatamodel in Sources */,
+				9CEC6AB5299D93B400187776 /* SplashViewModel.swift in Sources */,
 				9CACA48F28EA06BF00B5325D /* MainConfigurator.swift in Sources */,
 				9C4F0453298C27F8002A5562 /* DetailCollectionCell.swift in Sources */,
 				9C4F046029904399002A5562 /* ToTopButton.swift in Sources */,

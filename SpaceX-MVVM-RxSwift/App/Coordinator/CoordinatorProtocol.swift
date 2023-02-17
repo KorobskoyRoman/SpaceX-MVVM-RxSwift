@@ -18,6 +18,7 @@ enum Transition {
 }
 
 enum ViewControllers {
+    case splash
     case main
     case detail(LaunchesEntity)
     case settings
@@ -42,6 +43,15 @@ enum ViewControllers {
             let viewModel = SettingsViewModel(udService: udService)
             let view = SettingsView(vm: viewModel)
             return SettingsViewController(viewModel: viewModel, mainView: view)
+        case .splash:
+            let networkService = NetworkService()
+            let vm = SplashViewModel(
+                networkingService: networkService,
+                storage: LaunchesStorage(
+                    context: PersistenceController.shared.container.viewContext
+                )
+            )
+            return SplashViewController(viewModel: vm)
         }
     }
 }
