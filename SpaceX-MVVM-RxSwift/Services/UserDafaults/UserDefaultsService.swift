@@ -27,6 +27,13 @@ final class UserDefaultsService: UserDefaultsType {
     }
 
     private func getObj(for key: String) -> Bool {
-        return userDefaults.object(forKey: key) as? Bool ?? false
+        var obj: Bool = false
+
+        DispatchQueue.global().sync {
+            obj = self.userDefaults.object(forKey: key) as? Bool ?? false
+        }
+
+        return obj
+//        return userDefaults.object(forKey: key) as? Bool ?? false
     }
 }
