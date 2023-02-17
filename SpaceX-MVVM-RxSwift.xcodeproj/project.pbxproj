@@ -47,6 +47,7 @@
 		9CEC6AB3299D8F6E00187776 /* UIImageViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6AB2299D8F6E00187776 /* UIImageViewBuilder.swift */; };
 		9CEC6AB5299D93B400187776 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6AB4299D93B400187776 /* SplashViewModel.swift */; };
 		9CEC6AB7299D94BF00187776 /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6AB6299D94BF00187776 /* SplashConfigurator.swift */; };
+		9CEC6AB9299E98B600187776 /* UIButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6AB8299E98B600187776 /* UIButtonBuilder.swift */; };
 		9CFB20EF29941B5A00C67EED /* Launches.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20EE29941B5A00C67EED /* Launches.xcdatamodel */; };
 		9CFB20F129941D3500C67EED /* Launches+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F029941D3500C67EED /* Launches+CoreData.swift */; };
 		9CFB20F329941F2000C67EED /* Links+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F229941F2000C67EED /* Links+CoreData.swift */; };
@@ -108,6 +109,7 @@
 		9CEC6AB2299D8F6E00187776 /* UIImageViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewBuilder.swift; sourceTree = "<group>"; };
 		9CEC6AB4299D93B400187776 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		9CEC6AB6299D94BF00187776 /* SplashConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
+		9CEC6AB8299E98B600187776 /* UIButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonBuilder.swift; sourceTree = "<group>"; };
 		9CFB20EE29941B5A00C67EED /* Launches.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Launches.xcdatamodel; sourceTree = "<group>"; };
 		9CFB20F029941D3500C67EED /* Launches+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Launches+CoreData.swift"; sourceTree = "<group>"; };
 		9CFB20F229941F2000C67EED /* Links+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Links+CoreData.swift"; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 			children = (
 				9CFB210C299AA75B00C67EED /* UILabelBuilder.swift */,
 				9CEC6AB2299D8F6E00187776 /* UIImageViewBuilder.swift */,
+				9CEC6AB8299E98B600187776 /* UIButtonBuilder.swift */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				9CFB2107299A8EF500C67EED /* SettingsView.swift in Sources */,
 				9CFB20F52995548300C67EED /* LaunchesStorage.swift in Sources */,
 				9CFB20F329941F2000C67EED /* Links+CoreData.swift in Sources */,
+				9CEC6AB9299E98B600187776 /* UIButtonBuilder.swift in Sources */,
 				9CB21D2328F73A9000D275C9 /* DetailConfigurator.swift in Sources */,
 				9CE4A3F928E8B1D70029ECA1 /* MainViewController.swift in Sources */,
 				9CEC6AB1299D8E9200187776 /* SplashViewController.swift in Sources */,
