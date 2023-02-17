@@ -56,7 +56,7 @@ final class AppCoodrinator: Coordinator {
             return viewController
         case .splash:
             let config = SplashConfigurator()
-            viewController = config.configure(coordinator: self)
+            viewController = config.configure(networkService: networkService, coordinator: self)
             return viewController
         }
     }

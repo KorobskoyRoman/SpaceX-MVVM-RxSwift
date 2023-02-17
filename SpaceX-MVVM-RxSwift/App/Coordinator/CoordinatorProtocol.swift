@@ -44,7 +44,13 @@ enum ViewControllers {
             let view = SettingsView(vm: viewModel)
             return SettingsViewController(viewModel: viewModel, mainView: view)
         case .splash:
-            let vm = SplashViewModel()
+            let networkService = NetworkService()
+            let vm = SplashViewModel(
+                networkingService: networkService,
+                storage: LaunchesStorage(
+                    context: PersistenceController.shared.container.viewContext
+                )
+            )
             return SplashViewController(viewModel: vm)
         }
     }

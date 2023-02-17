@@ -9,13 +9,17 @@ import UIKit
 
 protocol SplashConfiguratorType {
     func configure(
+        networkService: NetworkServiceType,
         coordinator: AppCoodrinator
     ) -> UIViewController
 }
 
 final class SplashConfigurator: SplashConfiguratorType {
-    func configure(coordinator: AppCoodrinator) -> UIViewController {
-        let vm = SplashViewModel()
+    func configure(
+        networkService: NetworkServiceType,
+        coordinator: AppCoodrinator
+    ) -> UIViewController {
+        let vm = SplashViewModel(networkingService: networkService, storage: LaunchesStorage(context: PersistenceController.shared.container.viewContext))
         vm.coordinator = coordinator
         let vc = SplashViewController(viewModel: vm)
         
