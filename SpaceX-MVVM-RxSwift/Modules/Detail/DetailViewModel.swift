@@ -25,6 +25,7 @@ final class DetailViewModel: DetailViewModelType {
     var rocketInfo: BehaviorRelay<Rocket>? = BehaviorRelay<Rocket>(value: .emptyRocket)
     private let networkSerivce: NetworkServiceType
     private let udService: UserDefaultsType
+    private let bag = DisposeBag()
 
     var title: Observable<String> {
         return launchInfo
