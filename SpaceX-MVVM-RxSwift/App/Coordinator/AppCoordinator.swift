@@ -45,7 +45,8 @@ final class AppCoodrinator: Coordinator {
             viewController = config.configure(
                 networkService: networkService,
                 launch: launch,
-                udService: udService
+                udService: udService,
+                coordinator: self
             )
             return viewController
         case .settings:
@@ -57,6 +58,10 @@ final class AppCoodrinator: Coordinator {
         case .splash:
             let config = SplashConfigurator()
             viewController = config.configure(networkService: networkService, coordinator: self)
+            return viewController
+        case .web(let link):
+            let config = WebConfigurator()
+            viewController = config.configure(link: link)
             return viewController
         }
     }
