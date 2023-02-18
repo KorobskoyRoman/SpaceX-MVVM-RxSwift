@@ -18,9 +18,11 @@ protocol DetailViewModelType {
     var mass: Double { get }
     var weight: Double { get }
     func getRocketInfo()
+    func push(with url: String)
 }
 
 final class DetailViewModel: DetailViewModelType {
+    weak var coordinator: AppCoodrinator?
     var launchInfo: BehaviorRelay<LaunchesEntity>?
     var rocketInfo: BehaviorRelay<Rocket>? = BehaviorRelay<Rocket>(value: .emptyRocket)
     private let networkSerivce: NetworkServiceType
@@ -62,6 +64,10 @@ final class DetailViewModel: DetailViewModelType {
         } catch {
             print(error)
         }
+    }
+
+    func push(with url: String) {
+        coordinator?.performTransition(with: .perform(.web(url)))
     }
 }
 
