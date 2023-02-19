@@ -12,7 +12,8 @@ protocol DetailConfiguratorType {
     func configure(
         networkService: NetworkServiceType,
         launch: LaunchesEntity,
-        udService: UserDefaultsType
+        udService: UserDefaultsType,
+        coordinator: AppCoodrinator
     ) -> UIViewController
 }
 
@@ -20,13 +21,15 @@ final class DetailConfigurator: DetailConfiguratorType {
     func configure(
         networkService: NetworkServiceType,
         launch: LaunchesEntity,
-        udService: UserDefaultsType
+        udService: UserDefaultsType,
+        coordinator: AppCoodrinator
     ) -> UIViewController {
         let vm = DetailViewModel(
             networkSerivce: networkService,
             launchInfo: BehaviorRelay<LaunchesEntity>(value: launch),
             udService: udService
         )
+        vm.coordinator = coordinator
         let vc = DetailViewController(viewModel: vm)
         return vc
     }

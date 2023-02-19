@@ -48,6 +48,9 @@
 		9CEC6AB5299D93B400187776 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6AB4299D93B400187776 /* SplashViewModel.swift */; };
 		9CEC6AB7299D94BF00187776 /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6AB6299D94BF00187776 /* SplashConfigurator.swift */; };
 		9CEC6AB9299E98B600187776 /* UIButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6AB8299E98B600187776 /* UIButtonBuilder.swift */; };
+		9CEC6ABC29A1179800187776 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6ABB29A1179800187776 /* WebViewController.swift */; };
+		9CEC6ABE29A1181B00187776 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6ABD29A1181B00187776 /* WebViewModel.swift */; };
+		9CEC6AC029A11D8500187776 /* WebConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC6ABF29A11D8500187776 /* WebConfigurator.swift */; };
 		9CFB20EF29941B5A00C67EED /* Launches.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20EE29941B5A00C67EED /* Launches.xcdatamodel */; };
 		9CFB20F129941D3500C67EED /* Launches+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F029941D3500C67EED /* Launches+CoreData.swift */; };
 		9CFB20F329941F2000C67EED /* Links+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F229941F2000C67EED /* Links+CoreData.swift */; };
@@ -110,6 +113,9 @@
 		9CEC6AB4299D93B400187776 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		9CEC6AB6299D94BF00187776 /* SplashConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
 		9CEC6AB8299E98B600187776 /* UIButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonBuilder.swift; sourceTree = "<group>"; };
+		9CEC6ABB29A1179800187776 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		9CEC6ABD29A1181B00187776 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
+		9CEC6ABF29A11D8500187776 /* WebConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebConfigurator.swift; sourceTree = "<group>"; };
 		9CFB20EE29941B5A00C67EED /* Launches.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Launches.xcdatamodel; sourceTree = "<group>"; };
 		9CFB20F029941D3500C67EED /* Launches+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Launches+CoreData.swift"; sourceTree = "<group>"; };
 		9CFB20F229941F2000C67EED /* Links+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Links+CoreData.swift"; sourceTree = "<group>"; };
@@ -216,6 +222,7 @@
 				9CACA48E28EA06BF00B5325D /* MainConfigurator.swift */,
 				9CB21D2228F73A9000D275C9 /* DetailConfigurator.swift */,
 				9CEC6AB6299D94BF00187776 /* SplashConfigurator.swift */,
+				9CEC6ABF29A11D8500187776 /* WebConfigurator.swift */,
 			);
 			path = Configurators;
 			sourceTree = "<group>";
@@ -299,6 +306,7 @@
 				9CE4A40C28E8BAFD0029ECA1 /* Main */,
 				9CB21D1C28F7399500D275C9 /* Detail */,
 				9CFB2101299A8C6E00C67EED /* Settings */,
+				9CEC6ABA29A1177700187776 /* Web */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -329,6 +337,15 @@
 				9CEC6AB4299D93B400187776 /* SplashViewModel.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		9CEC6ABA29A1177700187776 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				9CEC6ABB29A1179800187776 /* WebViewController.swift */,
+				9CEC6ABD29A1181B00187776 /* WebViewModel.swift */,
+			);
+			path = Web;
 			sourceTree = "<group>";
 		};
 		9CFB20F62995732C00C67EED /* Extensions */ = {
@@ -569,6 +586,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CEC6AB3299D8F6E00187776 /* UIImageViewBuilder.swift in Sources */,
+				9CEC6AC029A11D8500187776 /* WebConfigurator.swift in Sources */,
+				9CEC6ABC29A1179800187776 /* WebViewController.swift in Sources */,
 				9CFB210B299A956A00C67EED /* CustomThumbView.swift in Sources */,
 				9CACA48628E8C3D100B5325D /* LaunchInfo.swift in Sources */,
 				9C4F045C298EA6AF002A5562 /* DetailCellType.swift in Sources */,
@@ -585,6 +604,7 @@
 				9CFB2118299AB86000C67EED /* UserDefaultsService.swift in Sources */,
 				9CFB20F129941D3500C67EED /* Launches+CoreData.swift in Sources */,
 				9CFB2107299A8EF500C67EED /* SettingsView.swift in Sources */,
+				9CEC6ABE29A1181B00187776 /* WebViewModel.swift in Sources */,
 				9CFB20F52995548300C67EED /* LaunchesStorage.swift in Sources */,
 				9CFB20F329941F2000C67EED /* Links+CoreData.swift in Sources */,
 				9CEC6AB9299E98B600187776 /* UIButtonBuilder.swift in Sources */,

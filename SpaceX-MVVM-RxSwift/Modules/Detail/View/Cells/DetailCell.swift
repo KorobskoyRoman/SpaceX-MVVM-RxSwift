@@ -137,8 +137,8 @@ final class DetailCell: UITableViewCell {
                                              aligment: .fill,
                                              distribution: .equalCentering)
 
-    private var wikiLink = ""
-    private var videoLink = ""
+    private var wikiLink = BehaviorRelay(value: "")
+    private var videoLink = BehaviorRelay(value: "")
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -158,6 +158,13 @@ final class DetailCell: UITableViewCell {
     private func setupView() {
         wikiButton.addTarget(self, action: #selector(wikiButtonTapped), for: .touchUpInside)
         videoButton.addTarget(self, action: #selector(videoButtonTapped), for: .touchUpInside)
+
+        videoLink
+            .map {
+                $0.isEmpty ? true : false
+            }
+            .bind(to: videoButton.rx.isHidden)
+            .disposed(by: bag)
     }
 
     func configure(
@@ -191,16 +198,16 @@ final class DetailCell: UITableViewCell {
         rocket.map {
             $0.wikipedia
         }
-        .subscribe {
-            self.wikiLink = $0
+        .subscribe { [weak self] in
+            self?.wikiLink.accept($0)
         }
         .disposed(by: bag)
 
         launch.map {
             $0.webcast ?? ""
         }
-        .subscribe {
-            self.videoLink = $0
+        .subscribe { [weak self] in
+            self?.videoLink.accept($0)
         }
         .disposed(by: bag)
     }
@@ -239,12 +246,12 @@ final class DetailCell: UITableViewCell {
 private extension DetailCell {
     @objc
     func wikiButtonTapped() {
-        print(wikiLink)
+        viewModel?.push(with: wikiLink.value)
     }
 
     @objc
     func videoButtonTapped() {
-        print(videoLink)
+        viewModel?.push(with: videoLink.value)
     }
 }
 

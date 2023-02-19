@@ -22,6 +22,7 @@ enum ViewControllers {
     case main
     case detail(LaunchesEntity)
     case settings
+    case web(String)
 
     var viewController: UIViewController {
         switch self {
@@ -52,6 +53,10 @@ enum ViewControllers {
                 )
             )
             return SplashViewController(viewModel: vm)
+//        case .web(let link):
+        case .web:
+            let viewModel = WebViewModel(link: "")
+            return WebViewController(viewModel: viewModel)
         }
     }
 }
