@@ -60,7 +60,8 @@ final class ToTopButton: UIButton {
 
     func showButton(on view: UIView) {
         UIView.animate(withDuration: 0.3, delay: 0) {
-            self.center.x -= 100
+//            self.center.x -= 100
+            self.center.x -= view.bounds.width
             self.isHidden = false
             self.alpha = 1.0
         }
