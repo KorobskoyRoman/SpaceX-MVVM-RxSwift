@@ -44,6 +44,11 @@ final class MainViewController: UIViewController {
         collectionView.stopLoading()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        toTopButton.center.x += view.bounds.width
+    }
+
     init(viewModel: MainViewModelType,
          toTopButton: ToTopButton = ToTopButton()) {
         self.viewModel = viewModel
