@@ -74,7 +74,7 @@ final class MainCell: UICollectionViewCell {
             guard let self else { return }
             guard self.image.image != nil else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    self.image.image = UIImage(named: "noImage")
+                    self.image.image = R.image.noImage()
                 }
                 return
             }
@@ -120,9 +120,9 @@ extension MainCell {
     private func getSuccessInfo(_ success: Bool) -> UIImage {
         switch success {
         case true:
-            return UIImage(named: "success")!
+            return R.image.success()!
         case false:
-            return UIImage(named: "fail")!
+            return R.image.fail()!
         }
     }
 

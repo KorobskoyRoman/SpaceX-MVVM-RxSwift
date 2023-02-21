@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		77823DBAAF3A65C0ABC7E5D6 /* Pods_SpaceX_MVVM_RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11AC851B90B31ADEF4922625 /* Pods_SpaceX_MVVM_RxSwift.framework */; };
+		9C1353A529A3E813005936FD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1353A429A3E813005936FD /* R.generated.swift */; };
 		9C240A4C28F873190074C74C /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C240A4B28F873190074C74C /* UIImage+.swift */; };
 		9C45BF8F298BEF1A005577C2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C45BF8E298BEF1A005577C2 /* DetailViewController.swift */; };
 		9C45BF91298BF14A005577C2 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C45BF90298BF14A005577C2 /* DetailCell.swift */; };
@@ -71,6 +72,7 @@
 /* Begin PBXFileReference section */
 		11AC851B90B31ADEF4922625 /* Pods_SpaceX_MVVM_RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpaceX_MVVM_RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		988FE4164DB7D8B6F8992F2E /* Pods-SpaceX-MVVM-RxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceX-MVVM-RxSwift.debug.xcconfig"; path = "Target Support Files/Pods-SpaceX-MVVM-RxSwift/Pods-SpaceX-MVVM-RxSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		9C1353A429A3E813005936FD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		9C240A4B28F873190074C74C /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		9C45BF8E298BEF1A005577C2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9C45BF90298BF14A005577C2 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 		9CE4A40928E8B6AA0029ECA1 /* Support files */ = {
 			isa = PBXGroup;
 			children = (
+				9C1353A429A3E813005936FD /* R.generated.swift */,
 				9C8CBA9828E8BFEE00947DB7 /* Constants.swift */,
 				9CE4A3FD28E8B1D90029ECA1 /* Assets.xcassets */,
 				9CE4A3FF28E8B1D90029ECA1 /* LaunchScreen.storyboard */,
@@ -479,6 +482,7 @@
 			buildConfigurationList = 9CE4A40528E8B1D90029ECA1 /* Build configuration list for PBXNativeTarget "SpaceX-MVVM-RxSwift" */;
 			buildPhases = (
 				64CAB962436F8548514BF2AC /* [CP] Check Pods Manifest.lock */,
+				9C1353A329A3E7CD005936FD /* ShellScript */,
 				9CE4A3ED28E8B1D70029ECA1 /* Sources */,
 				9CE4A3EE28E8B1D70029ECA1 /* Frameworks */,
 				9CE4A3EF28E8B1D70029ECA1 /* Resources */,
@@ -561,6 +565,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9C1353A329A3E7CD005936FD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 		F89B37B8E662DDACDF430A02 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -629,6 +652,7 @@
 				9C4F0455298C78F2002A5562 /* Rocket.swift in Sources */,
 				9CFB20FA29992F6D00C67EED /* ShimmerProtocol.swift in Sources */,
 				9CFB2116299AB78700C67EED /* UserDafaults+Keys.swift in Sources */,
+				9C1353A529A3E813005936FD /* R.generated.swift in Sources */,
 				9C240A4C28F873190074C74C /* UIImage+.swift in Sources */,
 				9CB21D2128F739D300D275C9 /* DetailViewModel.swift in Sources */,
 				9C8EA76728ECAA7600A73F12 /* UIView+.swift in Sources */,

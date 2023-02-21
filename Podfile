@@ -9,4 +9,5 @@ target 'SpaceX-MVVM-RxSwift' do
     pod 'RxSwift', '6.5.0'
     pod 'RxCocoa', '6.5.0'
     pod 'SDWebImage'
+    pod 'R.swift'
 end
