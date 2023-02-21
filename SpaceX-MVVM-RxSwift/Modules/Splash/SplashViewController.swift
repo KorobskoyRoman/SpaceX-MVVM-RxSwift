@@ -35,7 +35,7 @@ private extension SplashViewController {
     func setupView() {
         navigationController?.navigationBar.isHidden = true
         view.showLoading(yConstant: 100)
-        image.image = UIImage(named: "SpaceX-Logo")
+        image.image = R.image.spaceXLogo()
         view.addSubview(image)
         view.backgroundColor = .mainBackground()
         setConstraints()

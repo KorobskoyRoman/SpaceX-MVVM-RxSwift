@@ -9,6 +9,6 @@ import UIKit
 
 extension UIImage {
     var defaultImage: UIImage {
-        return UIImage(named: "noImage")!
+        return R.image.noImage()!
     }
 }
