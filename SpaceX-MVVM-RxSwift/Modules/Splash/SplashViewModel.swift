@@ -29,19 +29,21 @@ final class SplashViewModel: SplashViewModelType {
     }
 
     private func getLaunches() {
-        do {
-            let launchs = try networkingService.fetchLaunches()
-            launchs
-                .observe(on: MainScheduler.instance)
-                .subscribe { [weak self] in
-                guard let self else { return }
-                self.launches.accept($0.element ?? [])
-            }
-            .disposed(by: bag)
+        Task {
+            do {
+                let launchs = try await networkingService.fetchLaunches()
+                launchs
+                    .observe(on: MainScheduler.instance)
+                    .subscribe { [weak self] in
+                        guard let self else { return }
+                        self.launches.accept($0.element ?? [])
+                    }
+                    .disposed(by: bag)
 
-            try storageManager.save(launches: launches)
-        } catch {
-            print(error.localizedDescription)
+                try storageManager.save(launches: launches)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 

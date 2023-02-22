@@ -46,13 +46,15 @@ final class MainViewModel: MainViewModelType {
 
     func push(launch: LaunchesEntity) {
         DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            do {
-                let _ = try self.networkingService.fetchRocket(id: launch.rocket ?? "")
-            } catch {
-                print(error)
+            Task {
+                guard let self else { return }
+                do {
+                    let _ = try await self.networkingService.fetchRocket(id: launch.rocket ?? "")
+                } catch {
+                    print(error)
+                }
+                self.coordinator?.performTransition(with: .perform(.detail(launch)))
             }
-            self.coordinator?.performTransition(with: .perform(.detail(launch)))
         }
     }
 
