@@ -9,12 +9,12 @@ import RxSwift
 import RxCocoa
 
 protocol NetworkServiceType {
-    func fetchLaunches() throws -> BehaviorRelay<[LaunchInfo]>
-    func fetchRocket(id: String) throws -> BehaviorRelay<Rocket>
+    func fetchLaunches() async throws -> BehaviorRelay<[LaunchInfo]>
+    func fetchRocket(id: String) async throws -> BehaviorRelay<Rocket>
 }
 
 final class NetworkService: NetworkServiceType {
-    private var launchesRelay = BehaviorRelay<[LaunchInfo]>(value: [])
+    private let launchesRelay = BehaviorRelay<[LaunchInfo]>(value: [])
     private let rocketRelay = BehaviorRelay<Rocket>(value: .emptyRocket)
 
     private func parseJSON<T: Decodable>(type: T.Type, data: Data?) throws -> T {
@@ -30,36 +30,31 @@ final class NetworkService: NetworkServiceType {
         }
         return try decoder.decode(T.self, from: data)
     }
+
+    private func checkResponse(_ response: URLResponse) throws -> Bool {
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+            throw NetworkingError.invalidUrl
+        }
+        return true
+    }
 }
 
 // MARK: - Launches
 extension NetworkService {
-    func fetchLaunches() throws -> BehaviorRelay<[LaunchInfo]> {
+    func fetchLaunches() async throws -> BehaviorRelay<[LaunchInfo]> {
         let urlString = NetworkConstants.launchesUrl
         guard let url = URL(string: urlString) else {
             throw NetworkingError.invalidUrl
         }
 
-        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-            DispatchQueue.global().async {
-                guard let self = self else { return }
-                if let error = error {
-                    print(error)
-                    return
-                }
-                guard let data = data else {
-                    print(NetworkingError.noData.description)
-                    return
-                }
-                do {
-                    let launches = try self.parseJSON(type: [LaunchInfo].self, data: data)
-                    self.launchesRelay.accept(launches)
-                } catch {
-                    print(error)
-                }
-            }
-        }
-        .resume()
+        let (data, response) = try await URLSession.shared.data(
+            from: url
+        )
+
+        guard try checkResponse(response) else { throw NetworkingError.invalidResponse }
+
+        let launches = try parseJSON(type: [LaunchInfo].self, data: data)
+        launchesRelay.accept(launches)
 
         return launchesRelay
     }
@@ -67,32 +62,21 @@ extension NetworkService {
 
 // MARK: - Rocket
 extension NetworkService {
-    func fetchRocket(id: String) throws -> BehaviorRelay<Rocket> {
-        let urlString = NetworkConstants.rocketUrl + id
-        guard let url = URL(string: urlString) else {
-            return rocketRelay
+    func fetchRocket(id: String) async throws -> BehaviorRelay<Rocket> {
+        let url = URL(string: NetworkConstants.rocketUrl + id)
+
+        guard let url else {
+            throw NetworkingError.invalidUrl
         }
 
-        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-            DispatchQueue.global().sync {
-                guard let self = self else { return }
-                if let error = error {
-                    print(error, NetworkingError.unknown.description)
-                    return
-                }
-                guard let data = data else {
-                    print(NetworkingError.noData)
-                    return
-                }
-                do {
-                    let rocket = try self.parseJSON(type: Rocket.self, data: data)
-                    self.rocketRelay.accept(rocket)
-                } catch {
-                    print(error)
-                }
-            }
-        }
-        .resume()
+        let (data, response) = try await URLSession.shared.data(
+            from: url
+        )
+
+        guard try checkResponse(response) else { throw NetworkingError.invalidResponse }
+
+        let rocket = try parseJSON(type: Rocket.self, data: data)
+        rocketRelay.accept(rocket)
 
         return rocketRelay
     }
