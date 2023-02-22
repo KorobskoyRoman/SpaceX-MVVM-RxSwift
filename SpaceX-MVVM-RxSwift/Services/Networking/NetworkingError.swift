@@ -11,6 +11,7 @@ enum NetworkingError: Error {
     case unknown
     case invalidUrl
     case noData
+    case invalidResponse
 
     var description: String {
         switch self {
@@ -20,6 +21,8 @@ enum NetworkingError: Error {
             return "Invalid url"
         case .noData:
             return "No data fetched"
+        case .invalidResponse:
+            return "Invalid server response!"
         }
     }
 }
