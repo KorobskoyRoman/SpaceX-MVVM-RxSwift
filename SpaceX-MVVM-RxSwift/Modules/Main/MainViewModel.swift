@@ -10,6 +10,7 @@ import RxCocoa
 
 protocol MainViewModelType {
     var reload: (() -> Void)? { get set }
+    var showError: ((String) -> Void)? { get set }
     var filterFromLatest: BehaviorRelay<Bool> { get }
     var dbLaunches: BehaviorRelay<[LaunchesEntity]> { get }
     func getLaunches()
@@ -21,6 +22,7 @@ protocol MainViewModelType {
 final class MainViewModel: MainViewModelType {
     weak var coordinator: AppCoodrinator?
     var reload: (() -> Void)?
+    var showError: ((String) -> Void)?
     var filterFromLatest = BehaviorRelay<Bool>(value: true)
     var dbLaunches = BehaviorRelay<[LaunchesEntity]>(value: [])
 
@@ -51,6 +53,7 @@ final class MainViewModel: MainViewModelType {
                 do {
                     let _ = try await self.networkingService.fetchRocket(id: launch.rocket ?? "")
                 } catch {
+                    self.showError?(error.localizedDescription)
                     print(error)
                 }
                 self.coordinator?.performTransition(with: .perform(.detail(launch)))

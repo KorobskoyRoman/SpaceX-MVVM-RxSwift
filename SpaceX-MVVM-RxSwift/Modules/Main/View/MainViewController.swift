@@ -130,6 +130,10 @@ extension MainViewController {
                 self?.view.stopLoading()
             }
         }.disposed(by: disposeBag)
+
+        viewModel.showError = { error in
+            AlertView.showIn(viewController: self, message: error)
+        }
     }
 }
 
