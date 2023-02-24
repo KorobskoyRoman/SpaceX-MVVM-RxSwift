@@ -60,6 +60,11 @@ final class MainViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.stopNotify()
+    }
+
     private func setupView() {
         navigationController?.navigationBar.isHidden = false
         view.showLoading()
