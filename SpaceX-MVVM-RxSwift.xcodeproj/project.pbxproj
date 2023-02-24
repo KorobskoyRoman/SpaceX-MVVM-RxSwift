@@ -11,6 +11,7 @@
 		9C1353A529A3E813005936FD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1353A429A3E813005936FD /* R.generated.swift */; };
 		9C1353A929A67D02005936FD /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1353A729A67D02005936FD /* AlertView.swift */; };
 		9C1353AA29A67D02005936FD /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C1353A829A67D02005936FD /* AlertView.xib */; };
+		9C1353AC29A84972005936FD /* ReachabilityError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1353AB29A84972005936FD /* ReachabilityError.swift */; };
 		9C240A4C28F873190074C74C /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C240A4B28F873190074C74C /* UIImage+.swift */; };
 		9C45BF8F298BEF1A005577C2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C45BF8E298BEF1A005577C2 /* DetailViewController.swift */; };
 		9C45BF91298BF14A005577C2 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C45BF90298BF14A005577C2 /* DetailCell.swift */; };
@@ -77,6 +78,7 @@
 		9C1353A429A3E813005936FD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		9C1353A729A67D02005936FD /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertView.swift; path = ../../../../../QRScanner/QRScanner/Modules/Web/View/AlertView/AlertView.swift; sourceTree = "<group>"; };
 		9C1353A829A67D02005936FD /* AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlertView.xib; path = ../../../../../QRScanner/QRScanner/Modules/Web/View/AlertView/AlertView.xib; sourceTree = "<group>"; };
+		9C1353AB29A84972005936FD /* ReachabilityError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityError.swift; sourceTree = "<group>"; };
 		9C240A4B28F873190074C74C /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		9C45BF8E298BEF1A005577C2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9C45BF90298BF14A005577C2 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 			children = (
 				9C1353A429A3E813005936FD /* R.generated.swift */,
 				9C8CBA9828E8BFEE00947DB7 /* Constants.swift */,
+				9C1353AB29A84972005936FD /* ReachabilityError.swift */,
 				9CE4A3FD28E8B1D90029ECA1 /* Assets.xcassets */,
 				9CE4A3FF28E8B1D90029ECA1 /* LaunchScreen.storyboard */,
 			);
@@ -641,6 +644,7 @@
 				9CEC6AB7299D94BF00187776 /* SplashConfigurator.swift in Sources */,
 				9CFB2118299AB86000C67EED /* UserDefaultsService.swift in Sources */,
 				9CFB20F129941D3500C67EED /* Launches+CoreData.swift in Sources */,
+				9C1353AC29A84972005936FD /* ReachabilityError.swift in Sources */,
 				9CFB2107299A8EF500C67EED /* SettingsView.swift in Sources */,
 				9CEC6ABE29A1181B00187776 /* WebViewModel.swift in Sources */,
 				9CFB20F52995548300C67EED /* LaunchesStorage.swift in Sources */,

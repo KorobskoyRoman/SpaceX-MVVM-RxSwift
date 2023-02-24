@@ -7,6 +7,8 @@
 
 import RxSwift
 import RxCocoa
+import RxReachability
+import Reachability
 
 protocol MainViewModelType {
     var reload: (() -> Void)? { get set }
@@ -17,6 +19,7 @@ protocol MainViewModelType {
     func launchAt(indexPath: IndexPath) -> LaunchesEntity
     func push(launch: LaunchesEntity)
     func pushToSettings()
+    func stopNotify()
 }
 
 final class MainViewModel: MainViewModelType {
@@ -29,12 +32,14 @@ final class MainViewModel: MainViewModelType {
     private let networkingService: NetworkServiceType
     private let bag = DisposeBag()
     private let storageManager: LaunchesStorageType
+    private var reachability = try? Reachability()
 
     init(networkingService: NetworkServiceType,
          storage: LaunchesStorageType) {
         self.networkingService = networkingService
         self.storageManager = storage
         self.bind()
+        self.startNotify()
     }
 
     func getLaunches() {
@@ -83,5 +88,35 @@ final class MainViewModel: MainViewModelType {
                 self.reload?()
             }
             .disposed(by: bag)
+
+        reachability?.rx.isReachable
+            .subscribe (onNext: { isReachable in
+                if !isReachable {
+                    self.showError?(
+                        ReachabilityError.unavailable.description
+                    )
+                }
+            })
+            .disposed(by: bag)
+
+        reachability?.rx.reachabilityChanged
+            .subscribe(onNext: { reachable in
+            if reachable.connection != .unavailable {
+                self.getLaunches()
+            } else {
+                self.showError?(
+                    ReachabilityError.changedToUnavailable.description
+                )
+            }
+        })
+        .disposed(by: bag)
+    }
+
+    private func startNotify() {
+        try? reachability?.startNotifier()
+    }
+
+    func stopNotify() {
+        reachability?.stopNotifier()
     }
 }
