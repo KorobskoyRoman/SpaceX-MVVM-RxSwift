@@ -34,6 +34,7 @@ final class MainViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
     private var viewModel: MainViewModelType
+    private let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +70,7 @@ final class MainViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         view.showLoading()
         toTopButton.addTarget(self, action: #selector(toTopTapped), for: .touchUpInside)
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         view.backgroundColor = .mainBackground()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
@@ -91,6 +93,7 @@ final class MainViewController: UIViewController {
 
     private func setupCollectionView() {
         collectionView.showLoading()
+        collectionView.refreshControl = refreshControl
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(collectionView)
 
@@ -106,7 +109,9 @@ final class MainViewController: UIViewController {
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: SectionHeader.reuseId)
     }
+}
 
+extension MainViewController {
     @objc private func toTopTapped() {
         let indexPath = IndexPath(item: .zero, section: .zero)
         collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
@@ -123,6 +128,15 @@ final class MainViewController: UIViewController {
 
     @objc private func settingsTapped() {
         viewModel.pushToSettings()
+    }
+
+    @objc private func refresh() {
+        Task {
+            try await Task.sleep(nanoseconds: 2_000_000_000)
+            viewModel.getLaunches()
+            reload()
+            refreshControl.endRefreshing()
+        }
     }
 }
 
