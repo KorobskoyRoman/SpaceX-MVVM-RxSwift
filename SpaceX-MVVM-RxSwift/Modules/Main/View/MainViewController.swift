@@ -106,7 +106,9 @@ final class MainViewController: UIViewController {
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: SectionHeader.reuseId)
     }
+}
 
+extension MainViewController {
     @objc private func toTopTapped() {
         let indexPath = IndexPath(item: .zero, section: .zero)
         collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
