@@ -70,6 +70,7 @@
 		9CFB210D299AA75B00C67EED /* UILabelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB210C299AA75B00C67EED /* UILabelBuilder.swift */; };
 		9CFB2116299AB78700C67EED /* UserDafaults+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB2115299AB78700C67EED /* UserDafaults+Keys.swift */; };
 		9CFB2118299AB86000C67EED /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB2117299AB86000C67EED /* UserDefaultsService.swift */; };
+		9CFB4E6829B2487900931EBC /* InfoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB4E6729B2487900931EBC /* InfoAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +140,7 @@
 		9CFB210C299AA75B00C67EED /* UILabelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelBuilder.swift; sourceTree = "<group>"; };
 		9CFB2115299AB78700C67EED /* UserDafaults+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDafaults+Keys.swift"; sourceTree = "<group>"; };
 		9CFB2117299AB86000C67EED /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		9CFB4E6729B2487900931EBC /* InfoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAlert.swift; sourceTree = "<group>"; };
 		B9C3AE302973B4834483412F /* Pods-SpaceX-MVVM-RxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceX-MVVM-RxSwift.release.xcconfig"; path = "Target Support Files/Pods-SpaceX-MVVM-RxSwift/Pods-SpaceX-MVVM-RxSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -428,6 +430,7 @@
 		9CFB2110299AB4DB00C67EED /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9CFB4E6629B2482D00931EBC /* InfoAlert */,
 				9C1353A629A67C81005936FD /* ErrorAlert */,
 				9CFB20F829992F4900C67EED /* ShimmerViews */,
 				9CFB210F299AB4C200C67EED /* Switcher */,
@@ -472,6 +475,14 @@
 				9C4F0452298C27F8002A5562 /* DetailCollectionCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		9CFB4E6629B2482D00931EBC /* InfoAlert */ = {
+			isa = PBXGroup;
+			children = (
+				9CFB4E6729B2487900931EBC /* InfoAlert.swift */,
+			);
+			path = InfoAlert;
 			sourceTree = "<group>";
 		};
 		9FB9AED1519FC93C13498F91 /* Frameworks */ = {
@@ -632,6 +643,7 @@
 				9CFB210B299A956A00C67EED /* CustomThumbView.swift in Sources */,
 				9CACA48628E8C3D100B5325D /* LaunchInfo.swift in Sources */,
 				9C4F045C298EA6AF002A5562 /* DetailCellType.swift in Sources */,
+				9CFB4E6829B2487900931EBC /* InfoAlert.swift in Sources */,
 				9C45BF8F298BEF1A005577C2 /* DetailViewController.swift in Sources */,
 				9C8EA75F28EA125100A73F12 /* Section.swift in Sources */,
 				9C8CBA9928E8BFEE00947DB7 /* Constants.swift in Sources */,
