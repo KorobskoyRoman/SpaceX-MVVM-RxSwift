@@ -19,4 +19,8 @@ extension UIColor {
     static func shimmerSecondary() -> UIColor {
         return UIColor(white: 0.95, alpha: 1.0)
     }
+
+    static func infoAlertBackground() -> UIColor {
+        return #colorLiteral(red: 0.5556206107, green: 0.9938961864, blue: 1, alpha: 1)
+    }
 }
