@@ -7,6 +7,7 @@
 
 import RxSwift
 import RxCocoa
+import Foundation
 
 protocol NetworkServiceType {
     func fetchLaunches() async throws -> BehaviorRelay<[LaunchInfo]>

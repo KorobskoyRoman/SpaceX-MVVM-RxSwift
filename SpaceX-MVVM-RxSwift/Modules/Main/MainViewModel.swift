@@ -9,6 +9,7 @@ import RxSwift
 import RxCocoa
 import RxReachability
 import Reachability
+import Foundation
 
 protocol MainViewModelType {
     var reload: (() -> Void)? { get set }

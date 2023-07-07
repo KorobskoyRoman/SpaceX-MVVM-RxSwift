@@ -3,16 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		77823DBAAF3A65C0ABC7E5D6 /* Pods_SpaceX_MVVM_RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11AC851B90B31ADEF4922625 /* Pods_SpaceX_MVVM_RxSwift.framework */; };
-		9C1353A529A3E813005936FD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1353A429A3E813005936FD /* R.generated.swift */; };
 		9C1353A929A67D02005936FD /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1353A729A67D02005936FD /* AlertView.swift */; };
 		9C1353AA29A67D02005936FD /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C1353A829A67D02005936FD /* AlertView.xib */; };
 		9C1353AC29A84972005936FD /* ReachabilityError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1353AB29A84972005936FD /* ReachabilityError.swift */; };
 		9C240A4C28F873190074C74C /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C240A4B28F873190074C74C /* UIImage+.swift */; };
+		9C30B6F72A587FD6005D4843 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 9C30B6F62A587FD6005D4843 /* RxCocoa */; };
+		9C30B6F92A587FD6005D4843 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 9C30B6F82A587FD6005D4843 /* RxRelay */; };
+		9C30B6FB2A587FD6005D4843 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9C30B6FA2A587FD6005D4843 /* RxSwift */; };
+		9C30B6FE2A587FEB005D4843 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 9C30B6FD2A587FEB005D4843 /* SDWebImage */; };
+		9C30B7012A588009005D4843 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 9C30B7002A588009005D4843 /* RswiftLibrary */; };
+		9C30B7062A588044005D4843 /* RxReachability in Frameworks */ = {isa = PBXBuildFile; productRef = 9C30B7052A588044005D4843 /* RxReachability */; };
 		9C45BF8F298BEF1A005577C2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C45BF8E298BEF1A005577C2 /* DetailViewController.swift */; };
 		9C45BF91298BF14A005577C2 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C45BF90298BF14A005577C2 /* DetailCell.swift */; };
 		9C4F0451298C0E1D002A5562 /* DetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4F0450298C0E1C002A5562 /* DetailHeader.swift */; };
@@ -74,9 +78,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		11AC851B90B31ADEF4922625 /* Pods_SpaceX_MVVM_RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpaceX_MVVM_RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		988FE4164DB7D8B6F8992F2E /* Pods-SpaceX-MVVM-RxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceX-MVVM-RxSwift.debug.xcconfig"; path = "Target Support Files/Pods-SpaceX-MVVM-RxSwift/Pods-SpaceX-MVVM-RxSwift.debug.xcconfig"; sourceTree = "<group>"; };
-		9C1353A429A3E813005936FD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		9C1353A729A67D02005936FD /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertView.swift; path = ../../../../../QRScanner/QRScanner/Modules/Web/View/AlertView/AlertView.swift; sourceTree = "<group>"; };
 		9C1353A829A67D02005936FD /* AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlertView.xib; path = ../../../../../QRScanner/QRScanner/Modules/Web/View/AlertView/AlertView.xib; sourceTree = "<group>"; };
 		9C1353AB29A84972005936FD /* ReachabilityError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityError.swift; sourceTree = "<group>"; };
@@ -141,7 +142,6 @@
 		9CFB2115299AB78700C67EED /* UserDafaults+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDafaults+Keys.swift"; sourceTree = "<group>"; };
 		9CFB2117299AB86000C67EED /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		9CFB4E6729B2487900931EBC /* InfoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAlert.swift; sourceTree = "<group>"; };
-		B9C3AE302973B4834483412F /* Pods-SpaceX-MVVM-RxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceX-MVVM-RxSwift.release.xcconfig"; path = "Target Support Files/Pods-SpaceX-MVVM-RxSwift/Pods-SpaceX-MVVM-RxSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +149,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77823DBAAF3A65C0ABC7E5D6 /* Pods_SpaceX_MVVM_RxSwift.framework in Frameworks */,
+				9C30B7062A588044005D4843 /* RxReachability in Frameworks */,
+				9C30B7012A588009005D4843 /* RswiftLibrary in Frameworks */,
+				9C30B6FB2A587FD6005D4843 /* RxSwift in Frameworks */,
+				9C30B6F92A587FD6005D4843 /* RxRelay in Frameworks */,
+				9C30B6FE2A587FEB005D4843 /* SDWebImage in Frameworks */,
+				9C30B6F72A587FD6005D4843 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +276,6 @@
 			children = (
 				9CE4A3F328E8B1D70029ECA1 /* SpaceX-MVVM-RxSwift */,
 				9CE4A3F228E8B1D70029ECA1 /* Products */,
-				E1F4C135E66DEC23E39014C7 /* Pods */,
 				9FB9AED1519FC93C13498F91 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -311,7 +315,6 @@
 		9CE4A40928E8B6AA0029ECA1 /* Support files */ = {
 			isa = PBXGroup;
 			children = (
-				9C1353A429A3E813005936FD /* R.generated.swift */,
 				9C8CBA9828E8BFEE00947DB7 /* Constants.swift */,
 				9C1353AB29A84972005936FD /* ReachabilityError.swift */,
 				9CE4A3FD28E8B1D90029ECA1 /* Assets.xcassets */,
@@ -488,18 +491,8 @@
 		9FB9AED1519FC93C13498F91 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				11AC851B90B31ADEF4922625 /* Pods_SpaceX_MVVM_RxSwift.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E1F4C135E66DEC23E39014C7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				988FE4164DB7D8B6F8992F2E /* Pods-SpaceX-MVVM-RxSwift.debug.xcconfig */,
-				B9C3AE302973B4834483412F /* Pods-SpaceX-MVVM-RxSwift.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -509,18 +502,24 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9CE4A40528E8B1D90029ECA1 /* Build configuration list for PBXNativeTarget "SpaceX-MVVM-RxSwift" */;
 			buildPhases = (
-				64CAB962436F8548514BF2AC /* [CP] Check Pods Manifest.lock */,
-				9C1353A329A3E7CD005936FD /* ShellScript */,
 				9CE4A3ED28E8B1D70029ECA1 /* Sources */,
 				9CE4A3EE28E8B1D70029ECA1 /* Frameworks */,
 				9CE4A3EF28E8B1D70029ECA1 /* Resources */,
-				F89B37B8E662DDACDF430A02 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9C30B70B2A5882DC005D4843 /* PBXTargetDependency */,
 			);
 			name = "SpaceX-MVVM-RxSwift";
+			packageProductDependencies = (
+				9C30B6F62A587FD6005D4843 /* RxCocoa */,
+				9C30B6F82A587FD6005D4843 /* RxRelay */,
+				9C30B6FA2A587FD6005D4843 /* RxSwift */,
+				9C30B6FD2A587FEB005D4843 /* SDWebImage */,
+				9C30B7002A588009005D4843 /* RswiftLibrary */,
+				9C30B7052A588044005D4843 /* RxReachability */,
+			);
 			productName = "SpaceX-MVVM-RxSwift";
 			productReference = 9CE4A3F128E8B1D70029ECA1 /* SpaceX-MVVM-RxSwift.app */;
 			productType = "com.apple.product-type.application";
@@ -541,7 +540,7 @@
 				};
 			};
 			buildConfigurationList = 9CE4A3EC28E8B1D70029ECA1 /* Build configuration list for PBXProject "SpaceX-MVVM-RxSwift" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -549,6 +548,12 @@
 				Base,
 			);
 			mainGroup = 9CE4A3E828E8B1D70029ECA1;
+			packageReferences = (
+				9C30B6F52A587FD6005D4843 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				9C30B6FC2A587FEB005D4843 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				9C30B6FF2A588009005D4843 /* XCRemoteSwiftPackageReference "R" */,
+				9C30B7042A588044005D4843 /* XCRemoteSwiftPackageReference "RxReachability" */,
+			);
 			productRefGroup = 9CE4A3F228E8B1D70029ECA1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -570,67 +575,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		64CAB962436F8548514BF2AC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SpaceX-MVVM-RxSwift-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9C1353A329A3E7CD005936FD /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				$SRCROOT/R.generated.swift,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
-		};
-		F89B37B8E662DDACDF430A02 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SpaceX-MVVM-RxSwift/Pods-SpaceX-MVVM-RxSwift-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SpaceX-MVVM-RxSwift/Pods-SpaceX-MVVM-RxSwift-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpaceX-MVVM-RxSwift/Pods-SpaceX-MVVM-RxSwift-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9CE4A3ED28E8B1D70029ECA1 /* Sources */ = {
@@ -683,7 +627,6 @@
 				9C4F0455298C78F2002A5562 /* Rocket.swift in Sources */,
 				9CFB20FA29992F6D00C67EED /* ShimmerProtocol.swift in Sources */,
 				9CFB2116299AB78700C67EED /* UserDafaults+Keys.swift in Sources */,
-				9C1353A529A3E813005936FD /* R.generated.swift in Sources */,
 				9C240A4C28F873190074C74C /* UIImage+.swift in Sources */,
 				9CB21D2128F739D300D275C9 /* DetailViewModel.swift in Sources */,
 				9C8EA76728ECAA7600A73F12 /* UIView+.swift in Sources */,
@@ -701,6 +644,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9C30B70B2A5882DC005D4843 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 9C30B70A2A5882DC005D4843 /* RswiftGenerateInternalResources */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9CE4A3FF28E8B1D90029ECA1 /* LaunchScreen.storyboard */ = {
@@ -830,7 +780,6 @@
 		};
 		9CE4A40628E8B1D90029ECA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 988FE4164DB7D8B6F8992F2E /* Pods-SpaceX-MVVM-RxSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -864,7 +813,6 @@
 		};
 		9CE4A40728E8B1D90029ECA1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9C3AE302973B4834483412F /* Pods-SpaceX-MVVM-RxSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -918,6 +866,78 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9C30B6F52A587FD6005D4843 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		9C30B6FC2A587FEB005D4843 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		9C30B6FF2A588009005D4843 /* XCRemoteSwiftPackageReference "R" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		9C30B7042A588044005D4843 /* XCRemoteSwiftPackageReference "RxReachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxReachability";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9C30B6F62A587FD6005D4843 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C30B6F52A587FD6005D4843 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		9C30B6F82A587FD6005D4843 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C30B6F52A587FD6005D4843 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		9C30B6FA2A587FD6005D4843 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C30B6F52A587FD6005D4843 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		9C30B6FD2A587FEB005D4843 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C30B6FC2A587FEB005D4843 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		9C30B7002A588009005D4843 /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C30B6FF2A588009005D4843 /* XCRemoteSwiftPackageReference "R" */;
+			productName = RswiftLibrary;
+		};
+		9C30B7052A588044005D4843 /* RxReachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C30B7042A588044005D4843 /* XCRemoteSwiftPackageReference "RxReachability" */;
+			productName = RxReachability;
+		};
+		9C30B70A2A5882DC005D4843 /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:RswiftGenerateInternalResources";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9CE4A3E928E8B1D70029ECA1 /* Project object */;
 }
