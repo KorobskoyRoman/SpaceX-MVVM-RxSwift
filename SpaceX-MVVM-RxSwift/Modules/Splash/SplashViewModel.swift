@@ -32,7 +32,7 @@ final class SplashViewModel: SplashModuleType, SplashViewModelType {
 
     func configure(commands: Commands) {
         commands.viewDidAppear.bind(to: Binder<Void>(self) { target, _ in
-            target.getLaunches()
+            target.fetchLaunches()
         }).disposed(by: bag)
     }
 

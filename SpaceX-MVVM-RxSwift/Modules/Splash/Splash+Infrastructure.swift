@@ -29,7 +29,6 @@ extension SplashViewModel {
 
     struct Commands {
         let viewDidAppear = PublishRelay<Void>()
-        var moduleDidLoad = PublishRelay<Void>()
     }
 
     struct Dependencies {

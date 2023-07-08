@@ -36,13 +36,17 @@ final class SplashView: RxBaseView {
         animationContainer.center = self.center
         animationContainer.isHidden = true
 
-        addSubview(image)
-        addSubview(animationContainer)
         backgroundColor = .mainBackground()
-        setConstraints()
     }
 
-    func setConstraints() {
+    override func setupHierarchy() {
+        super.setupHierarchy()
+        addSubview(image)
+        addSubview(animationContainer)
+    }
+
+    override func setupLayout() {
+        super.setupLayout()
         NSLayoutConstraint.activate([
             image.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             image.trailingAnchor.constraint(equalTo: self.trailingAnchor),
