@@ -24,11 +24,16 @@ extension SplashViewModel {
     }
 
     struct Bindings {
+        let startNotify = PublishRelay<Void>()
+        let stopNotyfy = PublishRelay<Void>()
+        let networkError = BehaviorRelay<String?>(value: nil)
+        let hasError = PublishRelay<Bool>()
         var getLaunches = PublishRelay<Void>()
     }
 
     struct Commands {
         let viewDidAppear = PublishRelay<Void>()
+        let showError = BehaviorRelay<String?>(value: nil)
     }
 
     struct Dependencies {

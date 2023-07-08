@@ -34,21 +34,31 @@ final class SplashViewModel: SplashModuleType, SplashViewModelType {
         commands.viewDidAppear.bind(to: Binder<Void>(self) { target, _ in
             target.fetchLaunches()
         }).disposed(by: bag)
+
+        bindings.networkError.bind(to: commands.showError).disposed(by: bag)
     }
 
     func configure(bindings: Bindings) {
-        
+        bindings.startNotify.bind(to: Binder(self) { target, _ in
+            target.startNotify()
+        }).disposed(by: bag)
+
+        bindings.stopNotyfy.bind(to: Binder(self) { target, _ in
+            target.stopNotify()
+        }).disposed(by: bag)
+
+        bind()
     }
 
     private func startNotify() {
         try? reachability?.startNotifier()
     }
 
-    func stopNotify() {
+    private func stopNotify() {
         reachability?.stopNotifier()
     }
 
-    func fetchLaunches() {
+    private func fetchLaunches() {
         hasError = false
         getLaunches()
     }
@@ -70,6 +80,8 @@ final class SplashViewModel: SplashModuleType, SplashViewModelType {
             } catch {
                 self.hasError = true
                 showError?(error.localizedDescription)
+                bindings.networkError.accept(error.localizedDescription)
+                bindings.hasError.accept(hasError)
                 print(error.localizedDescription)
             }
         }
@@ -80,7 +92,7 @@ final class SplashViewModel: SplashModuleType, SplashViewModelType {
         reachability?.rx.isReachable
             .subscribe (onNext: { isReachable in
                 if !isReachable {
-                    self.showError?(
+                    self.bindings.networkError.accept(
                         ReachabilityError.unavailable.description + "\nВы можете нажать \"Повторить\" для повторной загрузки. \nПри нажатии \"Продолжить\" будут загружены ранее полученные данные."
                     )
                 }

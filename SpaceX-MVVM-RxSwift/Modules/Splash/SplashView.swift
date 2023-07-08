@@ -16,7 +16,7 @@ final class SplashView: RxBaseView {
             .build()
     }()
 
-    private lazy var animationContainer = InfoAlert()
+    var animationContainer = InfoAlert()
 
     override func setupView() {
         super.setupView()
