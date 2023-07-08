@@ -22,7 +22,7 @@ protocol DetailViewModelType {
 }
 
 final class DetailViewModel: DetailViewModelType {
-    weak var coordinator: AppCoodrinator?
+//    weak var coordinator: AppCoodrinator?
     var launchInfo: BehaviorRelay<LaunchesEntity>?
     var rocketInfo: BehaviorRelay<Rocket>? = BehaviorRelay<Rocket>(value: .emptyRocket)
     private let networkSerivce: NetworkServiceType
@@ -69,7 +69,7 @@ final class DetailViewModel: DetailViewModelType {
     }
 
     func push(with url: String) {
-        coordinator?.performTransition(with: .perform(.web(url)))
+//        coordinator?.performTransition(with: .perform(.web(url)))
     }
 }
 

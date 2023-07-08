@@ -24,7 +24,7 @@ protocol MainViewModelType {
 }
 
 final class MainViewModel: MainViewModelType {
-    weak var coordinator: AppCoodrinator?
+//    weak var coordinator: AppCoodrinator?
     var reload: (() -> Void)?
     var showError: ((String) -> Void)?
     var filterFromLatest = BehaviorRelay<Bool>(value: true)
@@ -62,13 +62,13 @@ final class MainViewModel: MainViewModelType {
                     self.showError?(error.localizedDescription)
                     print(error)
                 }
-                self.coordinator?.performTransition(with: .perform(.detail(launch)))
+//                self.coordinator?.performTransition(with: .perform(.detail(launch)))
             }
         }
     }
 
     func pushToSettings() {
-        self.coordinator?.performTransition(with: .perform(.settings))
+//        self.coordinator?.performTransition(with: .perform(.settings))
     }
 
     private func bind() {

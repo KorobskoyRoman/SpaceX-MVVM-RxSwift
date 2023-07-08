@@ -10,34 +10,34 @@ import RxCocoa
 import RxReachability
 import Reachability
 
-protocol SplashViewModelType {
-    var showError: ((String) -> Void)? { get set }
-    var hasError: Bool { get set }
-    func fetchLaunches()
-    func push()
-    func stopNotify()
-}
+final class SplashViewModel: SplashModuleType, SplashViewModelType {
 
-final class SplashViewModel: SplashViewModelType {
-    weak var coordinator: AppCoodrinator?
+    let dependencies: Dependencies
+    let moduleBindings = ModuleBindings()
+    let bindings = Bindings()
+    let commands = Commands()
+
+    private let bag = DisposeBag()
 
     var showError: ((String) -> Void)?
     var hasError: Bool = false
 
-    private var launches = BehaviorRelay<[LaunchInfo]>(value: [])
-
-    private let networkingService: NetworkServiceType
-    private let storageManager: LaunchesStorageType
-    private let bag = DisposeBag()
     private var reachability = try? Reachability()
 
-    init(networkingService: NetworkServiceType,
-         storage: LaunchesStorageType) {
-        self.networkingService = networkingService
-        self.storageManager = storage
-        getLaunches()
-        startNotify()
-        bind()
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+        configure(commands: commands)
+        configure(bindings: bindings)
+    }
+
+    func configure(commands: Commands) {
+        commands.viewDidAppear.bind(to: Binder<Void>(self) { target, _ in
+            target.getLaunches()
+        }).disposed(by: bag)
+    }
+
+    func configure(bindings: Bindings) {
+        
     }
 
     private func startNotify() {
@@ -54,18 +54,19 @@ final class SplashViewModel: SplashViewModelType {
     }
 
     private func getLaunches() {
+        // TODO: Launches service via dependencies
         Task {
             do {
-                let launchs = try await networkingService.fetchLaunches()
+                let launchs = try await dependencies.networkingService.fetchLaunches()
                 launchs
                     .observe(on: MainScheduler.instance)
                     .subscribe { [weak self] in
                         guard let self else { return }
-                        self.launches.accept($0.element ?? [])
+                        self.moduleBindings.launches.accept($0.element ?? [])
                     }
                     .disposed(by: bag)
 
-                try storageManager.save(launches: launches)
+                try dependencies.storage.save(launches: self.moduleBindings.launches)
             } catch {
                 self.hasError = true
                 showError?(error.localizedDescription)
@@ -75,6 +76,7 @@ final class SplashViewModel: SplashViewModelType {
     }
 
     private func bind() {
+        // TODO: Reachability service via dependencies
         reachability?.rx.isReachable
             .subscribe (onNext: { isReachable in
                 if !isReachable {
@@ -84,9 +86,5 @@ final class SplashViewModel: SplashViewModelType {
                 }
             })
             .disposed(by: bag)
-    }
-
-    func push() {
-        coordinator?.performTransition(with: .perform(.main))
     }
 }
