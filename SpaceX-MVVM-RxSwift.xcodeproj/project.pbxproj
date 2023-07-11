@@ -32,6 +32,9 @@
 		9C30B7382A59C4BA005D4843 /* Splash+Infrastructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C30B7372A59C4BA005D4843 /* Splash+Infrastructure.swift */; };
 		9C30B73A2A59D51A005D4843 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C30B7392A59D51A005D4843 /* BaseViewController.swift */; };
 		9C30B73D2A59D54D005D4843 /* RxBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C30B73C2A59D54D005D4843 /* RxBaseViewController.swift */; };
+		9C30B7412A5C6450005D4843 /* Main+Infrastructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C30B7402A5C6450005D4843 /* Main+Infrastructure.swift */; };
+		9C30B7432A5C6A71005D4843 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C30B7422A5C6A71005D4843 /* MainView.swift */; };
+		9C30B7472A5C6DD8005D4843 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 9C30B7462A5C6DD8005D4843 /* RxDataSources */; };
 		9C45BF8F298BEF1A005577C2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C45BF8E298BEF1A005577C2 /* DetailViewController.swift */; };
 		9C45BF91298BF14A005577C2 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C45BF90298BF14A005577C2 /* DetailCell.swift */; };
 		9C4F0451298C0E1D002A5562 /* DetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4F0450298C0E1C002A5562 /* DetailHeader.swift */; };
@@ -56,7 +59,7 @@
 		9CACA48628E8C3D100B5325D /* LaunchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACA48528E8C3D100B5325D /* LaunchInfo.swift */; };
 		9CACA48A28E8C76900B5325D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACA48928E8C76900B5325D /* NetworkService.swift */; };
 		9CACA48C28E9FE1900B5325D /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACA48B28E9FE1900B5325D /* MainViewModel.swift */; };
-		9CACA48F28EA06BF00B5325D /* MainConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACA48E28EA06BF00B5325D /* MainConfigurator.swift */; };
+		9CACA48F28EA06BF00B5325D /* MainModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACA48E28EA06BF00B5325D /* MainModuleConfigurator.swift */; };
 		9CB21D2128F739D300D275C9 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB21D2028F739D300D275C9 /* DetailViewModel.swift */; };
 		9CB21D2328F73A9000D275C9 /* DetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB21D2228F73A9000D275C9 /* DetailConfigurator.swift */; };
 		9CE4A3F528E8B1D70029ECA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4A3F428E8B1D70029ECA1 /* AppDelegate.swift */; };
@@ -108,6 +111,8 @@
 		9C30B7372A59C4BA005D4843 /* Splash+Infrastructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splash+Infrastructure.swift"; sourceTree = "<group>"; };
 		9C30B7392A59D51A005D4843 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		9C30B73C2A59D54D005D4843 /* RxBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxBaseViewController.swift; sourceTree = "<group>"; };
+		9C30B7402A5C6450005D4843 /* Main+Infrastructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Main+Infrastructure.swift"; sourceTree = "<group>"; };
+		9C30B7422A5C6A71005D4843 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		9C45BF8E298BEF1A005577C2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9C45BF90298BF14A005577C2 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		9C4F0450298C0E1C002A5562 /* DetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeader.swift; sourceTree = "<group>"; };
@@ -132,7 +137,7 @@
 		9CACA48528E8C3D100B5325D /* LaunchInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchInfo.swift; sourceTree = "<group>"; };
 		9CACA48928E8C76900B5325D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		9CACA48B28E9FE1900B5325D /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		9CACA48E28EA06BF00B5325D /* MainConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainConfigurator.swift; sourceTree = "<group>"; };
+		9CACA48E28EA06BF00B5325D /* MainModuleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModuleConfigurator.swift; sourceTree = "<group>"; };
 		9CB21D2028F739D300D275C9 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		9CB21D2228F73A9000D275C9 /* DetailConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailConfigurator.swift; sourceTree = "<group>"; };
 		9CE4A3F128E8B1D70029ECA1 /* SpaceX-MVVM-RxSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SpaceX-MVVM-RxSwift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +184,7 @@
 				9C30B71A2A588CD4005D4843 /* SwinjectAutoregistration in Frameworks */,
 				9C30B6FB2A587FD6005D4843 /* RxSwift in Frameworks */,
 				9C30B6F92A587FD6005D4843 /* RxRelay in Frameworks */,
+				9C30B7472A5C6DD8005D4843 /* RxDataSources in Frameworks */,
 				9C30B6FE2A587FEB005D4843 /* SDWebImage in Frameworks */,
 				9C30B6F72A587FD6005D4843 /* RxCocoa in Frameworks */,
 			);
@@ -270,7 +276,6 @@
 			children = (
 				9C8EA76028EA12FE00A73F12 /* MainCell.swift */,
 				9C4F045F29904399002A5562 /* ToTopButton.swift */,
-				9CE4A3F828E8B1D70029ECA1 /* MainViewController.swift */,
 				9C8EA76228EA134500A73F12 /* SectionHeader.swift */,
 			);
 			path = View;
@@ -298,7 +303,6 @@
 		9CACA48D28EA06B400B5325D /* Configurators */ = {
 			isa = PBXGroup;
 			children = (
-				9CACA48E28EA06BF00B5325D /* MainConfigurator.swift */,
 				9CB21D2228F73A9000D275C9 /* DetailConfigurator.swift */,
 				9CEC6ABF29A11D8500187776 /* WebConfigurator.swift */,
 			);
@@ -405,7 +409,11 @@
 			isa = PBXGroup;
 			children = (
 				9C8CBA9D28E8C0CD00947DB7 /* View */,
+				9CACA48E28EA06BF00B5325D /* MainModuleConfigurator.swift */,
+				9C30B7402A5C6450005D4843 /* Main+Infrastructure.swift */,
 				9CACA48B28E9FE1900B5325D /* MainViewModel.swift */,
+				9CE4A3F828E8B1D70029ECA1 /* MainViewController.swift */,
+				9C30B7422A5C6A71005D4843 /* MainView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -417,8 +425,8 @@
 				9C30B7372A59C4BA005D4843 /* Splash+Infrastructure.swift */,
 				9CEC6AB0299D8E9200187776 /* SplashViewController.swift */,
 				9CEC6AB4299D93B400187776 /* SplashViewModel.swift */,
-				9C30B72C2A589429005D4843 /* SplashCoordinator.swift */,
 				9C30B72E2A59C374005D4843 /* SplashView.swift */,
+				9C30B72C2A589429005D4843 /* SplashCoordinator.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -582,6 +590,7 @@
 				9C30B7052A588044005D4843 /* RxReachability */,
 				9C30B7152A588C95005D4843 /* Swinject */,
 				9C30B7192A588CD4005D4843 /* SwinjectAutoregistration */,
+				9C30B7462A5C6DD8005D4843 /* RxDataSources */,
 			);
 			productName = "SpaceX-MVVM-RxSwift";
 			productReference = 9CE4A3F128E8B1D70029ECA1 /* SpaceX-MVVM-RxSwift.app */;
@@ -618,6 +627,7 @@
 				9C30B7042A588044005D4843 /* XCRemoteSwiftPackageReference "RxReachability" */,
 				9C30B7142A588C95005D4843 /* XCRemoteSwiftPackageReference "Swinject" */,
 				9C30B7182A588CD4005D4843 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
+				9C30B7452A5C6DD8005D4843 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = 9CE4A3F228E8B1D70029ECA1 /* Products */;
 			projectDirPath = "";
@@ -647,6 +657,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CEC6AB3299D8F6E00187776 /* UIImageViewBuilder.swift in Sources */,
+				9C30B7432A5C6A71005D4843 /* MainView.swift in Sources */,
 				9CEC6AC029A11D8500187776 /* WebConfigurator.swift in Sources */,
 				9CEC6ABC29A1179800187776 /* WebViewController.swift in Sources */,
 				9C30B7342A59C3D0005D4843 /* BaseView.swift in Sources */,
@@ -681,6 +692,7 @@
 				9CEC6AB9299E98B600187776 /* UIButtonBuilder.swift in Sources */,
 				9CB21D2328F73A9000D275C9 /* DetailConfigurator.swift in Sources */,
 				9CE4A3F928E8B1D70029ECA1 /* MainViewController.swift in Sources */,
+				9C30B7412A5C6450005D4843 /* Main+Infrastructure.swift in Sources */,
 				9CEC6AB1299D8E9200187776 /* SplashViewController.swift in Sources */,
 				9C4F04622992A0F3002A5562 /* NetworkingError.swift in Sources */,
 				9C8EA76528EA147700A73F12 /* UIFont+.swift in Sources */,
@@ -710,7 +722,7 @@
 				9CACA48C28E9FE1900B5325D /* MainViewModel.swift in Sources */,
 				9CFB20EF29941B5A00C67EED /* Launches.xcdatamodel in Sources */,
 				9CEC6AB5299D93B400187776 /* SplashViewModel.swift in Sources */,
-				9CACA48F28EA06BF00B5325D /* MainConfigurator.swift in Sources */,
+				9CACA48F28EA06BF00B5325D /* MainModuleConfigurator.swift in Sources */,
 				9C4F0453298C27F8002A5562 /* DetailCollectionCell.swift in Sources */,
 				9C4F046029904399002A5562 /* ToTopButton.swift in Sources */,
 				9C1353A929A67D02005936FD /* AlertView.swift in Sources */,
@@ -992,6 +1004,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		9C30B7452A5C6DD8005D4843 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1038,6 +1058,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9C30B7182A588CD4005D4843 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */;
 			productName = SwinjectAutoregistration;
+		};
+		9C30B7462A5C6DD8005D4843 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C30B7452A5C6DD8005D4843 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
