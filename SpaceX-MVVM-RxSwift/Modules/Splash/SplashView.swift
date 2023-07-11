@@ -10,13 +10,13 @@ import RxSwift
 
 final class SplashView: RxBaseView {
 
+    var animationContainer = InfoAlert()
+
     private let image: UIImageView = {
         return UIImageViewBuilder()
             .contentMode(.scaleAspectFit)
             .build()
     }()
-
-    var animationContainer = InfoAlert()
 
     override func setupView() {
         super.setupView()

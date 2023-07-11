@@ -10,6 +10,8 @@ import SwinjectAutoregistration
 
 extension AppContainer {
 
+    // MARK: - Register dependecies
+
     func registerUserDefaults() {
         container.autoregister(
             UserDefaultsType.self,
@@ -24,6 +26,8 @@ extension AppContainer {
     func registerDatabase() {
         container.autoregister(LaunchesStorageType.self, initializer: databaseFactory)
     }
+
+    // MARK: - Private
 
     private func userDefaultsFactory() -> UserDefaultsService {
         UserDefaultsService.init()

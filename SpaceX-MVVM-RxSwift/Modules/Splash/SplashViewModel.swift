@@ -81,7 +81,7 @@ final class SplashViewModel: SplashModuleType, SplashViewModelType {
                 self.hasError = true
                 showError?(error.localizedDescription)
                 bindings.networkError.accept(error.localizedDescription)
-                bindings.hasError.accept(hasError)
+                bindings.hasError.accept(!hasError)
                 print(error.localizedDescription)
             }
         }
