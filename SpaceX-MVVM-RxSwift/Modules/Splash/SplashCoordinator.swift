@@ -44,11 +44,9 @@ final class SplashCoordinator: NavigationCoordinator {
 }
 
 private extension SplashCoordinator {
-    // TODO: Setup main screen
     func startMainScreen() {
-//        let module = UIViewController()
-        let module = MainConfigurator.configure()
-
-        push(module.view)
+        let coordinator = MainCoordinator(container: container)
+        addChild(coordinator)
+        coordinator.start()
     }
 }
