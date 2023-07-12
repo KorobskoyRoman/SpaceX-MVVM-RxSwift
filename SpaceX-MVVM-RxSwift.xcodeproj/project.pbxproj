@@ -413,8 +413,8 @@
 				9C8CBA9D28E8C0CD00947DB7 /* View */,
 				9CACA48E28EA06BF00B5325D /* MainModuleConfigurator.swift */,
 				9C30B7402A5C6450005D4843 /* Main+Infrastructure.swift */,
-				9CACA48B28E9FE1900B5325D /* MainViewModel.swift */,
 				9CE4A3F828E8B1D70029ECA1 /* MainViewController.swift */,
+				9CACA48B28E9FE1900B5325D /* MainViewModel.swift */,
 				9C30B7422A5C6A71005D4843 /* MainView.swift */,
 				9C30B7492A5F0FB4005D4843 /* MainCoordinator.swift */,
 			);

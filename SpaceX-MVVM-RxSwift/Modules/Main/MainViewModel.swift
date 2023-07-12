@@ -54,6 +54,16 @@ final class MainViewModel: MainModuleType, MainViewModelType {
         bindings.updateData.bind(to: Binder<Void>(self) { target, _ in
             target.getLaunches()
         }).disposed(by: bag)
+
+        bindings.startNotify.bind(to: Binder<Void>(self) { target, _ in
+            target.startNotify()
+        }).disposed(by: bag)
+
+        bindings.stopNotify.bind(to: Binder<Void>(self) { target, _ in
+            target.stopNotify()
+        }).disposed(by: bag)
+
+        bind()
     }
 
     func getLaunches() {
@@ -74,7 +84,6 @@ final class MainViewModel: MainModuleType, MainViewModelType {
                     self.showError?(error.localizedDescription)
                     print(error)
                 }
-//                self.coordinator?.performTransition(with: .perform(.detail(launch)))
             }
         }
     }
@@ -90,10 +99,8 @@ final class MainViewModel: MainModuleType, MainViewModelType {
             .subscribe { [weak self] event in
                 guard let self,
                       let element = event.element else { return }
-//                let newArray = self.dbLaunches.value
                 let newArray = self.bindings.launches.value
 
-//                self.dbLaunches.accept(
                 self.bindings.launches.accept(
                     element ?
                     newArray.sorted(by: { $0.dateUTC ?? Date() > $1.dateUTC ?? Date() }) :
@@ -129,7 +136,7 @@ final class MainViewModel: MainModuleType, MainViewModelType {
         try? reachability?.startNotifier()
     }
 
-    func stopNotify() {
+    private func stopNotify() {
         reachability?.stopNotifier()
     }
 }
