@@ -11,7 +11,7 @@ import Foundation
 
 protocol NetworkServiceType {
     func fetchLaunches() async throws -> BehaviorRelay<[LaunchInfo]>
-    func fetchRocket(id: String) async throws -> BehaviorRelay<Rocket>
+    func fetchRocket(id: String) async throws -> Rocket
 }
 
 final class NetworkService: NetworkServiceType {
@@ -63,7 +63,7 @@ extension NetworkService {
 
 // MARK: - Rocket
 extension NetworkService {
-    func fetchRocket(id: String) async throws -> BehaviorRelay<Rocket> {
+    func fetchRocket(id: String) async throws -> Rocket {
         let url = URL(string: NetworkConstants.rocketUrl + id)
 
         guard let url else {
@@ -77,8 +77,6 @@ extension NetworkService {
         guard try checkResponse(response) else { throw NetworkingError.invalidResponse }
 
         let rocket = try parseJSON(type: Rocket.self, data: data)
-        rocketRelay.accept(rocket)
-
-        return rocketRelay
+        return rocket
     }
 }
