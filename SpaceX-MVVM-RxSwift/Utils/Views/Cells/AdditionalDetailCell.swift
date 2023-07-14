@@ -100,36 +100,38 @@ final class AdditionalDetailCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with rocket: BehaviorRelay<Rocket>,
-                   and type: DetailCellType) {
+    func configure(
+        with rocket: BehaviorRelay<Rocket?>,
+        and type: DetailCellType
+    ) {
         switch type {
         case .firstLaunchInfo:
-            rocket
+            rocket.filterNil()
                 .map { "\($0.firstStage.engines)" }
                 .bind(to: enginesCountValue.rx.text)
                 .disposed(by: bag)
 
-            rocket
+            rocket.filterNil()
                 .map { "\($0.firstStage.fuelAmountTons) ton" }
                 .bind(to: fuelCountValue.rx.text)
                 .disposed(by: bag)
 
-            rocket
+            rocket.filterNil()
                 .map { "\($0.firstStage.burnTimeSEC ?? 0) sec" }
                 .bind(to: burnTimeValue.rx.text)
                 .disposed(by: bag)
         case .secondLaunchInfo:
-            rocket
+            rocket.filterNil()
                 .map { "\($0.secondStage.engines)" }
                 .bind(to: enginesCountValue.rx.text)
                 .disposed(by: bag)
 
-            rocket
+            rocket.filterNil()
                 .map { "\($0.secondStage.fuelAmountTons) ton" }
                 .bind(to: fuelCountValue.rx.text)
                 .disposed(by: bag)
 
-            rocket
+            rocket.filterNil()
                 .map { "\($0.secondStage.burnTimeSEC ?? 0) sec" }
                 .bind(to: burnTimeValue.rx.text)
                 .disposed(by: bag)

@@ -12,7 +12,7 @@ import RxRelay
 final class DetailCell: UITableViewCell {
     static let reuseId = "DetailCell"
 
-    var viewModel: DetailViewModelType?
+    var rocketDetail: RocketDetail?
 
     private let bag = DisposeBag()
 
@@ -168,34 +168,34 @@ final class DetailCell: UITableViewCell {
     }
 
     func configure(
-        with rocket: BehaviorRelay<Rocket>,
-        and launch: BehaviorRelay<LaunchesEntity>
+        with rocket: BehaviorRelay<Rocket?>,
+        and launch: BehaviorRelay<LaunchesEntity?>
     ) {
-        rocket.map {
+        rocket.filterNil().map {
             $0.name
         }
         .bind(to: nameLabel.rx.text)
         .disposed(by: bag)
 
-        launch.map {
+        launch.filterNil().map {
             $0.dateUTC?.toString
         }
         .bind(to: firstLaunchValue.rx.text)
         .disposed(by: bag)
 
-        rocket.map {
+        rocket.filterNil().map {
             $0.country
         }
         .bind(to: countryValue.rx.text)
         .disposed(by: bag)
 
-        rocket.map {
+        rocket.filterNil().map {
             $0.costPerLaunch.toDollars
         }
         .bind(to: costValue.rx.text)
         .disposed(by: bag)
 
-        rocket.map {
+        rocket.filterNil().map {
             $0.wikipedia
         }
         .subscribe { [weak self] in
@@ -203,7 +203,7 @@ final class DetailCell: UITableViewCell {
         }
         .disposed(by: bag)
 
-        launch.map {
+        launch.filterNil().map {
             $0.webcast ?? ""
         }
         .subscribe { [weak self] in
@@ -246,12 +246,12 @@ final class DetailCell: UITableViewCell {
 private extension DetailCell {
     @objc
     func wikiButtonTapped() {
-        viewModel?.push(with: wikiLink.value)
+//        viewModel?.push(with: wikiLink.value)
     }
 
     @objc
     func videoButtonTapped() {
-        viewModel?.push(with: videoLink.value)
+//        viewModel?.push(with: videoLink.value)
     }
 }
 
@@ -269,10 +269,10 @@ extension DetailCell: UICollectionViewDataSource {
         }
 
         switch indexPath.item {
-        case 0: cell.configure(with: .height, value: viewModel?.height)
-        case 1: cell.configure(with: .diameter, value: viewModel?.diameter)
-        case 2: cell.configure(with: .mass, value: viewModel?.mass)
-        default: cell.configure(with: .payload, value: viewModel?.weight)
+        case 0: cell.configure(with: .height, value: rocketDetail?.height)
+        case 1: cell.configure(with: .diameter, value: rocketDetail?.diameter)
+        case 2: cell.configure(with: .mass, value: rocketDetail?.mass)
+        default: cell.configure(with: .payload, value: rocketDetail?.weight)
         }
 
         return cell
