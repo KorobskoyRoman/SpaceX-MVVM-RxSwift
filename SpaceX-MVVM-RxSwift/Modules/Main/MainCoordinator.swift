@@ -35,8 +35,11 @@ final class MainCoordinator: NavigationCoordinator {
 private extension MainCoordinator {
 
     func startDetailsScreen() {
-//        let module =
-        print(input.detailsModel.value)
-        push(UIViewController())
+        let module = DetailConfigurator.configure()
+
+        input.detailsModel.bind(to: module.viewModel.moduleBindings.launch).disposed(by: bag)
+        module.viewModel.moduleBindings.loadRocketInfo.accept(())
+
+        push(module.view)
     }
 }

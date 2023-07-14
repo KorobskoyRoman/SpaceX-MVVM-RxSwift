@@ -53,10 +53,18 @@ final class MainViewController: RxBaseViewController<MainView> {
     }
 
     private func configure(_ bindings: MainViewModel.Bindings) {
-        contentView.collectionView.rx.modelSelected(LaunchesEntity.self)
-            .bind(to: Binder<LaunchesEntity>(self) { _, model in
-                bindings.openDetails.accept(model)
+//        contentView.collectionView.rx.modelSelected(LaunchesEntity.self)
+        contentView.collectionView.rx.itemSelected
+            .subscribe(onNext: { model in
+//                print($0)
+                let launch = bindings.launches.value[model.item]
+                bindings.openDetails.accept(launch)
             }).disposed(by: bag)
+//            .bind(to: Binder<LaunchesEntity>(self) { _, model in
+//                print(model)
+//                bindings.openDetails.accept(model)
+//            }).disposed(by: bag)
+
 
         bindings.updateData.bind(to: Binder(self) { target, _ in
             target.reload()
