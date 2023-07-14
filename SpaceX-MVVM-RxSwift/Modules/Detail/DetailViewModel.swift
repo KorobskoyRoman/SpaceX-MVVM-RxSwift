@@ -8,64 +8,128 @@
 import RxSwift
 import RxCocoa
 
-protocol DetailViewModelType {
-    var title: Observable<String> { get }
-    var image: Observable<String> { get }
-    var launchInfo: BehaviorRelay<LaunchesEntity>? { get set }
-    var rocketInfo: BehaviorRelay<Rocket>? { get set }
-    var height: Double { get }
-    var diameter: Double { get }
-    var mass: Double { get }
-    var weight: Double { get }
-    func getRocketInfo()
-    func push(with url: String)
-}
+final class DetailViewModel: DetailModuleType, DetailViewModelType {
+//    var launchInfo: BehaviorRelay<LaunchesEntity>?
+//    var rocketInfo: BehaviorRelay<Rocket>? = BehaviorRelay<Rocket>(value: .emptyRocket)
 
-final class DetailViewModel: DetailViewModelType {
-//    weak var coordinator: AppCoodrinator?
-    var launchInfo: BehaviorRelay<LaunchesEntity>?
-    var rocketInfo: BehaviorRelay<Rocket>? = BehaviorRelay<Rocket>(value: .emptyRocket)
-    private let networkSerivce: NetworkServiceType
-    private let udService: UserDefaultsType
+    // MARK: - Dependencies
+
+    let dependencies: Dependencies
+
+    // MARK: - Module infrastructure
+    let moduleBindings = ModuleBindings()
+    let moduleCommands = ModuleCommands()
+
+    // MARK: - ViewModel infrastructure
+    let bindings = Bindings()
+    let commands = Commands()
+
     private let bag = DisposeBag()
 
-    var title: Observable<String> {
-        return launchInfo
-            .map {
-                $0.map {
-                    $0.name ?? "n/a"
-                }
-            } ?? .just("n/a")
+    // MARK: - Configuration
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+        configure(dependencies: dependencies)
+        configure(moduleCommands: moduleCommands)
+        configure(moduleBindings: moduleBindings)
+        configure(commands: commands)
+        configure(bindings: bindings)
+        getRocketDetails()
     }
 
-    var image: Observable<String> {
-        return rocketInfo.map {
-            $0.map {
-                $0.flickrImages?.randomElement() ?? ""
-            }
-        } ?? .just("")
+    func configure(dependencies: Dependencies) {
+
     }
 
-    init(
-        networkSerivce: NetworkServiceType,
-        launchInfo: BehaviorRelay<LaunchesEntity>?,
-        udService: UserDefaultsType
-    ) {
-        self.networkSerivce = networkSerivce
-        self.launchInfo = launchInfo
-        self.udService = udService
-        getRocketInfo()
+    func configure(moduleCommands: ModuleCommands) {
+
     }
 
-    func getRocketInfo() {
+    func configure(moduleBindings: ModuleBindings) {
+        moduleBindings.launch.bind(to: bindings.launch).disposed(by: bag)
+        moduleBindings.loadRocketInfo.bind(to: Binder(self) { target, _ in
+            target.getRocketInfo()
+        }).disposed(by: bag)
+    }
+
+    func configure(commands: Commands) {
+
+    }
+
+    func configure(bindings: Bindings) {
+        bindings.launch.filterNil().subscribe(onNext: {
+            bindings.title.accept($0.name)
+        }).disposed(by: bag)
+
+        bindings.rocket.filterNil().subscribe(onNext: {
+            bindings.image.accept($0.flickrImages?.randomElement() ?? "")
+        }).disposed(by: bag)
+    }
+
+//    var title: Observable<String> {
+//        return launchInfo
+//            .map {
+//                $0.map {
+//                    $0.name ?? "n/a"
+//                }
+//            } ?? .just("n/a")
+//    }
+//
+//    var image: Observable<String> {
+//        return rocketInfo.map {
+//            $0.map {
+//                $0.flickrImages?.randomElement() ?? ""
+//            }
+//        } ?? .just("")
+//    }
+
+//    init(
+//        networkSerivce: NetworkServiceType,
+//        launchInfo: BehaviorRelay<LaunchesEntity>?,
+//        udService: UserDefaultsType
+//    ) {
+//        self.networkSerivce = networkSerivce
+//        self.launchInfo = launchInfo
+//        self.udService = udService
+//        getRocketInfo()
+//    }
+
+    private func getRocketInfo() {
         Task {
             do {
-                guard let id = launchInfo?.value.rocket else { return }
-                self.rocketInfo = try await networkSerivce.fetchRocket(id: id)
+                guard let id = bindings.launch.value?.rocket else { return }
+                bindings.rocket.accept(try await dependencies.networkingService.fetchRocket(id: id))
             } catch {
                 print(error)
             }
         }
+    }
+
+    private func getRocketDetails() {
+        let height = dependencies.udService.getObject(with: .height) ?
+        bindings.rocket.value?.height.meters ?? 0.0 :
+        bindings.rocket.value?.height.feet ?? 0.0
+
+        let diameter = dependencies.udService.getObject(with: .diameter) ?
+        bindings.rocket.value?.diameter.meters ?? 0.0 :
+        bindings.rocket.value?.diameter.feet ?? 0.0
+
+        let mass = dependencies.udService.getObject(with: .mass) ?
+        bindings.rocket.value?.mass.kg ?? 0.0 :
+        bindings.rocket.value?.mass.lb ?? 0.0
+
+        let weight = dependencies.udService.getObject(with: .weight) ?
+        bindings.rocket.value?.payloadWeights.first?.kg ?? 0.0 :
+        bindings.rocket.value?.payloadWeights.first?.lb ?? 0.0
+
+        bindings.rocketDetail.accept(
+            .init(
+                height: height,
+                diameter: diameter,
+                mass: mass,
+                weight: weight
+            )
+        )
     }
 
     func push(with url: String) {
@@ -73,28 +137,28 @@ final class DetailViewModel: DetailViewModelType {
     }
 }
 
-extension DetailViewModel {
-    var height: Double {
-        return udService.getObject(with: .height) ?
-        rocketInfo?.value.height.meters ?? 0.0 :
-        rocketInfo?.value.height.feet ?? 0.0
-    }
-
-    var diameter: Double {
-        return udService.getObject(with: .diameter) ?
-        rocketInfo?.value.diameter.meters ?? 0.0 :
-        rocketInfo?.value.diameter.feet ?? 0.0
-    }
-
-    var mass: Double {
-        return udService.getObject(with: .mass) ?
-        rocketInfo?.value.mass.kg ?? 0.0 :
-        rocketInfo?.value.mass.lb ?? 0.0
-    }
-
-    var weight: Double {
-        return udService.getObject(with: .weight) ?
-        rocketInfo?.value.payloadWeights.first?.kg ?? 0.0 :
-        rocketInfo?.value.payloadWeights.first?.lb ?? 0.0
-    }
-}
+//extension DetailViewModel {
+//    var height: Double {
+//        return udService.getObject(with: .height) ?
+//        rocketInfo?.value.height.meters ?? 0.0 :
+//        rocketInfo?.value.height.feet ?? 0.0
+//    }
+//
+//    var diameter: Double {
+//        return udService.getObject(with: .diameter) ?
+//        rocketInfo?.value.diameter.meters ?? 0.0 :
+//        rocketInfo?.value.diameter.feet ?? 0.0
+//    }
+//
+//    var mass: Double {
+//        return udService.getObject(with: .mass) ?
+//        rocketInfo?.value.mass.kg ?? 0.0 :
+//        rocketInfo?.value.mass.lb ?? 0.0
+//    }
+//
+//    var weight: Double {
+//        return udService.getObject(with: .weight) ?
+//        rocketInfo?.value.payloadWeights.first?.kg ?? 0.0 :
+//        rocketInfo?.value.payloadWeights.first?.lb ?? 0.0
+//    }
+//}
