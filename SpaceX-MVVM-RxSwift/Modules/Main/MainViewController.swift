@@ -11,16 +11,8 @@ import RxCocoa
 
 final class MainViewController: RxBaseViewController<MainView> {
 
-//    typealias DataSource = UICollectionViewDiffableDataSource<Section, LaunchesEntity>
-//    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, LaunchesEntity>
-
     var viewModel: MainViewModelType!
 
-//    private lazy var collectionView = UICollectionView(frame: view.bounds,
-//                                                       collectionViewLayout: createCompositialLayout())
-//    private lazy var dataSource = createDiffableDataSource()
-
-//    private let toTopButton: ToTopButton = ToTopButton()
     private lazy var filterButton = UIBarButtonItem(
         image: UIImage(systemName: "arrow.up.and.down.text.horizontal"),
         style: .plain,

@@ -27,15 +27,11 @@ final class MainView: RxBaseView {
     private let refreshControl = UIRefreshControl()
 
     override func setupBinding() {
-        super.setupBinding()
-
         toTopButton.addTarget(self, action: #selector(toTopTapped), for: .touchUpInside)
         refreshControl.addTarget(self, action: #selector(refreshDragged), for: .valueChanged)
-        collectionView.rx.setDelegate(self).disposed(by: bag)
     }
 
     override func setupView() {
-        super.setupView()
         collectionView.showLoading()
         collectionView.refreshControl = refreshControl
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -49,13 +45,12 @@ final class MainView: RxBaseView {
     }
 
     override func setupHierarchy() {
-        super.setupHierarchy()
+        collectionView.rx.setDelegate(self).disposed(by: bag)
         self.addSubview(collectionView)
         collectionView.addSubview(toTopButton)
     }
 
     override func setupLayout() {
-        super.setupLayout()
         toTopButton.translatesAutoresizingMaskIntoConstraints = false
         toTopButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         toTopButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -100).isActive = true
