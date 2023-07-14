@@ -15,6 +15,7 @@ final class DetailView: RxBaseView {
     let rocket = BehaviorRelay<Rocket?>(value: nil)
     let rocketDetail = BehaviorRelay<RocketDetail?>(value: nil)
     let image = BehaviorRelay<String?>(value: nil)
+    let navHeight = BehaviorRelay<CGFloat?>(value: nil)
 
     lazy var tableView = UITableView()
 
@@ -23,17 +24,20 @@ final class DetailView: RxBaseView {
     private let headerHeight: CGFloat = 200
 
     override func setupHierarchy() {
-        addSubview(headerView)
+//        headerView.translatesAutoresizingMaskIntoConstraints = false
+//        addSubview(headerView)
+        setupHeader()
         addSubview(tableView)
     }
 
     override func setupLayout() {
-        NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            headerView.widthAnchor.constraint(equalTo: self.widthAnchor)
-        ])
+//        NSLayoutConstraint.activate([
+//            headerView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+//            headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+//            headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+//            headerView.widthAnchor.constraint(equalTo: self.widthAnchor),
+////            headerView.heightAnchor.constraint(equalToConstant: headerHeight)
+//        ])
 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -20),
@@ -44,7 +48,7 @@ final class DetailView: RxBaseView {
     }
 
     override func setupView() {
-        setupHeader()
+//        setupHeader()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -137,10 +141,10 @@ extension DetailView: UITableViewDataSource {
 // MARK: - Header setup
 
 extension DetailView {
-    private func setupHeader() {
+    func setupHeader() {
         headerView = DetailHeader(frame: .zero)
         headerView.translatesAutoresizingMaskIntoConstraints = false
-//        addSubview(headerView)
+        addSubview(headerView)
 
         //        viewModel.image
         //            .observe(on: MainScheduler.instance)
@@ -155,6 +159,13 @@ extension DetailView {
 
         headerHeightConstraint = headerView.heightAnchor.constraint(equalToConstant: headerHeight)
         headerHeightConstraint!.isActive = true
+
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            headerView.widthAnchor.constraint(equalTo: self.widthAnchor)
+        ])
     }
 
     func animateHeader() {
@@ -172,7 +183,7 @@ extension DetailView {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let navBarHeight: CGFloat = 44
+        let navBarHeight: CGFloat = 60
 //        additionalSafeAreaInsets.top
         if scrollView.contentOffset.y < 0 {
             self.headerHeightConstraint?.constant += abs(scrollView.contentOffset.y)

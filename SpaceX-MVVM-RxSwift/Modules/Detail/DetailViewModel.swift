@@ -64,6 +64,10 @@ final class DetailViewModel: DetailModuleType, DetailViewModelType {
         bindings.rocket.filterNil().subscribe(onNext: {
             bindings.image.accept($0.flickrImages?.randomElement() ?? "")
         }).disposed(by: bag)
+
+        bindings.rocket.bind(to: Binder(self) { target, _ in
+            target.getRocketDetails()
+        }).disposed(by: bag)
     }
 
 //    var title: Observable<String> {
