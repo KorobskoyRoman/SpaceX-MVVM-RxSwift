@@ -39,11 +39,11 @@ final class MainViewModel: MainModuleType, MainViewModelType {
     }
 
     func configure(commands: Commands) {
-
+        commands.goToDetails.bind(to: moduleBindings.startDetails).disposed(by: bag)
     }
 
     private func configure(moduleBindings: ModuleBindings) {
-
+        bindings.openDetails.bind(to: moduleBindings.startDetails).disposed(by: bag)
     }
 
     func configure(bindings: Bindings) {

@@ -45,6 +45,7 @@ final class MainViewController: RxBaseViewController<MainView> {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.bindings.startNotify.accept(())
         contentView.toTopButton.center.x += view.bounds.width
         viewModel.bindings.getLaunches.accept(())
         viewModel.bindings.updateData.accept(())
@@ -52,7 +53,7 @@ final class MainViewController: RxBaseViewController<MainView> {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        viewModel.stopNotify()
+        viewModel.bindings.stopNotify.accept(())
     }
 
     private func configure(_ commands: MainViewModel.Commands) {
@@ -60,6 +61,11 @@ final class MainViewController: RxBaseViewController<MainView> {
     }
 
     private func configure(_ bindings: MainViewModel.Bindings) {
+        contentView.collectionView.rx.modelSelected(LaunchesEntity.self)
+            .bind(to: Binder<LaunchesEntity>(self) { _, model in
+                bindings.openDetails.accept(model)
+            }).disposed(by: bag)
+
         bindings.updateData.bind(to: Binder(self) { target, _ in
             target.reload()
         }).disposed(by: bag)

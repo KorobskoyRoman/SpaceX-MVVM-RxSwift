@@ -27,6 +27,7 @@ extension MainViewModel {
         let updateData = PublishRelay<Void>()
         let startNotify = PublishRelay<Void>()
         let stopNotify = PublishRelay<Void>()
+        let openDetails = BehaviorRelay<LaunchesEntity?>(value: nil)
         var getLaunches = PublishRelay<Void>()
         var launches = BehaviorRelay<[LaunchesEntity]>(value: [])
     }
@@ -36,7 +37,7 @@ extension MainViewModel {
     }
 
     struct Commands {
-        let goToDetails = PublishRelay<Void>()
+        let goToDetails = BehaviorRelay<LaunchesEntity?>(value: nil)
     }
 
     struct Dependencies {

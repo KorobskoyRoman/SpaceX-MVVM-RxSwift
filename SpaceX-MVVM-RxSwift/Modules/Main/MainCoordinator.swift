@@ -21,6 +21,22 @@ final class MainCoordinator: NavigationCoordinator {
 
     override func start() {
         let module = MainConfigurator.configure()
+        module.viewModel.moduleBindings.startDetails
+            .filterNil()
+            .do(onNext: { value in
+                self.input.detailsModel.accept(value)
+            }).bind(to: Binder<LaunchesEntity?>(self) { target, _ in
+                target.startDetailsScreen()
+            }).disposed(by: bag)
         set([module.view])
+    }
+}
+
+private extension MainCoordinator {
+
+    func startDetailsScreen() {
+//        let module =
+        print(input.detailsModel.value)
+        push(UIViewController())
     }
 }
