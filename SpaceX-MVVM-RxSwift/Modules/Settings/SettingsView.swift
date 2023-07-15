@@ -6,9 +6,20 @@
 //
 
 import UIKit
+import RxSwift
+import RxRelay
 
-final class SettingsView: UIView {
-    private var vm: SettingsViewModelType
+final class SettingsView: RxBaseView {
+
+    let height = BehaviorRelay<Bool>(value: false)
+    let diameter = BehaviorRelay<Bool>(value: false)
+    let mass = BehaviorRelay<Bool>(value: false)
+    let weight = BehaviorRelay<Bool>(value: false)
+
+    let saveHeightState = PublishRelay<Void>()
+    let saveDiameterState = PublishRelay<Void>()
+    let saveMassState = PublishRelay<Void>()
+    let saveWeightState = PublishRelay<Void>()
 
     private let heightLabel: UILabel = {
         return UILabelBuilder()
@@ -48,6 +59,7 @@ final class SettingsView: UIView {
         switcher.labelOn.text = "kg"
         switcher.labelOff.text = "lb"
         switcher.addTarget(self, action: #selector(massSwitched), for: .touchUpInside)
+
         return switcher
     }()
 
@@ -106,50 +118,44 @@ final class SettingsView: UIView {
         spacing: 20
     )
 
-    // MARK: - Lifecycle
-    init(vm: SettingsViewModelType) {
-        self.vm = vm
-        super.init(frame: .zero)
-        backgroundColor = .mainBackground()
-        setConstraints()
-        setupStates()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     // MARK: - Setup views
     private func setupStates() {
-        heightSwitcher.isOn = vm.heightState
-        diameterSwitcher.isOn = vm.diameterState
-        massSwitcher.isOn = vm.massState
-        weightSwitcher.isOn = vm.weightState
+        height.bind(to: heightSwitcher.rx.isOn).disposed(by: bag)
+        diameter.bind(to: diameterSwitcher.rx.isOn).disposed(by: bag)
+        mass.bind(to: massSwitcher.rx.isOn).disposed(by: bag)
+        weight.bind(to: weightSwitcher.rx.isOn).disposed(by: bag)
     }
-}
 
-private extension SettingsView {
     @objc func heightSwitched() {
-        vm.save(for: .height)
+        height.accept(!height.value)
+        saveHeightState.accept(())
     }
 
     @objc func diameterSwitched() {
-        vm.save(for: .diameter)
+        diameter.accept(!diameter.value)
+        saveDiameterState.accept(())
     }
 
     @objc func massSwitched() {
-        vm.save(for: .mass)
+        mass.accept(!mass.value)
+        saveMassState.accept(())
     }
 
     @objc func weightSwitched() {
-        vm.save(for: .weight)
+        weight.accept(!weight.value)
+        saveWeightState.accept(())
     }
-}
 
-private extension SettingsView {
-    func setConstraints() {
+    override func setupView() {
+        backgroundColor = .mainBackground()
+        setupStates()
+    }
+
+    override func setupHierarchy() {
         addSubview(mainStack)
+    }
 
+    override func setupLayout() {
         NSLayoutConstraint.activate([
             heightSwitcher.heightAnchor.constraint(equalToConstant: 30),
             heightSwitcher.widthAnchor.constraint(equalToConstant: 70),

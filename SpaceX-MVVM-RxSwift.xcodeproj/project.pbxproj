@@ -79,6 +79,8 @@
 		9CF362D02A61CD6A004FC2D5 /* Detail+Infrastructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF362CF2A61CD6A004FC2D5 /* Detail+Infrastructure.swift */; };
 		9CF362D22A61CF65004FC2D5 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF362D12A61CF65004FC2D5 /* DetailView.swift */; };
 		9CF362D52A61EC04004FC2D5 /* RocketDetailType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF362D42A61EC04004FC2D5 /* RocketDetailType.swift */; };
+		9CF362D82A62F02A004FC2D5 /* SettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF362D72A62F029004FC2D5 /* SettingsConfigurator.swift */; };
+		9CF362DB2A62F036004FC2D5 /* Settings+Infrastructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF362DA2A62F036004FC2D5 /* Settings+Infrastructure.swift */; };
 		9CFB20EF29941B5A00C67EED /* Launches.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20EE29941B5A00C67EED /* Launches.xcdatamodel */; };
 		9CFB20F129941D3500C67EED /* Launches+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F029941D3500C67EED /* Launches+CoreData.swift */; };
 		9CFB20F329941F2000C67EED /* Links+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F229941F2000C67EED /* Links+CoreData.swift */; };
@@ -164,6 +166,8 @@
 		9CF362CF2A61CD6A004FC2D5 /* Detail+Infrastructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detail+Infrastructure.swift"; sourceTree = "<group>"; };
 		9CF362D12A61CF65004FC2D5 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		9CF362D42A61EC04004FC2D5 /* RocketDetailType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketDetailType.swift; sourceTree = "<group>"; };
+		9CF362D72A62F029004FC2D5 /* SettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsConfigurator.swift; sourceTree = "<group>"; };
+		9CF362DA2A62F036004FC2D5 /* Settings+Infrastructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+Infrastructure.swift"; sourceTree = "<group>"; };
 		9CFB20EE29941B5A00C67EED /* Launches.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Launches.xcdatamodel; sourceTree = "<group>"; };
 		9CFB20F029941D3500C67EED /* Launches+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Launches+CoreData.swift"; sourceTree = "<group>"; };
 		9CFB20F229941F2000C67EED /* Links+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Links+CoreData.swift"; sourceTree = "<group>"; };
@@ -473,9 +477,11 @@
 		9CFB2101299A8C6E00C67EED /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				9CF362D72A62F029004FC2D5 /* SettingsConfigurator.swift */,
+				9CF362DA2A62F036004FC2D5 /* Settings+Infrastructure.swift */,
 				9CFB2102299A8CC000C67EED /* SettingsViewController.swift */,
-				9CFB2106299A8EF500C67EED /* SettingsView.swift */,
 				9CFB2104299A8D2600C67EED /* SettingsViewModel.swift */,
+				9CFB2106299A8EF500C67EED /* SettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -674,6 +680,7 @@
 				9CFB20FC299930FF00C67EED /* ShimmerUIImageView.swift in Sources */,
 				9C30B72F2A59C374005D4843 /* SplashView.swift in Sources */,
 				9CACA48A28E8C76900B5325D /* NetworkService.swift in Sources */,
+				9CF362DB2A62F036004FC2D5 /* Settings+Infrastructure.swift in Sources */,
 				9C30B7382A59C4BA005D4843 /* Splash+Infrastructure.swift in Sources */,
 				9C8EA76128EA12FE00A73F12 /* MainCell.swift in Sources */,
 				9CF362D52A61EC04004FC2D5 /* RocketDetailType.swift in Sources */,
@@ -685,6 +692,7 @@
 				9CFB2107299A8EF500C67EED /* SettingsView.swift in Sources */,
 				9C30B7362A59C41C005D4843 /* RxBaseView.swift in Sources */,
 				9CEC6ABE29A1181B00187776 /* WebViewModel.swift in Sources */,
+				9CF362D82A62F02A004FC2D5 /* SettingsConfigurator.swift in Sources */,
 				9C30B7222A589312005D4843 /* Coordinator.swift in Sources */,
 				9CFB20F52995548300C67EED /* LaunchesStorage.swift in Sources */,
 				9C30B72D2A589429005D4843 /* SplashCoordinator.swift in Sources */,
