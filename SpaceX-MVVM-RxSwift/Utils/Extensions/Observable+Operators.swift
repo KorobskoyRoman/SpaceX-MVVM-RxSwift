@@ -41,3 +41,19 @@ extension ObservableType where Element: OptionalType {
         }
     }
 }
+
+extension ObservableType {
+
+    func mapToVoid() -> Observable<Void> {
+        return map({ _ in Void() })
+    }
+
+}
+
+extension PrimitiveSequence where Trait == SingleTrait, Element: Any {
+
+    func mapToVoid() -> Single<Void> {
+        return map({ _ in Void() })
+    }
+
+}
