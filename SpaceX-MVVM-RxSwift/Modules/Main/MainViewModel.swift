@@ -40,6 +40,7 @@ final class MainViewModel: MainModuleType, MainViewModelType {
 
     func configure(commands: Commands) {
         commands.goToDetails.bind(to: moduleBindings.startDetails).disposed(by: bag)
+        commands.openSettings.bind(to: moduleBindings.startSettings).disposed(by: bag)
     }
 
     private func configure(moduleBindings: ModuleBindings) {
@@ -70,10 +71,6 @@ final class MainViewModel: MainModuleType, MainViewModelType {
         bindings.launches.accept(dependencies.storageService.getLaunches())
     }
 
-//    func launchAt(indexPath: IndexPath) -> LaunchesEntity {
-//        return dbLaunches.value[indexPath.item]
-//    }
-
     func push(launch: LaunchesEntity) {
         DispatchQueue.main.async { [weak self] in
             Task {
@@ -92,7 +89,7 @@ final class MainViewModel: MainModuleType, MainViewModelType {
 //        self.coordinator?.performTransition(with: .perform(.settings))
     }
 
-    private func bind() {
+    private func filter() {
         filterFromLatest
             .observe(on: MainScheduler.instance)
             .skip(1)
@@ -108,6 +105,24 @@ final class MainViewModel: MainModuleType, MainViewModelType {
                 )
             }
             .disposed(by: bag)
+    }
+
+    private func bind() {
+//        filterFromLatest
+//            .observe(on: MainScheduler.instance)
+//            .skip(1)
+//            .subscribe { [weak self] event in
+//                guard let self,
+//                      let element = event.element else { return }
+//                let newArray = self.bindings.launches.value
+//
+//                self.bindings.launches.accept(
+//                    element ?
+//                    newArray.sorted(by: { $0.dateUTC ?? Date() > $1.dateUTC ?? Date() }) :
+//                        newArray.sorted(by: { $0.dateUTC ?? Date() < $1.dateUTC ?? Date() })
+//                )
+//            }
+//            .disposed(by: bag)
 
         reachability?.rx.isReachable
             .subscribe (onNext: { isReachable in

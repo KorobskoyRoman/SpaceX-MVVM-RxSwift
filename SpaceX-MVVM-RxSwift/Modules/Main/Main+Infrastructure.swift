@@ -21,6 +21,7 @@ extension MainViewModel {
 
     struct ModuleBindings {
         let startDetails = BehaviorRelay<LaunchesEntity?>(value: nil)
+        let startSettings = PublishRelay<Void>()
     }
 
     struct Bindings {
@@ -38,6 +39,8 @@ extension MainViewModel {
 
     struct Commands {
         let goToDetails = BehaviorRelay<LaunchesEntity?>(value: nil)
+        let openSettings = PublishRelay<Void>()
+        let filterLaunches = PublishRelay<Void>()
     }
 
     struct Dependencies {

@@ -13,17 +13,17 @@ final class MainViewController: RxBaseViewController<MainView> {
 
     var viewModel: MainViewModelType!
 
-    private lazy var filterButton = UIBarButtonItem(
-        image: UIImage(systemName: "arrow.up.and.down.text.horizontal"),
-        style: .plain,
-        target: self,
-        action: #selector(filterTapped))
-
-    private lazy var settingsButton = UIBarButtonItem(
-        image: UIImage(systemName: "gearshape"),
-        style: .plain,
-        target: self,
-        action: #selector(settingsTapped))
+//    private lazy var filterButton = UIBarButtonItem(
+//        image: UIImage(systemName: "arrow.up.and.down.text.horizontal"),
+//        style: .plain,
+//        target: self,
+//        action: #selector(filterTapped))
+//
+//    private lazy var settingsButton = UIBarButtonItem(
+//        image: UIImage(systemName: "gearshape"),
+//        style: .plain,
+//        target: self,
+//        action: #selector(settingsTapped))
 
     private var isFiltered = false
 
@@ -53,18 +53,11 @@ final class MainViewController: RxBaseViewController<MainView> {
     }
 
     private func configure(_ bindings: MainViewModel.Bindings) {
-//        contentView.collectionView.rx.modelSelected(LaunchesEntity.self)
         contentView.collectionView.rx.itemSelected
             .subscribe(onNext: { model in
-//                print($0)
                 let launch = bindings.launches.value[model.item]
                 bindings.openDetails.accept(launch)
             }).disposed(by: bag)
-//            .bind(to: Binder<LaunchesEntity>(self) { _, model in
-//                print(model)
-//                bindings.openDetails.accept(model)
-//            }).disposed(by: bag)
-
 
         bindings.updateData.bind(to: Binder(self) { target, _ in
             target.reload()
@@ -79,7 +72,23 @@ final class MainViewController: RxBaseViewController<MainView> {
         view.backgroundColor = .mainBackground()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-        
+
+        let settingsButton = UIBarButtonItem()
+        settingsButton.image = UIImage(systemName: "gearshape")
+
+        settingsButton.rx.tap
+            .mapToVoid()
+            .bind(to: viewModel.commands.openSettings)
+            .disposed(by: bag)
+
+        let filterButton = UIBarButtonItem()
+        filterButton.image = UIImage(systemName: "arrow.up.and.down.text.horizontal")
+
+        filterButton.rx.tap
+            .mapToVoid()
+            .bind(to: viewModel.commands.filterLaunches)
+            .disposed(by: bag)
+
         navigationItem.rightBarButtonItem = filterButton
         navigationItem.leftBarButtonItem = settingsButton
 

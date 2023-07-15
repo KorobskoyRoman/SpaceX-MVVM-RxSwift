@@ -28,6 +28,11 @@ final class MainCoordinator: NavigationCoordinator {
             }).bind(to: Binder<LaunchesEntity?>(self) { target, _ in
                 target.startDetailsScreen()
             }).disposed(by: bag)
+
+        module.viewModel.moduleBindings.startSettings
+            .bind(to: Binder(self) { target, _ in
+                target.startSettingsScreen()
+            }).disposed(by: bag)
         set([module.view])
     }
 }
@@ -41,5 +46,12 @@ private extension MainCoordinator {
         module.viewModel.moduleBindings.loadRocketInfo.accept(())
 
         push(module.view)
+    }
+
+    func startSettingsScreen() {
+        let module = SettingsConfigurator.configure()
+
+        module.viewModel.moduleCommands.getData.accept(())
+        present(module.view, style: .formSheet)
     }
 }
