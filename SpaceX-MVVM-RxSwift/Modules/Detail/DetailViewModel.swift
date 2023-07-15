@@ -9,8 +9,6 @@ import RxSwift
 import RxCocoa
 
 final class DetailViewModel: DetailModuleType, DetailViewModelType {
-//    var launchInfo: BehaviorRelay<LaunchesEntity>?
-//    var rocketInfo: BehaviorRelay<Rocket>? = BehaviorRelay<Rocket>(value: .emptyRocket)
 
     // MARK: - Dependencies
 
@@ -70,34 +68,6 @@ final class DetailViewModel: DetailModuleType, DetailViewModelType {
         }).disposed(by: bag)
     }
 
-//    var title: Observable<String> {
-//        return launchInfo
-//            .map {
-//                $0.map {
-//                    $0.name ?? "n/a"
-//                }
-//            } ?? .just("n/a")
-//    }
-//
-//    var image: Observable<String> {
-//        return rocketInfo.map {
-//            $0.map {
-//                $0.flickrImages?.randomElement() ?? ""
-//            }
-//        } ?? .just("")
-//    }
-
-//    init(
-//        networkSerivce: NetworkServiceType,
-//        launchInfo: BehaviorRelay<LaunchesEntity>?,
-//        udService: UserDefaultsType
-//    ) {
-//        self.networkSerivce = networkSerivce
-//        self.launchInfo = launchInfo
-//        self.udService = udService
-//        getRocketInfo()
-//    }
-
     private func getRocketInfo() {
         Task {
             do {
@@ -135,34 +105,4 @@ final class DetailViewModel: DetailModuleType, DetailViewModelType {
             )
         )
     }
-
-    func push(with url: String) {
-//        coordinator?.performTransition(with: .perform(.web(url)))
-    }
 }
-
-//extension DetailViewModel {
-//    var height: Double {
-//        return udService.getObject(with: .height) ?
-//        rocketInfo?.value.height.meters ?? 0.0 :
-//        rocketInfo?.value.height.feet ?? 0.0
-//    }
-//
-//    var diameter: Double {
-//        return udService.getObject(with: .diameter) ?
-//        rocketInfo?.value.diameter.meters ?? 0.0 :
-//        rocketInfo?.value.diameter.feet ?? 0.0
-//    }
-//
-//    var mass: Double {
-//        return udService.getObject(with: .mass) ?
-//        rocketInfo?.value.mass.kg ?? 0.0 :
-//        rocketInfo?.value.mass.lb ?? 0.0
-//    }
-//
-//    var weight: Double {
-//        return udService.getObject(with: .weight) ?
-//        rocketInfo?.value.payloadWeights.first?.kg ?? 0.0 :
-//        rocketInfo?.value.payloadWeights.first?.lb ?? 0.0
-//    }
-//}
