@@ -14,6 +14,12 @@ final class DetailCell: UITableViewCell {
 
     var rocketDetail: RocketDetail?
 
+    let ytLink = BehaviorRelay<String?>(value: nil)
+    let wikiLink = BehaviorRelay<String?>(value: nil)
+
+    private let yt = BehaviorRelay<String?>(value: nil)
+    private let wiki = BehaviorRelay<String?>(value: nil)
+
     private let bag = DisposeBag()
 
     private let nameLabel: UILabel = {
@@ -137,11 +143,19 @@ final class DetailCell: UITableViewCell {
                                              aligment: .fill,
                                              distribution: .equalCentering)
 
-    private var wikiLink = BehaviorRelay(value: "")
-    private var videoLink = BehaviorRelay(value: "")
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        wikiButton.rx.tap
+            .bind(to: Binder(self) { target, _ in
+                target.wikiLink.accept(target.wiki.value ?? "")
+            }).disposed(by: bag)
+
+        videoButton.rx.tap
+            .bind(to: Binder(self) { target, _ in
+                target.ytLink.accept(target.yt.value ?? "")
+            }).disposed(by: bag)
+
         setConstraints()
         setupView()
     }
@@ -156,10 +170,7 @@ final class DetailCell: UITableViewCell {
     }
 
     private func setupView() {
-        wikiButton.addTarget(self, action: #selector(wikiButtonTapped), for: .touchUpInside)
-        videoButton.addTarget(self, action: #selector(videoButtonTapped), for: .touchUpInside)
-
-        videoLink
+        yt.filterNil()
             .map {
                 $0.isEmpty ? true : false
             }
@@ -199,7 +210,7 @@ final class DetailCell: UITableViewCell {
             $0.wikipedia
         }
         .subscribe { [weak self] in
-            self?.wikiLink.accept($0)
+            self?.wiki.accept($0)
         }
         .disposed(by: bag)
 
@@ -207,7 +218,7 @@ final class DetailCell: UITableViewCell {
             $0.webcast ?? ""
         }
         .subscribe { [weak self] in
-            self?.videoLink.accept($0)
+            self?.yt.accept($0)
         }
         .disposed(by: bag)
     }
@@ -240,18 +251,6 @@ final class DetailCell: UITableViewCell {
             mainStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Insets.inset32),
             mainStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Insets.inset32)
         ])
-    }
-}
-
-private extension DetailCell {
-    @objc
-    func wikiButtonTapped() {
-//        viewModel?.push(with: wikiLink.value)
-    }
-
-    @objc
-    func videoButtonTapped() {
-//        viewModel?.push(with: videoLink.value)
     }
 }
 
