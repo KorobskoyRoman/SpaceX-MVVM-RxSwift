@@ -5,3 +5,6 @@
 * ~~Async/await networking~~ *Done 22.02.23*
 * ~~Rachability~~ *Done 24.02.23*
 * ~Pull to resresh~ *Done 28.02.23*
+* Detail screen navigation controller height bug
+* Add to pull to refresh delay
+* Filter button
