@@ -13,6 +13,7 @@ final class MainCoordinator: NavigationCoordinator {
 
     struct Input {
         var detailsModel = BehaviorRelay<LaunchesEntity?>(value: nil)
+        var link = BehaviorRelay<String?>(value: nil)
     }
 
     let input = Input()
@@ -33,6 +34,7 @@ final class MainCoordinator: NavigationCoordinator {
             .bind(to: Binder(self) { target, _ in
                 target.startSettingsScreen()
             }).disposed(by: bag)
+
         set([module.view])
     }
 }
@@ -45,6 +47,15 @@ private extension MainCoordinator {
         input.detailsModel.bind(to: module.viewModel.moduleBindings.launch).disposed(by: bag)
         module.viewModel.moduleBindings.loadRocketInfo.accept(())
 
+        module.viewModel.moduleBindings.startWeb
+            .filterNil()
+            .do(onNext: { value in
+                self.input.link.accept(value)
+            })
+            .bind(to: Binder(self) { target, _ in
+                target.startWebScreen()
+            }).disposed(by: bag)
+
         push(module.view)
     }
 
@@ -53,5 +64,13 @@ private extension MainCoordinator {
 
         module.viewModel.moduleCommands.getData.accept(())
         present(module.view, style: .formSheet)
+    }
+
+    func startWebScreen() {
+        let module = WebConfigurator.configure()
+
+        input.link.bind(to: module.viewModel.moduleBindings.link).disposed(by: bag)
+
+        push(module.view)
     }
 }

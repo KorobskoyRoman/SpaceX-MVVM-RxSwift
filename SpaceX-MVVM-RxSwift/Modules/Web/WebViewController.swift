@@ -7,40 +7,51 @@
 
 import UIKit
 import WebKit
+import RxSwift
 
 final class WebViewController: UIViewController {
-    private let viewModel: WebViewModelType
+
+    var viewModel: WebViewModelType!
 
     private var webView = WKWebView()
+    private let bag = DisposeBag()
 
     private lazy var progressView: UIProgressView = {
         let progressView = UIProgressView()
         return progressView
     }()
 
-    init(viewModel: WebViewModelType) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+    private func setupBinding() {
+        configure(viewModel.bindings)
+        configure(viewModel.commands)
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    private func configure(_ commands: WebViewModel.Commands) {
+
+    }
+
+    func configure(_ bindings: WebViewModel.Bindings) {
+        bindings.downloadLink.bind(to: Binder(self) { target, _ in
+            target.startDownload()
+        }).disposed(by: bag)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBinding()
         setupView()
         setConstraints()
-        startDownload()
+        setupBinding()
     }
 
-    override func observeValue(forKeyPath keyPath: String?,
-                               of object: Any?,
-                               change: [NSKeyValueChangeKey : Any]?,
-                               context: UnsafeMutableRawPointer?) {
+    override func observeValue(
+        forKeyPath keyPath: String?,
+        of object: Any?,
+        change: [NSKeyValueChangeKey : Any]?,
+        context: UnsafeMutableRawPointer?
+    ) {
         if keyPath == "estimatedProgress" {
             progressView.progress = Float(webView.estimatedProgress)
-            print(progressView.progress)
         }
     }
 }
@@ -77,7 +88,10 @@ extension WebViewController {
     }
 
     private func startDownload() {
-        self.webView.load(self.viewModel.requestLink)
+        guard let url = viewModel.bindings.downloadLink.value else { return }
+        let urlString = URL(string: url)!
+        let request = URLRequest(url: urlString)
+        webView.load(request)
     }
 }
 

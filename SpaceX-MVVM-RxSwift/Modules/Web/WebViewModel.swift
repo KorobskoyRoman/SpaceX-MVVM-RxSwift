@@ -6,21 +6,41 @@
 //
 
 import Foundation
+import RxSwift
 
-protocol WebViewModelType {
-    var requestLink: URLRequest { get }
-}
+final class WebViewModel: WebModuleType, WebViewModelType {
 
-final class WebViewModel: WebViewModelType {
-    var requestLink: URLRequest {
-        guard !link.isEmpty else { return URLRequest(url: URL(string: "apple.com")!) }
-        let urlString = URL(string: link)!
-        return URLRequest(url: urlString)
+    // MARK: - Module infrastructure
+    let moduleBindings = ModuleBindings()
+    let moduleCommands = ModuleCommands()
+
+    // MARK: - ViewModel infrastructure
+    var bindings = Bindings()
+    let commands = Commands()
+
+    private let bag = DisposeBag()
+
+    // MARK: - Configuration
+    init() {
+        configure(commands: commands)
+        configure(bindings: bindings)
+        configure(moduleBindings: moduleBindings)
+        configure(moduleCommands: moduleCommands)
     }
 
-    private let link: String
+    func configure(commands: Commands) {
 
-    init(link: String) {
-        self.link = link
+    }
+
+    private func configure(moduleBindings: ModuleBindings) {
+        moduleBindings.link.bind(to: bindings.downloadLink).disposed(by: bag)
+    }
+
+    private func configure(moduleCommands: ModuleCommands) {
+
+    }
+
+    func configure(bindings: Bindings) {
+
     }
 }

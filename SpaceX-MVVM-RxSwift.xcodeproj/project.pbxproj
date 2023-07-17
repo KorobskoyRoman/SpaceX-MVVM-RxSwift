@@ -81,6 +81,7 @@
 		9CF362D52A61EC04004FC2D5 /* RocketDetailType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF362D42A61EC04004FC2D5 /* RocketDetailType.swift */; };
 		9CF362D82A62F02A004FC2D5 /* SettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF362D72A62F029004FC2D5 /* SettingsConfigurator.swift */; };
 		9CF362DB2A62F036004FC2D5 /* Settings+Infrastructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF362DA2A62F036004FC2D5 /* Settings+Infrastructure.swift */; };
+		9CF362DE2A630A6C004FC2D5 /* Web+Infrastructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF362DD2A630A6C004FC2D5 /* Web+Infrastructure.swift */; };
 		9CFB20EF29941B5A00C67EED /* Launches.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20EE29941B5A00C67EED /* Launches.xcdatamodel */; };
 		9CFB20F129941D3500C67EED /* Launches+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F029941D3500C67EED /* Launches+CoreData.swift */; };
 		9CFB20F329941F2000C67EED /* Links+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB20F229941F2000C67EED /* Links+CoreData.swift */; };
@@ -168,6 +169,7 @@
 		9CF362D42A61EC04004FC2D5 /* RocketDetailType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketDetailType.swift; sourceTree = "<group>"; };
 		9CF362D72A62F029004FC2D5 /* SettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsConfigurator.swift; sourceTree = "<group>"; };
 		9CF362DA2A62F036004FC2D5 /* Settings+Infrastructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+Infrastructure.swift"; sourceTree = "<group>"; };
+		9CF362DD2A630A6C004FC2D5 /* Web+Infrastructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web+Infrastructure.swift"; sourceTree = "<group>"; };
 		9CFB20EE29941B5A00C67EED /* Launches.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Launches.xcdatamodel; sourceTree = "<group>"; };
 		9CFB20F029941D3500C67EED /* Launches+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Launches+CoreData.swift"; sourceTree = "<group>"; };
 		9CFB20F229941F2000C67EED /* Links+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Links+CoreData.swift"; sourceTree = "<group>"; };
@@ -266,14 +268,6 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
-		9C8CBA9528E8BBEA00947DB7 /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				9CACA48D28EA06B400B5325D /* Configurators */,
-			);
-			path = Coordinator;
-			sourceTree = "<group>";
-		};
 		9C8CBA9A28E8C08D00947DB7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,14 +296,6 @@
 				9CACA48928E8C76900B5325D /* NetworkService.swift */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		9CACA48D28EA06B400B5325D /* Configurators */ = {
-			isa = PBXGroup;
-			children = (
-				9CEC6ABF29A11D8500187776 /* WebConfigurator.swift */,
-			);
-			path = Configurators;
 			sourceTree = "<group>";
 		};
 		9CB21D1C28F7399500D275C9 /* Detail */ = {
@@ -361,7 +347,6 @@
 			children = (
 				9C30B71B2A588CE7005D4843 /* DI */,
 				9C30B7232A589369005D4843 /* CoordinatorCore */,
-				9C8CBA9528E8BBEA00947DB7 /* Coordinator */,
 				9CE4A3F428E8B1D70029ECA1 /* AppDelegate.swift */,
 				9CE4A3F628E8B1D70029ECA1 /* SceneDelegate.swift */,
 			);
@@ -382,6 +367,7 @@
 		9CE4A40A28E8BAEB0029ECA1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				9C30B7492A5F0FB4005D4843 /* MainCoordinator.swift */,
 				9CEC6AAF299D8E8500187776 /* Splash */,
 				9CE4A40C28E8BAFD0029ECA1 /* Main */,
 				9CB21D1C28F7399500D275C9 /* Detail */,
@@ -409,7 +395,6 @@
 				9CE4A3F828E8B1D70029ECA1 /* MainViewController.swift */,
 				9CACA48B28E9FE1900B5325D /* MainViewModel.swift */,
 				9C30B7422A5C6A71005D4843 /* MainView.swift */,
-				9C30B7492A5F0FB4005D4843 /* MainCoordinator.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -430,6 +415,8 @@
 		9CEC6ABA29A1177700187776 /* Web */ = {
 			isa = PBXGroup;
 			children = (
+				9CEC6ABF29A11D8500187776 /* WebConfigurator.swift */,
+				9CF362DD2A630A6C004FC2D5 /* Web+Infrastructure.swift */,
 				9CEC6ABB29A1179800187776 /* WebViewController.swift */,
 				9CEC6ABD29A1181B00187776 /* WebViewModel.swift */,
 			);
@@ -671,6 +658,7 @@
 				9CFB4E6829B2487900931EBC /* InfoAlert.swift in Sources */,
 				9C30B74A2A5F0FB4005D4843 /* MainCoordinator.swift in Sources */,
 				9C45BF8F298BEF1A005577C2 /* DetailViewController.swift in Sources */,
+				9CF362DE2A630A6C004FC2D5 /* Web+Infrastructure.swift in Sources */,
 				9C8EA75F28EA125100A73F12 /* Section.swift in Sources */,
 				9CF362D02A61CD6A004FC2D5 /* Detail+Infrastructure.swift in Sources */,
 				9C30B7282A5893AA005D4843 /* NavigationCoordinator.swift in Sources */,
