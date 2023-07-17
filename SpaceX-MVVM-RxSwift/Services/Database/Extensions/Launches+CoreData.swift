@@ -16,7 +16,6 @@ extension LaunchInfo: UUIDIdentifiable {
         self.details = managedObject.details
         self.name = managedObject.name
         self.dateUTC = managedObject.dateUTC ?? Date()
-//        self.links.webcast = managedObject.webcastValue
     }
 
     private func checkForExistingLaunch(id: UUID, context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) -> Bool {

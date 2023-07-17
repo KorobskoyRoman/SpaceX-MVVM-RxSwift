@@ -13,18 +13,6 @@ final class MainViewController: RxBaseViewController<MainView> {
 
     var viewModel: MainViewModelType!
 
-//    private lazy var filterButton = UIBarButtonItem(
-//        image: UIImage(systemName: "arrow.up.and.down.text.horizontal"),
-//        style: .plain,
-//        target: self,
-//        action: #selector(filterTapped))
-//
-//    private lazy var settingsButton = UIBarButtonItem(
-//        image: UIImage(systemName: "gearshape"),
-//        style: .plain,
-//        target: self,
-//        action: #selector(settingsTapped))
-
     private var isFiltered = false
 
     private let disposeBag = DisposeBag()
@@ -103,10 +91,8 @@ final class MainViewController: RxBaseViewController<MainView> {
 extension MainViewController {
     @objc private func filterTapped() {
         isFiltered.toggle()
-//        viewModel.filterFromLatest.accept(isFiltered)
     }
 
     @objc private func settingsTapped() {
-//        viewModel.pushToSettings()
     }
 }

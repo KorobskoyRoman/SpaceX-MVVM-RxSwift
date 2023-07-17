@@ -85,10 +85,6 @@ final class MainViewModel: MainModuleType, MainViewModelType {
         }
     }
 
-    func pushToSettings() {
-//        self.coordinator?.performTransition(with: .perform(.settings))
-    }
-
     private func filter() {
         filterFromLatest
             .observe(on: MainScheduler.instance)
@@ -108,22 +104,6 @@ final class MainViewModel: MainModuleType, MainViewModelType {
     }
 
     private func bind() {
-//        filterFromLatest
-//            .observe(on: MainScheduler.instance)
-//            .skip(1)
-//            .subscribe { [weak self] event in
-//                guard let self,
-//                      let element = event.element else { return }
-//                let newArray = self.bindings.launches.value
-//
-//                self.bindings.launches.accept(
-//                    element ?
-//                    newArray.sorted(by: { $0.dateUTC ?? Date() > $1.dateUTC ?? Date() }) :
-//                        newArray.sorted(by: { $0.dateUTC ?? Date() < $1.dateUTC ?? Date() })
-//                )
-//            }
-//            .disposed(by: bag)
-
         reachability?.rx.isReachable
             .subscribe (onNext: { isReachable in
                 if !isReachable {

@@ -9,23 +9,6 @@ import RxCocoa
 import RxSwift
 
 final class SettingsViewModel: SettingsModuleType, SettingsViewModelType {
-//    var heightState: Bool = false
-//    var diameterState: Bool = false
-//    var massState: Bool = false
-//    var weightState: Bool = false
-//
-//    private let udService: UserDefaultsType
-//
-//    func save(for type: UserDefaultsKeys) {
-//        udService.save(for: type)
-//    }
-//
-//    func getUDStates() {
-//        heightState = udService.getObject(with: .height)
-//        diameterState = udService.getObject(with: .diameter)
-//        massState = udService.getObject(with: .mass)
-//        weightState = udService.getObject(with: .weight)
-//    }
 
     // MARK: - Dependencies
 
