@@ -269,8 +269,8 @@
             filePath = "SpaceX-MVVM-RxSwift/Modules/Detail/DetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "getRocketInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -285,25 +285,9 @@
             filePath = "SpaceX-MVVM-RxSwift/Modules/Detail/DetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "getRocketDetails()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9C520BE8-2D4B-4834-A903-85B25DCBBB7A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SpaceX-MVVM-RxSwift/Modules/Detail/DetailView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "setupHeader()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -317,8 +301,8 @@
             filePath = "SpaceX-MVVM-RxSwift/Modules/Detail/DetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "setupHeader()"
             landmarkType = "7">
          </BreakpointContent>
@@ -333,8 +317,8 @@
             filePath = "SpaceX-MVVM-RxSwift/Modules/Detail/DetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "scrollViewDidScroll(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -349,8 +333,8 @@
             filePath = "SpaceX-MVVM-RxSwift/Modules/Settings/SettingsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "updateHeightState()"
             landmarkType = "7">
          </BreakpointContent>

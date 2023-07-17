@@ -20,7 +20,7 @@ final class DetailViewController: RxBaseViewController<DetailView> {
     }
     
     private func configure(_ commands: DetailViewModel.Commands) {
-        
+
     }
     
     private func configure(_ bindings: DetailViewModel.Bindings) {
@@ -28,6 +28,9 @@ final class DetailViewController: RxBaseViewController<DetailView> {
         bindings.rocket.bind(to: contentView.rocket).disposed(by: bag)
         bindings.rocketDetail.bind(to: contentView.rocketDetail).disposed(by: bag)
         bindings.image.bind(to: contentView.image).disposed(by: bag)
+
+        contentView.ytLink.bind(to: bindings.openWeb).disposed(by: bag)
+        contentView.wikiLink.bind(to: bindings.openWeb).disposed(by: bag)
     }
     
     func setupNav() {

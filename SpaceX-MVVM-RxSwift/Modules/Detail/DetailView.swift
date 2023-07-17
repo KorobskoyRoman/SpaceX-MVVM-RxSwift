@@ -15,7 +15,9 @@ final class DetailView: RxBaseView {
     let rocket = BehaviorRelay<Rocket?>(value: nil)
     let rocketDetail = BehaviorRelay<RocketDetail?>(value: nil)
     let image = BehaviorRelay<String?>(value: nil)
-    let navHeight = BehaviorRelay<CGFloat?>(value: nil)
+
+    let ytLink = BehaviorRelay<String?>(value: nil)
+    let wikiLink = BehaviorRelay<String?>(value: nil)
 
     lazy var tableView = UITableView()
 
@@ -24,21 +26,11 @@ final class DetailView: RxBaseView {
     private let headerHeight: CGFloat = 200
 
     override func setupHierarchy() {
-//        headerView.translatesAutoresizingMaskIntoConstraints = false
-//        addSubview(headerView)
         setupHeader()
         addSubview(tableView)
     }
 
     override func setupLayout() {
-//        NSLayoutConstraint.activate([
-//            headerView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-//            headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-//            headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-//            headerView.widthAnchor.constraint(equalTo: self.widthAnchor),
-////            headerView.heightAnchor.constraint(equalToConstant: headerHeight)
-//        ])
-
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -20),
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -48,7 +40,6 @@ final class DetailView: RxBaseView {
     }
 
     override func setupView() {
-//        setupHeader()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -96,6 +87,10 @@ extension DetailView: UITableViewDataSource {
                     withIdentifier: DetailCell.reuseId,
                     for: indexPath) as? DetailCell
                 else { return UITableViewCell() }
+
+                cell.ytLink.bind(to: ytLink).disposed(by: bag)
+                cell.wikiLink.bind(to: wikiLink).disposed(by: bag)
+
                 cell.rocketDetail = rocketDetail.value
                 cell.configure(with: rocket,
                                and: launch)
@@ -145,12 +140,6 @@ extension DetailView {
         headerView = DetailHeader(frame: .zero)
         headerView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(headerView)
-
-        //        viewModel.image
-        //            .observe(on: MainScheduler.instance)
-        //            .subscribe { [weak self] in
-        //                self?.headerView.configure(with: $0.element ?? "")
-        //            }.disposed(by: disposeBag)
         image.observe(on: MainScheduler.instance)
             .filterNil()
             .subscribe(onNext: { [weak self] in

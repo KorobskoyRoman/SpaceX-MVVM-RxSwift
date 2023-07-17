@@ -48,6 +48,8 @@ final class DetailViewModel: DetailModuleType, DetailViewModelType {
         moduleBindings.loadRocketInfo.bind(to: Binder(self) { target, _ in
             target.getRocketInfo()
         }).disposed(by: bag)
+
+        bindings.openWeb.bind(to: moduleBindings.startWeb).disposed(by: bag)
     }
 
     func configure(commands: Commands) {

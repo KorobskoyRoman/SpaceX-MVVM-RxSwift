@@ -23,6 +23,7 @@ extension DetailViewModel {
     struct ModuleBindings {
         let launch = BehaviorRelay<LaunchesEntity?>(value: nil)
         let loadRocketInfo = PublishRelay<Void>()
+        let startWeb = BehaviorRelay<String?>(value: nil)
     }
 
     struct ModuleCommands {
@@ -35,6 +36,7 @@ extension DetailViewModel {
         let rocketDetail = BehaviorRelay<RocketDetail?>(value: nil)
         let title = BehaviorRelay<String?>(value: nil)
         let image = BehaviorRelay<String?>(value: nil)
+        let openWeb = BehaviorRelay<String?>(value: nil)
     }
 
     struct Commands {
