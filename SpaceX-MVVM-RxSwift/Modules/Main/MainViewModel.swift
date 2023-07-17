@@ -9,46 +9,66 @@ import RxSwift
 import RxCocoa
 import RxReachability
 import Reachability
+import Foundation
 
-protocol MainViewModelType {
-    var reload: (() -> Void)? { get set }
-    var showError: ((String) -> Void)? { get set }
-    var filterFromLatest: BehaviorRelay<Bool> { get }
-    var dbLaunches: BehaviorRelay<[LaunchesEntity]> { get }
-    func getLaunches()
-    func launchAt(indexPath: IndexPath) -> LaunchesEntity
-    func push(launch: LaunchesEntity)
-    func pushToSettings()
-    func stopNotify()
-}
 
-final class MainViewModel: MainViewModelType {
-    weak var coordinator: AppCoodrinator?
-    var reload: (() -> Void)?
+final class MainViewModel: MainModuleType, MainViewModelType {
+
     var showError: ((String) -> Void)?
     var filterFromLatest = BehaviorRelay<Bool>(value: true)
-    var dbLaunches = BehaviorRelay<[LaunchesEntity]>(value: [])
 
-    private let networkingService: NetworkServiceType
     private let bag = DisposeBag()
-    private let storageManager: LaunchesStorageType
     private var reachability = try? Reachability()
 
-    init(networkingService: NetworkServiceType,
-         storage: LaunchesStorageType) {
-        self.networkingService = networkingService
-        self.storageManager = storage
-        self.bind()
-        self.startNotify()
+    // MARK: - Dependencies
+    let dependencies: Dependencies
+
+    // MARK: - Module infrastructure
+    let moduleBindings = ModuleBindings()
+
+    // MARK: - ViewModel infrastructure
+    var bindings = Bindings()
+    let commands = Commands()
+
+    // MARK: - Configuration
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+        configure(commands: commands)
+        configure(bindings: bindings)
+        configure(moduleBindings: moduleBindings)
+    }
+
+    func configure(commands: Commands) {
+        commands.goToDetails.bind(to: moduleBindings.startDetails).disposed(by: bag)
+        commands.openSettings.bind(to: moduleBindings.startSettings).disposed(by: bag)
+    }
+
+    private func configure(moduleBindings: ModuleBindings) {
+        bindings.openDetails.bind(to: moduleBindings.startDetails).disposed(by: bag)
+    }
+
+    func configure(bindings: Bindings) {
+        bindings.getLaunches.bind(to: Binder(self) { target, _ in
+            target.getLaunches()
+        }).disposed(by: bag)
+
+        bindings.updateData.bind(to: Binder<Void>(self) { target, _ in
+            target.getLaunches()
+        }).disposed(by: bag)
+
+        bindings.startNotify.bind(to: Binder<Void>(self) { target, _ in
+            target.startNotify()
+        }).disposed(by: bag)
+
+        bindings.stopNotify.bind(to: Binder<Void>(self) { target, _ in
+            target.stopNotify()
+        }).disposed(by: bag)
+
+        bind()
     }
 
     func getLaunches() {
-        dbLaunches = storageManager.getLaunches()
-        self.reload?()
-    }
-
-    func launchAt(indexPath: IndexPath) -> LaunchesEntity {
-        return dbLaunches.value[indexPath.item]
+        bindings.launches.accept(dependencies.storageService.getLaunches())
     }
 
     func push(launch: LaunchesEntity) {
@@ -56,39 +76,34 @@ final class MainViewModel: MainViewModelType {
             Task {
                 guard let self else { return }
                 do {
-                    let _ = try await self.networkingService.fetchRocket(id: launch.rocket ?? "")
+                    let _ = try await self.dependencies.networkingService.fetchRocket(id: launch.rocket ?? "")
                 } catch {
                     self.showError?(error.localizedDescription)
                     print(error)
                 }
-                self.coordinator?.performTransition(with: .perform(.detail(launch)))
             }
         }
     }
 
-    func pushToSettings() {
-        self.coordinator?.performTransition(with: .perform(.settings))
-    }
-
-    private func bind() {
+    private func filter() {
         filterFromLatest
             .observe(on: MainScheduler.instance)
             .skip(1)
             .subscribe { [weak self] event in
                 guard let self,
                       let element = event.element else { return }
-                let newArray = self.dbLaunches.value
+                let newArray = self.bindings.launches.value
 
-                self.dbLaunches.accept(
+                self.bindings.launches.accept(
                     element ?
                     newArray.sorted(by: { $0.dateUTC ?? Date() > $1.dateUTC ?? Date() }) :
                         newArray.sorted(by: { $0.dateUTC ?? Date() < $1.dateUTC ?? Date() })
                 )
-
-                self.reload?()
             }
             .disposed(by: bag)
+    }
 
+    private func bind() {
         reachability?.rx.isReachable
             .subscribe (onNext: { isReachable in
                 if !isReachable {
@@ -116,7 +131,7 @@ final class MainViewModel: MainViewModelType {
         try? reachability?.startNotifier()
     }
 
-    func stopNotify() {
+    private func stopNotify() {
         reachability?.stopNotifier()
     }
 }

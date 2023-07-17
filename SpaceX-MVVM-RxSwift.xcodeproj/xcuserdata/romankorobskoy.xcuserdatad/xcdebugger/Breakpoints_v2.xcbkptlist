@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "B2463489-43A6-477D-A18B-EE98EEC125D2"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2361F3A2-F0D2-4118-BEBB-17FD74F52F15"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Splash/SplashViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3B72A848-3C31-4743-9068-2DE65FE43A50"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Splash/SplashConfigurator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "configure()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "701F0F93-C426-45C6-B25D-576EFB7668D1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Splash/SplashViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "setupBinding()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7AC1C019-484B-4C36-AC0C-CD2BDB2EAC30"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Splash/SplashCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "startMainScreen()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C8152EE4-D303-4656-B04E-A407FD4FE602"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Splash/SplashViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "bind()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "962E1E1A-66FB-43C4-8CE9-372F27181888"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Main/MainView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "scrollViewDidScroll(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "962E1E1A-66FB-43C4-8CE9-372F27181888 - 24eddef5f1fbd3ff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpaceX_MVVM_RxSwift.MainView.scrollViewDidScroll(__C.UIScrollView) -&gt; ()"
+                  moduleName = "SpaceX-MVVM-RxSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romankorobskoy/Documents/untitled%20folder/SpaceX-MVVM-RxSwift/SpaceX-MVVM-RxSwift/Modules/Main/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
+                  offsetFromSymbolStart = "536">
+               </Location>
+               <Location
+                  uuid = "962E1E1A-66FB-43C4-8CE9-372F27181888 - 24eddef5f1fbd3ff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpaceX_MVVM_RxSwift.MainView.scrollViewDidScroll(__C.UIScrollView) -&gt; ()"
+                  moduleName = "SpaceX-MVVM-RxSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romankorobskoy/Documents/untitled%20folder/SpaceX-MVVM-RxSwift/SpaceX-MVVM-RxSwift/Modules/Main/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C03CBFC5-D9D2-46D0-8937-EF91CBE42A24"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Main/MainCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "start()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C33CEE60-1ED3-49D0-A184-248C2196CB61"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Main/MainCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "startDetailsScreen()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DD1F8CCA-FB9D-483E-B09B-5206B6E057A5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Main/MainCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "start()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB8BD2A0-3B2B-467F-990B-C8D0A5E4046A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Main/MainCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "start()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E9201A50-EB35-4E5A-B116-4E3D5B6183BA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Detail/DetailConfigurator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "configure()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E9201A50-EB35-4E5A-B116-4E3D5B6183BA - 65259e894794f720"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SpaceX_MVVM_RxSwift.DetailConfigurator.configure() -&gt; (view: __C.UIViewController, viewModel: SpaceX_MVVM_RxSwift.DetailModuleType)"
+                  moduleName = "SpaceX-MVVM-RxSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romankorobskoy/Documents/untitled%20folder/SpaceX-MVVM-RxSwift/SpaceX-MVVM-RxSwift/Modules/Detail/DetailConfigurator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "E9201A50-EB35-4E5A-B116-4E3D5B6183BA - 65259e894794f720"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SpaceX_MVVM_RxSwift.DetailConfigurator.configure() -&gt; (view: __C.UIViewController, viewModel: SpaceX_MVVM_RxSwift.DetailModuleType)"
+                  moduleName = "SpaceX-MVVM-RxSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romankorobskoy/Documents/untitled%20folder/SpaceX-MVVM-RxSwift/SpaceX-MVVM-RxSwift/Modules/Detail/DetailConfigurator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "E9201A50-EB35-4E5A-B116-4E3D5B6183BA - 65259e894794f701"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SpaceX_MVVM_RxSwift.DetailConfigurator.configure() -&gt; (view: __C.UIViewController, viewModel: SpaceX_MVVM_RxSwift.DetailModuleType)"
+                  moduleName = "SpaceX-MVVM-RxSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romankorobskoy/Documents/untitled%20folder/SpaceX-MVVM-RxSwift/SpaceX-MVVM-RxSwift/Modules/Detail/DetailConfigurator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D822013D-79ED-42DF-974E-4B5B626B5B68"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Detail/DetailViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "getRocketInfo()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3A471093-6798-4B19-9466-B32AE40BC7E5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Detail/DetailViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "getRocketDetails()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E8CF5E4F-09DF-4185-ABB3-5CB06C841BFC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Detail/DetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "setupHeader()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ECE26736-7CE6-4653-9753-11FE30A2EEB9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Detail/DetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "scrollViewDidScroll(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "95440ADF-69A5-455E-A114-84CC5B30ABEF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Settings/SettingsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "updateHeightState()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EDDED7B0-2C37-450B-988C-A493C461BC2F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Main/MainCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "startDetailsScreen()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "01A94F77-20F4-4B5B-8F3A-9D95CCD47199"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Main/MainCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "startWebScreen()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "01A94F77-20F4-4B5B-8F3A-9D95CCD47199 - 19157b4189638a5f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpaceX_MVVM_RxSwift.MainCoordinator.startWebScreen() -&gt; ()"
+                  moduleName = "SpaceX-MVVM-RxSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romankorobskoy/Documents/untitled%20folder/SpaceX-MVVM-RxSwift/SpaceX-MVVM-RxSwift/Modules/Main/MainCoordinator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "456">
+               </Location>
+               <Location
+                  uuid = "01A94F77-20F4-4B5B-8F3A-9D95CCD47199 - 19157b4189638a5f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpaceX_MVVM_RxSwift.MainCoordinator.startWebScreen() -&gt; ()"
+                  moduleName = "SpaceX-MVVM-RxSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romankorobskoy/Documents/untitled%20folder/SpaceX-MVVM-RxSwift/SpaceX-MVVM-RxSwift/Modules/Main/MainCoordinator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1B87E48A-F6A9-47A5-89C9-FF38F199D7A8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/MainCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "startWebScreen()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F57163E7-BDA6-42FD-91F4-9F46369A2AFD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Web/WebViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "configure(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F57163E7-BDA6-42FD-91F4-9F46369A2AFD - a5a9d03ee55908c0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SpaceX_MVVM_RxSwift.WebViewController, ()) -&gt; () in SpaceX_MVVM_RxSwift.WebViewController.configure(SpaceX_MVVM_RxSwift.WebViewModel.Bindings) -&gt; ()"
+                  moduleName = "SpaceX-MVVM-RxSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romankorobskoy/Documents/untitled%20folder/SpaceX-MVVM-RxSwift/SpaceX-MVVM-RxSwift/Modules/Web/WebViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "F57163E7-BDA6-42FD-91F4-9F46369A2AFD - eed5d47c2c00bb00"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SpaceX_MVVM_RxSwift.WebViewController, Swift.Optional&lt;Swift.String&gt;) -&gt; () in SpaceX_MVVM_RxSwift.WebViewController.configure(SpaceX_MVVM_RxSwift.WebViewModel.Bindings) -&gt; ()"
+                  moduleName = "SpaceX-MVVM-RxSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/romankorobskoy/Documents/untitled%20folder/SpaceX-MVVM-RxSwift/SpaceX-MVVM-RxSwift/Modules/Web/WebViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "87B41D6B-CD35-42CF-A972-9069A9870A2B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceX-MVVM-RxSwift/Modules/Web/WebViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "setupBinding()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
